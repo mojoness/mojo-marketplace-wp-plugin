@@ -56,3 +56,10 @@ function mm_clear_transients() {
 }
 add_action( 'wp_login', 'mm_clear_transients' );
 add_action( 'pre_current_active_plugins', 'mm_clear_transients' );
+
+// Add Photon to the list of default modules activated when Jetpack is linked to WP.
+function mm_customize_jetpack_default_modules( $modules ) {
+	$modules[] = 'photon';
+	return $modules;
+}
+add_filter( 'jetpack_get_default_modules', 'mm_customize_jetpack_default_modules' );
