@@ -3,9 +3,18 @@
  * This file will handle the checking, loading, and expiring of notifications.
  */
 
-function mm_notification_api( $args = array() ) {
+/**
+ * mm_notification_api
+ *
+ * MOJO Marketplace API call banners and theme update notices, etc.
+ *
+ * @param array $params - GET parameters
+ * @param array $args - wp_remote_* arguments for affecting the HTTP call
+ * @return mixed - Object on success (from decoded JSON), false otherwise.
+ **/
+function mm_notification_api( $params = array(), $args = array() ) {
 	$url = "https://mojomarketplace.com/api/v2/notifications";
-	$default_args = array(
+	$default_params = array(
 		"context" => "mojo-marketplace-wordpress-plugin",
 		"identification" => array(
 			//"whoami" => 'whoami',
@@ -17,7 +26,7 @@ function mm_notification_api( $args = array() ) {
 			//"brand_id" => "<brand_id>"
 		)
 	);
-	$args = wp_parse_args( $args, $default_args );
+	$url .= '?' . http_build_query( wp_parse_args( $params, $default_params ) );
 	$results = wp_remote_get( $url, $args );
 	$json = json_decode( $results['body'] );
 	if( is_wp_error( $results ) || strlen( $results['body'] ) < 200 || ! $json ) {
@@ -74,16 +83,16 @@ function mm_load_notifications() {
 }
 add_action( 'wp_login', 'mm_load_notifications' );
 
-function mm_build_notification( $notice, $id ) {
+function mm_build_notification( $notification, $id ) {
 	if ( ! empty( $notice->background ) ) {
-		$background = " style='background: " . wp_kses( $notice->background, 'strip' ) . "'";
+		$background = " style='background: " . wp_kses( $notification->background, 'strip' ) . "'";
 	} else {
 		$background = "";
 	}
 
 	$notice = "<div class='mojo-notice' " . $background . ">";
 	$notice .= "<a href='" . admin_url( "?mojo-dismiss-notice=" . esc_attr( $id ) ) . "' class='mojo-dismiss dashicons dashicons-dismiss' alt='dismiss'></a>";
-	$notice .= wp_kses_post( $notice->message );
+	$notice .= wp_kses_post( $notification->message );
 	$notice .= "</div>";
 	return $notice;
 }
