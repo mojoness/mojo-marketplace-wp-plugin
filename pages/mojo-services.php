@@ -1,10 +1,11 @@
 <?php
 $type = str_replace( 'mojo-', '', sanitize_title_for_query( wp_unslash( $_GET['page'] ) ) );
 $query = array(
-	'category' => 'wordpress',
-	'type'     => $type,
-	'count'    => 20,
+	'category'  => 'wordpress',
+	'type'      => $type,
+	'count'     => 20,
 	'order'     => 'sales',
+	'direction' => ( isset( $_GET['direction'] ) ) ? $_GET['direction'] : '',
 );
 if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 	$query['page'] = (int) $_GET['paged'];
@@ -12,7 +13,7 @@ if ( isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ) {
 	$query['page'] = 1;
 }
 
-if ( 'services' == $type || 'graphics' == $type ) {
+if ( 'services' == $type ) {
 	unset( $query['category'] );
 }
 
@@ -23,18 +24,16 @@ if ( isset( $_GET['items'] ) ) {
 		$query['itemcategory'] = sanitize_title_for_query( $_GET['items'] );
 	}
 }
-if ( isset( $_GET['sort'] ) ) {
-	if ( 'recent' == $_GET['sort'] || 'popular' == $_GET['sort'] ) {
-		$query['order'] = sanitize_title_for_query( $_GET['sort'] );
-	}
+if ( isset( $_GET['sort'] ) && ! empty( $_GET['sort'] ) ) {
+	$query['order'] = sanitize_title_for_query( $_GET['sort'] );
 }
-if ( 'graphics' == $type && isset( $query['itemcategory'] ) ) {
-	$query['category'] = $query['itemcategory'];
-	unset( $query['itemcategory'] );
-}
-
+$query = array_filter( $query );
 $api_url = add_query_arg( $query, 'https://api.mojomarketplace.com/api/v2/items' );
-$response = mm_api_cache( $api_url );
+if ( 'random' != $query['order'] ) {
+	$response = mm_api_cache( $api_url );
+} else {
+	$response = wp_remote_get( $api_url );
+}
 if ( ! is_wp_error( $response ) ) {
 	if ( isset( $_GET['items'] ) && 'security-1' == $_GET['items'] ) {
 		$_GET['items'] = 'security';
@@ -43,8 +42,14 @@ if ( ! is_wp_error( $response ) ) {
 	$items = $api->items;
 
 ?>
-<div id="mojo-wrapper">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
 	<?php mm_require( MM_BASE_DIR . 'pages/header.php' ); ?>
+	<div class="container">
+		<?php
+		mm_partner_offers( 'services-banner-top' );
+		mm_pagination( $api->page, $api->pageCount );
+		?>
+	</div>
 	<main id="main">
 		<div class="container">
 			<div class="panel panel-default">
@@ -52,22 +57,7 @@ if ( ! is_wp_error( $response ) ) {
 					<div class="row">
 						<div class="col-xs-12 col-sm-8">
 							<ol class="breadcrumb">
-
-							<?php if ( ! isset( $_GET['items'] ) && $type !== 'graphics' ) {
-								echo '<li>WordPress ' . ucfirst( $type ) . '</li>';
-							} ?>
-
-							<?php if ( ! isset( $_GET['items'] ) && $type == 'graphics' ) {
-								echo '<li>' . ucfirst( $type ) . '</li>';
-							} ?>
-
-							<?php if ( isset( $_GET['items'] ) && $type !== 'graphics' ) : ?>
-								<li><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-' . $type ), admin_url( 'admin.php' ) ) ); ?>">WordPress <?php echo ucfirst( $type ); ?></a></li>
-							<?php endif; ?>
-
-							<?php if ( isset( $_GET['items'] ) && $type == 'graphics' ) : ?>
-								<li><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-' . $type ), admin_url( 'admin.php' ) ) ); ?>"><?php echo ucfirst( $type ); ?></a></li>
-							<?php endif; ?>
+							<li>WordPress Services</li>
 								<?php
 								if ( isset( $_GET['items'] ) ) {
 									?>
@@ -76,6 +66,20 @@ if ( ! is_wp_error( $response ) ) {
 								}
 								?>
 							</ol>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							<form class="form-horizontal services-sort">
+								<label for="sort_select" class="control-label">Sort By</label>
+								<span class="fake-select">
+									<select class="form-control input-sm" id="sort_select">
+										<option value=''>Select</option>
+										<option value='price'<?php selected( 'price', $query['order'] ); ?>>Price</option>
+										<option value='latest'<?php selected( 'latest', $query['order'] ); ?>>Date Added</option>
+										<option value='random'<?php selected( 'random', $query['order'] ); ?>>Random</option>
+									</select>
+								</span>
+								<a href='#' class='sort-direction'><span class="dashicons dashicons-sort"></span></a>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -120,7 +124,7 @@ if ( ! is_wp_error( $response ) ) {
 										</div>
 										<div class="btn-group-vertical" role="group">
 											<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>" class="btn btn-primary btn-lg">Details</a>
-											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_list' ) ); ?>" class="btn btn-success btn-lg">Buy Now</a>
+											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_list' ) ); ?>" class="btn btn-success btn-lg" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="services_list">Buy Now</a>
 										</div>
 									</div>
 								</div>
@@ -132,9 +136,29 @@ if ( ! is_wp_error( $response ) ) {
 					</div>
 				</div>
 			</div>
-			<?php mm_pagination( $api->page, $api->pageCount ); ?>
+			<?php
+			mm_partner_offers( 'services-banner-bottom' );
+			mm_pagination( $api->page, $api->pageCount );
+			?>
+			<br style="clear: both"/><span class="alignright powered"><a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com' ); ?>"><img height="16" width="156" alt="Mojo Marketplace" src="<?php echo MM_ASSETS_URL . 'img/logo-dark.svg'; ?>"></a></span>
 		</div>
 	</main>
 </div>
+	<script type="text/javascript">
+	jQuery( document ).ready( function( $ ) {
+		$( '.services-sort #sort_select' ).change( function() {
+			window.location.href = window.location.href + '&sort=' + this.value;
+		} );
+		$( '.services-sort a.sort-direction' ).click( function( link ) {
+			link.preventDefault();
+			var dir = location.search.split( 'direction=' )[1];
+			if ( 'undefined' == typeof( dir ) || 'asc' == dir ) {
+				window.location.href = window.location.href + '&direction=desc';
+			} else {
+				window.location.href = window.location.href + '&direction=asc';
+			}
+		} );
+	} );
+	</script>
 	<?php
 }

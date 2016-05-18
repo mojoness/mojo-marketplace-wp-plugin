@@ -131,10 +131,40 @@ add_action( 'admin_notices', 'mm_display_notifications' );
 function mm_display_backup_reminder() {
 	if ( 'update-core.php' == basename( $_SERVER['REQUEST_URI'] ) ) {
 		?>
-		<div class="updated">
+		<div class="notice updated">
 			<p>Interested in having your backups setup for you? <a href='<?php echo mm_build_link( 'https://www.mojomarketplace.com/item/backup-your-wordpress-website', array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'update_backup_notice' ) ); ?>'>learn more</a></p>
 		</div>
 		<?php
 	}
 }
 add_action( 'admin_notices', 'mm_display_backup_reminder' );
+
+function mm_partner_offers( $location, $echo = true ) {
+	$offers = mm_api_cache( 'https://api.mojomarketplace.com/mojo-plugin-assets/json/mojo-partner-offers.json' );
+	if ( ! is_wp_error( $offers ) && null !== json_decode( $offers['body'] ) ) {
+		$offers = json_decode( $offers['body'] );
+		if ( isset( $offers->{ $location } ) ) {
+			$offer = $offers->{ $location };
+		}
+	}
+
+	if ( 'default' != mm_brand() ) {
+		$branded_offers = mm_api_cache( 'https://api.mojomarketplace.com/mojo-plugin-assets/json/mojo-partner-offers-' . mm_brand() . '.json' );
+		if ( ! is_wp_error( $branded_offers ) && null !== json_decode( $branded_offers['body'] ) ) {
+			$branded_offers = json_decode( $branded_offers['body'] );
+			if ( isset( $branded_offers->{ $location } )  && ! empty( $branded_offers->{ $location } ) ) {
+				$offer = $branded_offers->{ $location };
+			}
+		}
+	}
+
+	if ( isset( $offer ) && is_object( $offer ) && isset( $offer->url ) && isset( $offer->img ) ) {
+		$offer_display = '<div class="mm-partner-offer mm-partner-%s"><a href="%s" target="_blank"><img src="%s" /></a></div>';
+		$offer_display = sprintf( $offer_display, sanitize_title( $location ), esc_url( $offer->url ), esc_url( $offer->img ) );
+		if ( $echo ) {
+			echo $offer_display;
+		} else {
+			return $offer_display;
+		}
+	}
+}

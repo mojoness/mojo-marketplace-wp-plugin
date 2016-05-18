@@ -4,9 +4,9 @@
 */
 
 function mm_auto_update_make_bool( $value, $default = true ) {
-	if( $value === 'false' ) { $value = false; }
-	if( $value === 'true' ) { $value = true; }
-	if( $value !== true && $value !== false ) { $value = $default; }
+	if ( 'false' === $value ) { $value = false; }
+	if ( 'true' === $value ) { $value = true; }
+	if ( true !== $value && false !== $value ) { $value = $default; }
 	return $value;
 }
 
@@ -30,10 +30,10 @@ function mm_auto_update_register_settings() {
 	$section_hook = 'general';
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) ) {
 		add_settings_section(
-			$section_name, //Section
-			'MOJO Auto Update Manager', //Title
-			'__return_false', //section description callback
-			$section_hook //Setting Hook
+			$section_name,
+			'MOJO Auto Update Manager',
+			'__return_false',
+			$section_hook
 		);
 	}
 
@@ -95,17 +95,12 @@ add_action( 'admin_init', 'mm_auto_update_register_settings' );
 
 function mm_auto_update_configure() {
 
-	//Enable Major Auto Updates on new installs
-	if ( get_option( 'mm_install_date' ) == date( 'M d, Y' ) && false == get_option( 'allow_major_auto_core_updates', false ) ) {
-		update_option( 'allow_major_auto_core_updates', 'true' );
-	}
-
 	$settings  = array(
 		'allow_major_auto_core_updates' => get_option( 'allow_major_auto_core_updates', true ),
 		'allow_minor_auto_core_updates' => get_option( 'allow_minor_auto_core_updates', true ),
 		'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
 		'auto_update_theme'             => get_option( 'auto_update_theme', true ),
-		'auto_update_translation'       => get_option( 'auto_update_translation', true )
+		'auto_update_translation'       => get_option( 'auto_update_translation', true ),
 	);
 
 	//only change setting if the updater is not disabled
@@ -130,13 +125,11 @@ function mm_auto_update_configure() {
 		$settings = array_map( 'mm_auto_update_make_bool', $settings );
 
 		foreach ( $settings as $name => $value ) {
-
 			if ( $value ) {
 				add_filter( $name, '__return_true' );
 			} else {
 				add_filter( $name, '__return_false' );
 			}
-
 		}
 	}
 }

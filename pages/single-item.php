@@ -10,7 +10,7 @@ if ( ! is_wp_error( $response ) ) {
 	$item = $body->items[0];
 	$type = $item->type;
 ?>
-<div id="mojo-wrapper">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
 	<?php mm_require( MM_BASE_DIR . 'pages/header.php' ); ?>
 	<main id="main">
 		<div class="container">
@@ -24,18 +24,22 @@ if ( ! is_wp_error( $response ) ) {
 									switch ( $item->type ) {
 										case 'Themes &amp; Templates':
 											echo '<a href="' . esc_url( add_query_arg( array( 'page' => 'mojo-themes' ), admin_url( 'admin.php' ) ) ) . '">WordPress Themes</a>';
+											$partner_type = 'themes';
 											break;
 
 										case 'Plugins &amp; Extensions':
 											echo '<a href="' . esc_url( add_query_arg( array( 'page' => 'mojo-plugins' ), admin_url( 'admin.php' ) ) ) . '">WordPress Plugins</a>';
+											$partner_type = 'plugins';
 											break;
 
 										case 'Professional Services':
 											echo '<a href="' . esc_url( add_query_arg( array( 'page' => 'mojo-services' ), admin_url( 'admin.php' ) ) ) . '">Services</a>';
+											$partner_type = 'services';
 											break;
 
 										case 'Logos &amp; Graphics':
 											echo '<a href="' . esc_url( add_query_arg( array( 'page' => 'mojo-graphics' ), admin_url( 'admin.php' ) ) ) . '">Graphics</a>';
+											$partner_type = 'graphics';
 											break;
 
 										default:
@@ -46,8 +50,8 @@ if ( ! is_wp_error( $response ) ) {
 								</li>
 								<li class="active">
 								<?php
-								echo substr( apply_filters( 'mm_item_name', $item->name ), 0, 41 );
-								if ( strlen( $item->name ) != strlen( substr( $item->name, 0, 41 ) ) ) {
+								echo substr( apply_filters( 'mm_item_name', $item->name ), 0, 39 );
+								if ( strlen( $item->name ) != strlen( substr( $item->name, 0, 39 ) ) ) {
 									echo '&hellip;';
 								}
 								?>
@@ -94,7 +98,7 @@ if ( ! is_wp_error( $response ) ) {
 										<span class="currency">USD</span>
 									</div>
 									<div class="btn-box">
-										<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_single_sidebar' ) ); ?>" class="btn btn-success btn-lg">Buy Now</a>
+										<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_single_sidebar' ) ); ?>" class="btn btn-success btn-lg" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="single_item">Buy Now</a>
 									</div>
 									<span class="price-option">One Time Fee</span>
 								</div>
@@ -131,11 +135,20 @@ if ( ! is_wp_error( $response ) ) {
 									<i><small>Providers are all prescreened and approved.</small></i>
 								</div>
 								<?php } ?>
+								<?php
+									if ( isset( $partner_type ) ) {
+										$partner_offer = mm_partner_offers( $partner_type . '-single-item', false );
+										if ( strlen( $partner_offer ) > 5 ) {
+											echo sprintf( '<div class="widget">%s</div>', $partner_offer );
+										}
+									}
+								?>
 							</aside>
 						</div>
 					</div>
 				</div>
 			</div>
+			<br style="clear: both"/><span class="alignright powered"><a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com' ); ?>"><img height="16" width="156" alt="Mojo Marketplace" src="<?php echo MM_ASSETS_URL . 'img/logo-dark.svg'; ?>"></a></span>
 		</div>
 	</main>
 </div>

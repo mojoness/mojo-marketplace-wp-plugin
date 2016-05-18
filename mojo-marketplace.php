@@ -2,7 +2,7 @@
 /*
 Plugin Name: MOJO Marketplace
 Description: This plugin adds shortcodes, widgets, and themes to your WordPress site.
-Version: 0.7.4
+Version: 0.8.2
 Author: Mike Hansen
 Author URI: http://mikehansen.me?utm_campaign=plugin&utm_source=mojo_wp_plugin
 License: GPLv2 or later
@@ -15,6 +15,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 define( 'MM_BASE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MM_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MM_ASSETS_URL', 'https://www.mojomarketplace.com/mojo-plugin-assets/' );
+define( 'MM_VERSION', '0.8.2' );
 
 if ( file_exists( MM_BASE_DIR . 'inc/brand.php' ) ) {
 	require_once( MM_BASE_DIR . 'inc/brand.php' );
@@ -33,6 +34,7 @@ require_once( MM_BASE_DIR . 'inc/spam-prevention.php' );
 require_once( MM_BASE_DIR . 'inc/updates.php' );
 require_once( MM_BASE_DIR . 'inc/coming-soon.php' );
 require_once( MM_BASE_DIR . 'inc/tests.php' );
+mm_require( MM_BASE_DIR . 'inc/branding.php' );
 require_once( MM_BASE_DIR . 'inc/editor-prompt.php' );
 mm_require( MM_BASE_DIR . 'inc/sso.php' );
 mm_require( MM_BASE_DIR . 'vendor/jetpack/jetpack-onboarding/jetpack-onboarding.php' );
@@ -40,4 +42,3 @@ if ( mm_jetpack_bluehost_only() ) {
 	mm_require( MM_BASE_DIR . 'vendor/jetpack/jetpack-onboarding-tracks/jetpack-onboarding-tracks.php' );
 }
 mm_require( MM_BASE_DIR . 'updater.php' );
-

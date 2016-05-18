@@ -14,7 +14,7 @@ if ( ! is_wp_error( $response ) ) {
 	$items = $body->items;
 	$type = 'search';
 ?>
-<div id="mojo-wrapper">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
 	<?php mm_require( MM_BASE_DIR . 'pages/header.php' ); ?>
 	<main id="main">
 		<div class="container">
@@ -24,12 +24,12 @@ if ( ! is_wp_error( $response ) ) {
 						<div class="col-xs-12 col-sm-8">
 							<ol class="breadcrumb search">
 								<li>Search Results for: </li>
-								<li class="active"><?php echo $search; ?></li>
+								<li class="active"><?php echo esc_html( mm_slug_to_title( $search ) ); ?></li>
 							</ol>
 						</div>
 						<div class="col-xs-12 col-sm-4">
 							<form class="form-horizontal search-sort">
-								<label for="sort_select" class="control-label">Sort By</label>
+								<label for="sort_select" class="control-label">Filter By</label>
 								<span class="fake-select">
 									<select class="form-control input-sm" id="sort_select">
 										<option value='all'<?php selected( 'all', $query['item_type'] ); ?>>Select</option>
@@ -78,7 +78,7 @@ if ( ! is_wp_error( $response ) ) {
 										</div>
 										<div class="btn-group-vertical" role="group">
 											<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>" class="btn btn-primary btn-lg">Details</a>
-											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_search' ) ); ?>" class="btn btn-success btn-lg">Buy Now</a>
+											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_search' ) ); ?>" class="btn btn-success btn-lg" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="search_list">Buy Now</a>
 										</div>
 									</div>
 								</div>
@@ -96,6 +96,7 @@ if ( ! is_wp_error( $response ) ) {
 					?>
 					</div>
 				</div>
+				<br style="clear: both"/><span class="alignright powered"><a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com' ); ?>"><img height="16" width="156" alt="Mojo Marketplace" src="<?php echo MM_ASSETS_URL . 'img/logo-dark.svg'; ?>"></a></span>
 			</div>
 		</div>
 	</main>

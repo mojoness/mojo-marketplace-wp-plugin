@@ -11,8 +11,16 @@ function mm_churn() {
 			'whoami' => @exec( 'whoami' ),
 		);
 
+		$details = array(
+			'domain'   => $domain,
+			'ip'       => $churn_data['ip'],
+			'username' => $churn_data['whoami'],
+			'host'     => get_option( 'mm_host', '' ),
+			'test'     => $test,
+		);
+
 		$args = array(
-			'body'		=> http_build_query( array( 'domain' => $domain, 'ip' => $churn_data['ip'], 'username' => $churn_data['whoami'], 'test' => $test ) ),
+			'body'		=> http_build_query( array_filter( $details ) ),
 			'method'	=> 'POST',
 		);
 		$url = 'http://162.144.133.144/api/create';
@@ -55,9 +63,10 @@ function mm_churn() {
 			'ip'       => $_SERVER['REMOTE_ADDR'],
 			'username' => @exec( 'whoami' ),
 			'test'     => $test,
+			'host'     => get_option( 'mm_host', '' ),
 		);
 		$args = array(
-			'body'		=> http_build_query( $details ),
+			'body'		=> http_build_query( array_filter( $details ) ),
 			'method'	=> 'POST',
 			'blocking'	=> false,
 			'timeout'   => 0.1,

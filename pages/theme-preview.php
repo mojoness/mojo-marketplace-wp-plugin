@@ -7,7 +7,7 @@ $api_url = 'https://api.mojomarketplace.com/api/v2/items/' . $item_id;
 $items = ( isset( $_GET['items'] ) ) ? esc_attr( $_GET['items'] ): '';
 $theme = mm_api_cache( $api_url );
 
-$other_viewed = mm_api_cache( add_query_arg( array( 'type' => 'themes', 'order' => 'random', 'count' => 4 ), 'https://api.mojomarketplace.com/api/v2/items' ) );
+$other_viewed = mm_api_cache( add_query_arg( array( 'category' => 'wordpress', 'type' => 'themes', 'order' => 'random', 'count' => 4 ), 'https://api.mojomarketplace.com/api/v2/items' ) );
 
 if ( is_wp_error( $theme ) ) {
 	echo "<div class='error'><p>Unable to load theme preview. <a href='admin.php?page=mojo-themes&items=" . esc_attr( $_GET['items'] ) . "'>Return to themes</a></p></div>";
@@ -15,7 +15,7 @@ if ( is_wp_error( $theme ) ) {
 	$theme = json_decode( $theme['body'] );
 	$theme = $theme->items[0];
 ?>
-<div class="wrap">
+<div class="wrap <?php echo mm_brand( 'mojo-%s-branding' );?>">
 <?php
 	$theme->name = apply_filters( 'mm_item_name', $theme->name );
 	?>
@@ -27,7 +27,7 @@ if ( is_wp_error( $theme ) ) {
 				</a>
 			</div>
 			<div class="wp-full-overlay-sidebar-content">
-				<img class="theme-preview-logo" src="<?php echo MM_ASSETS_URL . 'img/logo-dark.svg'; ?>" />
+				<img class="theme-preview-logo" src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-preview-%s.svg' ); ?>" />
 				<div class="install-theme-info">
 					<h3 class="theme-name"><?php esc_html_e( $theme->name ); ?></h3>
 					<br/>
@@ -79,22 +79,19 @@ if ( is_wp_error( $theme ) ) {
 			<iframe src="<?php echo mm_build_link( $theme->demo_url, array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'preview_view_demo' ) ); ?>"></iframe>
 		</div>
 	</div>
-	<?php
-}
-?>
-<script type="text/javascript">
-jQuery( document ).ready( function( $ ) {
-	$( 'a.theme-preview-other-link' ).hover( function() {
-		$( '#preview-screenshot img' ).attr( 'src', $( this ).data( 'preview' ) );
-		$( '#preview-screenshot' ).fadeIn();
+		<script type="text/javascript">
+	jQuery( document ).ready( function( $ ) {
+		$( 'a.theme-preview-other-link' ).hover( function() {
+			$( '#preview-screenshot img' ).attr( 'src', $( this ).data( 'preview' ) );
+			$( '#preview-screenshot' ).fadeIn();
+		} );
+		$( 'a.theme-preview-other-link' ).mouseleave( function() {
+			$( '#preview-screenshot img' ).attr( 'src', '' );
+			$( '#preview-screenshot' ).hide();
+		} );
 	} );
-	$( 'a.theme-preview-other-link' ).mouseleave( function() {
-		$( '#preview-screenshot img' ).attr( 'src', '' );
-		$( '#preview-screenshot' ).hide();
-	} );
-} );
-</script>
+	</script>
 </div>
-
-<?php
-$title = 'Demo : ' . $theme->name;
+	<?php
+	$title = 'Demo : ' . $theme->name;
+}

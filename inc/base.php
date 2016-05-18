@@ -16,6 +16,7 @@ function mm_setup() {
 		$events = get_option( 'mm_cron', array() );
 		$events['hourly'][ $event['ea'] ] = $event;
 		update_option( 'mm_cron', $events );
+		update_user_meta( 1, 'show_welcome_screen', 1 );
 	}
 }
 add_action( 'init', 'mm_setup' );
@@ -42,12 +43,12 @@ function mm_api( $args = array(), $query = array() ) {
 	return mm_api_cache( $request_url );
 }
 
-function mm_api_cache( $api_url ) {
+function mm_api_cache( $api_url, $duration = DAY_IN_SECONDS ) {
 	$key = md5( $api_url );
 	if ( false === ( $transient = get_transient( 'mm_api_calls' ) ) || ! isset( $transient[ $key ] ) ) {
 		$transient[ $key ] = wp_remote_get( $api_url );
 		if ( ! is_wp_error( $transient[ $key ] ) ) {
-			set_transient( 'mm_api_calls', $transient, DAY_IN_SECONDS );
+			set_transient( 'mm_api_calls', $transient, $duration );
 		}
 	}
 	return $transient[ $key ];
@@ -57,7 +58,7 @@ function mm_build_link( $url, $args = array() ) {
 	$defaults = array(
 		'utm_source'	=> 'mojo_wp_plugin', //this should always be mojo_wp_plugin
 		'utm_campaign'	=> 'mojo_wp_plugin',
-		'utm_medium'	=> 'plugin_', //(plugin_admin, plugin_widget, plugin_shortcode)
+		'utm_medium'	=> 'plugin_admin', //(plugin_admin, plugin_widget, plugin_shortcode)
 		'utm_content'	=> '', //specific location
 		'r'				=> get_option( 'mm_master_aff' ),
 	);
@@ -67,6 +68,10 @@ function mm_build_link( $url, $args = array() ) {
 
 	if ( isset( $test['key'] ) && isset( $test['name'] ) ) {
 		$args['utm_medium'] = $args['utm_medium'] . '_' . $test['name'] . '_' . $test['key'];
+	}
+
+	if ( false !== strpos( $url, 'mojomarketplace.com' ) && 'default' != mm_brand() ) {
+		$args['theme'] = mm_brand();
 	}
 
 	$args = wp_parse_args( array_filter( $args ), array_filter( $defaults ) );
@@ -146,6 +151,7 @@ function mm_all_api_calls() {
 		'https://api.mojomarketplace.com/api/v2/items?type=graphics&count=20&order=sales&page=1&category=business-cards',
 
 		'https://api.mojomarketplace.com/mojo-plugin-assets/json/search-patterns.json',
+		'https://api.mojomarketplace.com/mojo-plugin-assets/json/mojo-partner-offers.json',
 	);
 	foreach ( $calls as $call ) {
 		mm_api_cache( $call );
@@ -255,6 +261,7 @@ function mm_stars( $rating = 4.5, $sales = 0 ) {
 }
 
 function mm_pagination( $page = 1, $total_pages = 1 ) {
+	if ( 1 == $total_pages ) { return; }
 	?>
 	<div class="alignright">
 		<nav class="pagination">
