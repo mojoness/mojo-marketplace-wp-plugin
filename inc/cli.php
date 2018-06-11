@@ -6,8 +6,6 @@ if ( ! class_exists( 'WP_CLI' ) ) {
 	return;
 }
 
-die( 'does class exist in main wp?');
-
 class WP_MOJO_Commands extends WP_CLI_Command {
 
 	/**
