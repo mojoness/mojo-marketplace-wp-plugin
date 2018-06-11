@@ -12,7 +12,7 @@ if ( ! class_exists( 'WP_CLI' ) ) {
  * 3. Add classname to $mm_cmd_classnames below.
  */
 
-include_once 'cli/utilities.php';
+include_once 'cli/abstract-eig-wp-cli-command.php';
 
 // include_once 'cli/branding.php';
 // include_once 'cli/cache.php';
