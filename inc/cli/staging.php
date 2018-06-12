@@ -1,0 +1,120 @@
+<?php
+
+if ( ! class_exists( 'WP_CLI' ) ) {
+	return;
+}
+
+/**
+ * Class Bluehost_CLI_Digest
+ *
+ * This class is instantiated in /inc/cli-init.php
+ */
+class Bluehost_CLI_Digest extends WP_CLI_Command {
+	/**
+	 * @param $args null
+	 * @param $assoc_args array
+	 */
+	public function staging( $args, $assoc_args ) {
+		$valid_actions = array(
+			'create',
+			'clone',
+			'destroy',
+			'sso_staging',
+			'deploy',
+			'deploy_files',
+			'deploy_db',
+			'deploy_files_db',
+			'save_state',
+			'restore_state',
+			'sso_production',
+		);
+		if ( ! is_array( $args ) || ! isset( $args[0] ) ) {
+			WP_CLI::error( 'No function provided.' );
+		}
+		if ( ! in_array( $args[0], $valid_actions ) ) {
+			WP_CLI::error( 'Invalid function.' );
+		}
+		switch ( $args[0] ) {
+			case 'create':
+				set_transient( 'mm_fresh_staging', true, 300 );
+				$json_response = mm_cl( 'create' );
+				break;
+
+			case 'clone':
+				$json_response = mm_cl( 'clone' );
+				break;
+
+			case 'destroy':
+				$json_response = mm_cl( 'destroy' );
+				break;
+
+			case 'sso_staging':
+				$user = get_users( array( 'role' => 'administrator', 'number' => 1 ) );
+				if ( is_array( $user ) && is_a( $user[0], 'WP_User' ) ) {
+					$user = $user[0];
+					$user = $user->ID;
+				}
+				$json_response = mm_cl( 'sso_staging', array( $user ) );
+				break;
+
+			case 'sso_production':
+				$user = get_users( array( 'role' => 'administrator', 'number' => 1 ) );
+				if ( is_array( $user ) && is_a( $user[0], 'WP_User' ) ) {
+					$user = $user[0];
+					$user = $user->ID;
+				}
+				$json_response = mm_cl( 'sso_production', array( $user ) );
+				break;
+
+			case 'deploy':
+				if ( ! isset( $args[1] ) || ! in_array( $args[1], array( 'files', 'db', 'database', 'all', 'both' ) ) ) {
+					WP_CLI::error( 'Invalid deploy type.' );
+				}
+				if ( 'files' == $args[1] ) {
+					$json_response = mm_cl( 'deploy_files' );
+				}
+				if ( 'db' == $args[1] || 'database' == $args[1] ) {
+					$json_response = mm_cl( 'deploy_db' );
+				}
+				if ( 'all' == $args[1] || 'both' == $args[1] ) {
+					$json_response = mm_cl( 'deploy_files_db' );
+				}
+				break;
+
+			case 'deploy_files':
+				$json_response = mm_cl( 'deploy_files' );
+				break;
+
+			case 'deploy_db':
+				$json_response = mm_cl( 'deploy_db' );
+				break;
+
+			case 'deploy_files_db':
+				$json_response = mm_cl( 'deploy_files_db' );
+				break;
+
+			case 'save_state':
+				$json_response = mm_cl( 'save_state' );
+				break;
+
+			case 'restore_state':
+				if ( ! isset( $assoc_args['revision'] ) ) {
+					WP_CLI::error( 'Revision not provided.' );
+				}
+				$json_response = mm_cl( 'restore_state', array( esc_attr( $assoc_args['revision'] ) ) );
+				break;
+		}
+		$json_response = preg_replace( '/[^[:print:]]/', '',$json_response );
+		$json_response = str_replace( '[H[2J', '', $json_response );
+
+		if ( $response = json_decode( $json_response ) ) {
+			if ( 'success' == $response->status ) {
+				WP_CLI::success( $response->message );
+			} else {
+				WP_CLI::error( $response->message );
+			}
+		} else {
+			WP_CLI::error( 'Invalid JSON response.' );
+		}
+	}
+}
