@@ -73,7 +73,7 @@ class EIG_WP_CLI_SSO extends EIG_WP_CLI_Command {
 			$this->success( 'Single-use login link valid for ' . $minutes . ' minutes.' );
 			$this->colorize_log( $link );
 		} else {
-			WP_CLI::log( $link );
+			\WP_CLI::log( $link );
 		}
 	}
 }

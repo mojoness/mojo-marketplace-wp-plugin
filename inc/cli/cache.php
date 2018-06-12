@@ -1,5 +1,7 @@
 <?php
 
+use \WP_CLI\Utils;
+
 /**
  * Class EIG_WP_CLI_Cache
  *
@@ -133,11 +135,11 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	private function remove() {
 		switch ( $this->current_type ) {
 			case 'page':
-				$file = \WP_CLI\Utils\trailingslashit( static::$mu_plugin_dir ) . static::$page_filename;
+				$file = Utils\trailingslashit( static::$mu_plugin_dir ) . static::$page_filename;
 				$this->remove_mu_plugin( $file );
 				break;
 			case 'browser':
-				$file = \WP_CLI\Utils\trailingslashit( static::$mu_plugin_dir ) . static::$browser_filename;
+				$file = Utils\trailingslashit( static::$mu_plugin_dir ) . static::$browser_filename;
 				$this->remove_mu_plugin( $file );
 				break;
 			case 'object':
@@ -156,8 +158,8 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	 */
 	private function get_plugin_from_githubraw( $url, $filename, $dir = '' ) {
 		$this->colorize_log( 'Downloading ' . ucfirst( $this->current_type ) . ' Cache from GitHub...' );
-		$dir = ! empty( $dir ) ? \WP_CLI\Utils\trailingslashit( $dir ) : \WP_CLI\Utils\trailingslashit( static::$mu_plugin_dir );
-		$response = WP_CLI\Utils\http_request( 'GET', $url );
+		$dir = ! empty( $dir ) ? Utils\trailingslashit( $dir ) : Utils\trailingslashit( static::$mu_plugin_dir );
+		$response = Utils\http_request( 'GET', $url );
 		if (
 			 is_object( $response )
 			 && isset( $response->status_code )
@@ -225,6 +227,6 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	 * @return string
 	 */
 	private function build_url( $root, $repo_branch, $filename ) {
-		return \WP_CLI\Utils\trailingslashit( $root ) . \WP_CLI\Utils\trailingslashit( $repo_branch ) . $filename;
+		return Utils\trailingslashit( $root ) . Utils\trailingslashit( $repo_branch ) . $filename;
 	}
 }

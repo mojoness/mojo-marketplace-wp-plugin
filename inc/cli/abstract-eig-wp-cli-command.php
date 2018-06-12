@@ -110,14 +110,14 @@ abstract class EIG_WP_CLI_Command extends \WP_CLI_Command {
 			$message = $emoji_prefix . '  ' . $message;
 		}
 
-		WP_CLI::log( WP_CLI::colorize( $background . $text_color . $message . '%n' ) );
+		\WP_CLI::log( \WP_CLI::colorize( $background . $text_color . $message . '%n' ) );
 	}
 
 	/**
 	 * Empty linebreak
 	 */
 	protected function new_line() {
-		WP_CLI::log( __return_empty_string() );
+		\WP_CLI::log( __return_empty_string() );
 	}
 
 	/**
@@ -129,23 +129,23 @@ abstract class EIG_WP_CLI_Command extends \WP_CLI_Command {
 	protected function confirm( $question, $type = 'normal' ) {
 		switch ( $type ) {
 			case 'omg':
-				WP_CLI::confirm( $this->warning( '☢ 🙊 🙈 🙊 ☢️  ' . $question ) );
+				\WP_CLI::confirm( $this->warning( '☢ 🙊 🙈 🙊 ☢️  ' . $question ) );
 				break;
 			case 'red':
-				WP_CLI::confirm( $this->error( $question, true ) );
+				\WP_CLI::confirm( $this->error( $question, true ) );
 				break;
 			case 'yellow':
-				WP_CLI::confirm( $this->warning( $question ) );
+				\WP_CLI::confirm( $this->warning( $question ) );
 				break;
 			case 'green':
-				WP_CLI::confirm( $this->success( $question ) );
+				\WP_CLI::confirm( $this->success( $question ) );
 				break;
 			case 'underline':
-				WP_CLI::confirm( $this->colorize_log( $question, '', 'U' ) );
+				\WP_CLI::confirm( $this->colorize_log( $question, '', 'U' ) );
 				break;
 			case 'normal':
 			default:
-				WP_CLI::confirm( $question );
+				\WP_CLI::confirm( $question );
 				break;
 		}
 	}

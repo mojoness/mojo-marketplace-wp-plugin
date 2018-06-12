@@ -86,7 +86,7 @@ class EIG_WP_CLI_Branding extends EIG_WP_CLI_Command {
 			if ( $this->brand === $existing_brand ) {
 				$this->success( 'Branding already set to "' . $this->brand . '", wiping transients...');
 				delete_transient( static::$icon_transient_key );
-				WP_CLI::halt(200);
+				\WP_CLI::halt(200);
 			} elseif ( update_option( static::$option_key, $this->brand ) ) {
 				delete_transient( static::$icon_transient_key );
 				$this->success( 'Plugin branding updated to: ' . $this->brand );
@@ -94,7 +94,7 @@ class EIG_WP_CLI_Branding extends EIG_WP_CLI_Command {
 				$this->error( 'Failed to update plugin branding to: ' . $this->brand );
 			}
 		} else {
-			WP_CLI::log( 'Valid brands are : ' . "\n" . implode( "\n", $valid_brands ) );
+			\WP_CLI::log( 'Valid brands are : ' . "\n" . implode( "\n", $valid_brands ) );
 			$this->error( 'Didn\'t receive valid brand in subcommand or flag value.' );
 		}
 	}

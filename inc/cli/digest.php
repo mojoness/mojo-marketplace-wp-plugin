@@ -16,9 +16,9 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 		$type = in_array( 'full', $assoc_args ) ? 'full' : 'standard';
 		if ( 'full' === $type && ! isset( $assoc_args['noprompt'] ) ) {
 			$this->confirm( 'This can strain large databases. Proceed?', 'yellow' );
-			WP_CLI::log( 'Creating digest...' );
+			\WP_CLI::log( 'Creating digest...' );
 		} elseif ( ! isset( $assoc_args['noprompt'] ) ) {
-			WP_CLI::log( 'Creating digest...' );
+			\WP_CLI::log( 'Creating digest...' );
 			$this->colorize_log( 'For complete digest, add --full flag to this command.', '', 'B' );
 		}
 
@@ -153,7 +153,7 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 		$content['MEDIA'] = $attachments->found_posts;
 
 		if ( 'full' === $type ) {
-			$revisions = new WP_Query( array( 'post_type' => 'revision', 'numberposts' => - 1 ) );
+			$revisions = new \WP_Query( array( 'post_type' => 'revision', 'numberposts' => - 1 ) );
 			$menus     = count( wp_get_nav_menus() );
 
 			if ( ! empty( $menus ) ) {

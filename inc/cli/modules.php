@@ -18,9 +18,6 @@ class EIG_WP_CLI_Module extends EIG_WP_CLI_Command {
 	 */
 	public function __invoke( $args, $assoc_args ) {
 		switch( $args ) {
-			case 'list':
-				// do listing
-				break;
 			case 'enable':
 				// do enable
 				break;
@@ -30,8 +27,9 @@ class EIG_WP_CLI_Module extends EIG_WP_CLI_Command {
 			case 'status':
 				// do status check
 				break;
+			case 'list':
 			default:
-				WP_CLI::error();
+
 				break;
 		}
 	}
