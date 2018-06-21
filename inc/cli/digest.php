@@ -8,8 +8,11 @@
 class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 
 	/**
+	 * Diagnostic profile of a WordPress environment.
+	 *
 	 * @param $args
 	 * @param $assoc_args
+	 *
 	 * @throws \WP_CLI\ExitException
 	 */
 	public function __invoke( $args, $assoc_args ) {
@@ -71,7 +74,7 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 			$opts['HOMEPAGE SHOWS'] = 'Latest Posts';
 		}
 
-		if ( false !== strpos( 'https://', get_option('home' ) ) ) {
+		if ( false !== strpos( 'https://', get_option( 'home' ) ) ) {
 			$opts['HTTPS'] = '✅  Uses HTTPS';
 		} else {
 			$opts['HTTPS'] = '⚠️  Uses HTTP';
@@ -125,8 +128,8 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 			$info['ACTIVE THEME'] = $template;
 		}
 
-		$info['INSTALLED THEMES']   = count( wp_get_themes() );
-		$info['ACTIVE PLUGINS'] = count( get_option( 'active_plugins' ) ) . ' of ' . count( get_plugins() );
+		$info['INSTALLED THEMES'] = count( wp_get_themes() );
+		$info['ACTIVE PLUGINS']   = count( get_option( 'active_plugins' ) ) . ' of ' . count( get_plugins() );
 
 		return $info;
 	}
@@ -141,7 +144,7 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 	protected function eig_digest_core_content( $type ) {
 
 		/**
-		 * $WP_Query->found_posts receives its' count from MySQL and is much more performant
+		 * Use \WP_Query over get_posts() or other methods because \WP_Query->found_posts object count comes direct from MySQL.
 		 */
 		$posts       = new \WP_Query( array( 'post_type' => 'post', 'numberposts' => - 1 ) );
 		$pages       = new \WP_Query( array( 'post_type' => 'page', 'numberposts' => - 1 ) );
@@ -242,20 +245,27 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 		 * OPTIONS QUERY
 		 */
 		ob_start();
-		\WP_CLI::run_command( array( 'option', 'list' ), array(
-			'fields' => 'option_name,autoload,size_bytes',
-			'format' => 'json'
-		) );
+			\WP_CLI::run_command(
+				array( 'option', 'list' ),
+				array(
+					'fields'        => 'option_name,autoload,size_bytes',
+					'no-transients' => true,
+					'format'        => 'json',
+				)
+			);
 		$options = trim( ob_get_clean() );
 		/**
 		 * TRANSIENTS QUERY
 		 */
 		ob_start();
-		\WP_CLI::run_command( array( 'option', 'list' ), array(
-			'fields' => 'option_name,autoload,size_bytes',
-			'transients' => true,
-			'format' => 'json'
-		) );
+			\WP_CLI::run_command(
+				array( 'option', 'list' ),
+				array(
+					'fields'     => 'option_name,autoload,size_bytes',
+					'transients' => true,
+					'format'     => 'json',
+				)
+			);
 		$transients = trim( ob_get_clean() );
 
 		if ( ! empty( $options ) && is_string( $options ) ) {
@@ -284,7 +294,7 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 			}
 		}
 
-		foreach( $transients as $trans ) {
+		foreach ( $transients as $trans ) {
 			if ( false !== stripos( $trans['option_name'], 'timeout' ) ) {
 				$all_trans_timeouts ++;
 			} else {
@@ -302,27 +312,27 @@ class EIG_WP_CLI_Digest extends EIG_WP_CLI_Command {
 
 		$response = array(
 			array(
-				'TYPE' => 'OPTIONS',
+				'TYPE'  => 'OPTIONS',
 				'COUNT' => $all_opts,
-				'SIZE' => size_format( $opts_size, 2 ),
+				'SIZE'  => size_format( $opts_size, 2 ),
 			),
 			array(
-				'TYPE' => 'TRANSIENTS',
+				'TYPE'  => 'TRANSIENTS',
 				'COUNT' => $all_trans . ' (TIMEOUTS: ' . $all_trans_timeouts . ')',
-				'SIZE' => size_format( $trans_size, 2 ),
+				'SIZE'  => size_format( $trans_size, 2 ),
 			),
 			array(
-				'TYPE' => 'TOTAL',
+				'TYPE'  => 'TOTAL',
 				'COUNT' => $total,
 				'SIZE'  => size_format( $opts_size + $trans_size, 2 ),
 			),
 			array(
-				'TYPE' => 'AUTOLOAD',
+				'TYPE'  => 'AUTOLOAD',
 				'COUNT' => $all_autoload . ' (' . round( $all_autoload / $total * 100, 0 ) . '%)',
 				'SIZE'  => size_format( $autoload_size, 2 ),
 			),
 			array(
-				'TYPE' => 'CRON EVENTS',
+				'TYPE'  => 'CRON EVENTS',
 				'COUNT' => count( get_option( 'cron', array() ) ),
 				'SIZE'  => '---',
 			),

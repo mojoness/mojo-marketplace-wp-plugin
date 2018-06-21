@@ -6,33 +6,88 @@
  * This class is instantiated in /inc/cli-init.php
  */
 class EIG_WP_CLI_SSO extends EIG_WP_CLI_Command {
+
 	/**
 	 * @var string
 	 */
 	private static $transient_slug = 'mm_sso';
+
 	/**
 	 * @var string
 	 */
-	private static $nonce_slug   = 'mojo-sso';
+	private static $nonce_slug = 'mojo-sso';
+
 	/**
 	 * @var string
 	 */
 	private static $nonce_action = 'mmsso-check';
+
 	/**
-	 * Single Sign On via WP-CLI
+	 * @var int Time for nonce token to be valid.
+	 */
+	protected $expiry_min = 3;
+
+	/**
+	 * @var string
+	 */
+	protected $salt;
+
+	/**
+	 * @var string
+	 */
+	protected $nonce;
+
+	/**
+	 * @var string
+	 */
+	protected $hash;
+
+	/**
+	 * Single Sign On via WP-CLI.
 	 *
 	 * @param  null $args Unused.
 	 * @param  array $assoc_args Additional args to define which user or role to login as.
 	 */
 	public function __invoke( $args, $assoc_args ) {
-		$salt    = wp_generate_password( 32, false );
-		$nonce   = wp_create_nonce( static::$nonce_slug );
-		$hash    = base64_encode( hash( 'sha256', $nonce . $salt, false ) );
-		$hash    = substr( $hash, 0, 64 );
-		$minutes = 3;
-		$params  = array( 'action' => static::$nonce_action, 'salt' => $salt, 'nonce' => $nonce );
 
-		if ( 0 != count( $assoc_args ) ) {
+		$this->create_salt_nonce_and_hash();
+
+		$params = $this->build_request_params(
+			$assoc_args,
+			array(
+				'action' => static::$nonce_action,
+				'salt'   => $this->salt,
+				'nonce'  => $this->nonce,
+			)
+		);
+
+		set_transient(
+			static::$transient_slug,
+			$this->hash,
+			MINUTE_IN_SECONDS * $this->expiry_min
+		);
+
+		$link = add_query_arg( $params, admin_url( 'admin-ajax.php' ) );
+
+		if ( isset( $assoc_args['url-only'] ) ) {
+			\WP_CLI::log( $link );
+		} else {
+			$this->success( 'Single-use login link valid for ' . static::$expiry_min . ' minutes' );
+			$this->colorize_log( $link, 'underline' );
+		}
+
+	}
+
+	/**
+	 * Build request parameters for SSO URL.
+	 *
+	 * @param array $assoc_args
+	 * @param array $params
+	 *
+	 * @return array
+	 */
+	protected function build_request_params( $assoc_args, $params ) {
+		if ( ! empty( $assoc_args ) ) {
 			if ( isset( $assoc_args['role'] ) ) {
 				$user = get_users( array( 'role' => 'administrator', 'number' => 1 ) );
 				if ( is_array( $user ) && is_a( $user[0], 'WP_User' ) ) {
@@ -62,18 +117,23 @@ class EIG_WP_CLI_SSO extends EIG_WP_CLI_Command {
 			}
 
 			if ( isset( $assoc_args['min'] ) ) {
-				$minutes = (int) $assoc_args['min'];
+				$this->expiry_min = (int) $assoc_args['min'];
 			}
 		}
 
-		set_transient( static::$transient_slug, $hash, MINUTE_IN_SECONDS * $minutes );
+		return $params;
+	}
 
-		$link = add_query_arg( $params, admin_url( 'admin-ajax.php' ) );
-		if ( ! isset( $assoc_args['url-only'] ) ) {
-			$this->success( 'Single-use login link valid for ' . $minutes . ' minutes.' );
-			$this->colorize_log( $link );
-		} else {
-			\WP_CLI::log( $link );
-		}
+	/**
+	 * Setup cryptographic strings for SSO link.
+	 */
+	protected function create_salt_nonce_and_hash() {
+		$this->salt  = wp_generate_password( 32, false );
+		$this->nonce = wp_create_nonce( static::$nonce_slug );
+		$this->hash  = substr(
+			base64_encode( hash( 'sha256', $this->nonce . $this->salt, false ) ),
+			0,
+			64
+		);
 	}
 }

@@ -8,6 +8,15 @@ use \WP_CLI\Utils;
  * Extend this class for all WP-CLI Commands to inherit updates to the \WP_CLI_Command class and helper utilities.
  */
 abstract class EIG_WP_CLI_Command extends \WP_CLI_Command {
+
+	/**
+	 * @param string $message
+	 * @param array $data
+	 */
+	protected function failed_condition( $message = '', $data = array() ) {
+
+	}
+
 	/**
 	 * Helper to format data into tables.
 	 *

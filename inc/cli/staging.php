@@ -28,6 +28,8 @@ class EIG_WP_CLI_Staging extends EIG_WP_CLI_Command {
 		'sso_production',
 	);
 	/**
+	 * Used internally to create staging environment.
+	 *
 	 * @param $args null
 	 * @param $assoc_args array
 	 * @throws \WP_CLI\ExitException

@@ -68,6 +68,21 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	protected $current_type;
 
 	/**
+	 * @var string|null
+	 */
+	protected $current_filename;
+
+	/**
+	 * @var string|null
+	 */
+	protected $current_plugin_path;
+
+	/**
+	 * @var string|null
+	 */
+	protected $current_remote;
+
+	/**
 	 * EIG_WP_CLI_Cache constructor.
 	 */
 	public function __invoke( $args, $assoc_args ) {
@@ -76,11 +91,11 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 			WP_CLI::halt( 400 );
 		}
 
-		$this->current_type = $args[0];
+		$this->current_type   = $args[0];
 		$this->current_action = $args[1];
 
 		if ( ! in_array( $this->current_type, static::$cache_types ) ) {
-			$this->error( 'Cache type bad yo' );
+			$this->error( 'Cache type bad.' );
 			WP_CLI::halt( 400 );
 
 		}
@@ -90,38 +105,40 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 			WP_CLI::halt( 400 );
 		}
 
-		if ( 'add' === $this->current_action ) {
-			$this->add();
-		} else if ( 'remove' === $this->current_action ) {
-			$this->remove();
+		switch ( $this->current_action ) {
+			case 'add':
+				$this->add();
+				break;
+			case 'remove';
+				$this->remove();
+				break;
 		}
 	}
 
 	/**
-	 *
+	 * wp {alias} cache {$this->current_type} add
 	 */
 	private function add() {
 		switch ( $this->current_type ) {
 			case 'page':
-				$this->maybe_make_mu_plugin_dir();
-				if ( file_exists( trailingslashit( static::$mu_plugin_dir ) . static::$page_filename ) ) {
-					$this->confirm( 'Plugin already exists. Replace with fresh copy?', 'underline'
-					);
-				}
-				$this->get_plugin_from_githubraw(
-					$this->build_url( static::$org_url, static::$page_repo_branch, static::$page_filename ),
+				$this->current_plugin_path = trailingslashit( static::$mu_plugin_dir ) . static::$page_filename;
+				$this->current_remote      = $this->build_url(
+					static::$org_url,
+					static::$page_repo_branch,
 					static::$page_filename
 				);
+				$this->current_filename    = static::$page_filename;
+				$this->handle_remote_mu_plugin_load();
 				break;
 			case 'browser':
-				$this->maybe_make_mu_plugin_dir();
-				if ( file_exists( trailingslashit( static::$mu_plugin_dir ) . static::$browser_filename ) ) {
-					$this->confirm( 'Plugin already exists. Replace with fresh copy?', 'underline' );
-				}
-				$this->get_plugin_from_githubraw(
-					$this->build_url( static::$org_url, static::$browser_repo_branch, static::$browser_filename ),
+				$this->current_plugin_path = trailingslashit( static::$mu_plugin_dir ) . static::$browser_filename;
+				$this->current_remote      = $this->build_url(
+					static::$org_url,
+					static::$browser_repo_branch,
 					static::$browser_filename
 				);
+				$this->current_filename    = static::$browser_filename;
+				$this->handle_remote_mu_plugin_load();
 				break;
 			case 'object':
 				$this->colorize_log( 'Object caching isn\'t available right now.' );
@@ -130,22 +147,33 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	}
 
 	/**
-	 *
+	 * wp {alias} cache {$this->current_type} remove
 	 */
 	private function remove() {
 		switch ( $this->current_type ) {
 			case 'page':
-				$file = Utils\trailingslashit( static::$mu_plugin_dir ) . static::$page_filename;
-				$this->remove_mu_plugin( $file );
+				$this->current_plugin_path = Utils\trailingslashit( static::$mu_plugin_dir ) . static::$page_filename;
+				$this->remove_mu_plugin();
 				break;
 			case 'browser':
-				$file = Utils\trailingslashit( static::$mu_plugin_dir ) . static::$browser_filename;
-				$this->remove_mu_plugin( $file );
+				$this->current_plugin_path = Utils\trailingslashit( static::$mu_plugin_dir ) . static::$browser_filename;
+				$this->remove_mu_plugin();
 				break;
 			case 'object':
 				$this->colorize_log( 'Object caching isn\'t available right now.' );
 				break;
 		}
+	}
+
+	private function handle_remote_mu_plugin_load() {
+		$this->assure_mu_plugin_dir();
+		if ( file_exists( $this->current_plugin_path ) ) {
+			$this->confirm(
+				ucfirst( $this->current_type ) . ' caching plugin already exists. Replace with fresh copy?',
+				'underline'
+			);
+		}
+		$this->get_plugin_from_githubraw( $this->current_remote, $this->current_filename );
 	}
 
 	/**
@@ -154,59 +182,63 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	 * @param $url
 	 * @param $filename
 	 * @param string $dir
+	 *
 	 * @throws \WP_CLI\ExitException
 	 */
 	private function get_plugin_from_githubraw( $url, $filename, $dir = '' ) {
 		$this->colorize_log( 'Downloading ' . ucfirst( $this->current_type ) . ' Cache from GitHub...' );
-		$dir = ! empty( $dir ) ? Utils\trailingslashit( $dir ) : Utils\trailingslashit( static::$mu_plugin_dir );
+		$dir      = ! empty( $dir ) ? Utils\trailingslashit( $dir ) : Utils\trailingslashit( static::$mu_plugin_dir );
 		$response = Utils\http_request( 'GET', $url );
 		if (
-			 is_object( $response )
-			 && isset( $response->status_code )
-			 && isset( $response->body )
-			 && 200 === $response->status_code
+			is_object( $response )
+			&& isset( $response->status_code )
+			&& isset( $response->body )
+			&& 200 === $response->status_code
 		) {
 			$this->colorize_log( 'Adding timestamp to file...' );
-			$file_contents = $response->body . '/**' . PHP_EOL . '* FILE CREATED VIA WP-CLI' . PHP_EOL .'* ' . current_time('mysql' ) . PHP_EOL . '*/' . PHP_EOL;
+			$file_contents = $response->body . '/**' . PHP_EOL . '* FILE CREATED VIA WP-CLI' . PHP_EOL . '* ' . current_time( 'mysql' ) . PHP_EOL . '*/' . PHP_EOL;
 			file_put_contents( $dir . $filename, $file_contents );
 			if ( file_exists( $dir . $filename ) ) {
 				save_mod_rewrite_rules();
-				$this->success( ucfirst( $this->current_type ) . ' Cache placed in /mu-plugins/'. $filename .'. It\'s active!' );
+				$this->success( ucfirst( $this->current_type ) . ' Cache placed in /mu-plugins/' . $filename . '. It\'s active!' );
 			} else {
-				$this->error( 'Couldn\'t write ' . $this->current_type .' cache file to ' . $dir );
+				$this->error( 'Couldn\'t write ' . $this->current_type . ' cache file to ' . $dir );
 			}
 		} else {
-			$this->error( 'Couldn\'t download ' . $this->current_type .' cache from ' . $url );
+			$this->error( 'Couldn\'t download ' . $this->current_type . ' cache from ' . $url );
 		}
 	}
 
 	/**
-	 *
+	 * Check for and create /wp-content/mu-plugins directory prior to writing to it.
 	 */
-	private function maybe_make_mu_plugin_dir() {
-		$mu_plugin_dir = WP_CONTENT_DIR . '/mu-plugins';
-		$tried_making_dir = false;
-		if ( is_dir( $mu_plugin_dir ) ) {
+	private function assure_mu_plugin_dir() {
+
+		if ( is_dir( static::$mu_plugin_dir ) ) {
+
 			$this->colorize_log( 'Found ' . static::$mu_plugin_dir, '', 'G' );
+
+			return;
 		} else {
 			$tried_making_dir = true;
-			mkdir( $mu_plugin_dir );
-			$this->colorize_log( 'Creating ' . static::$mu_plugin_dir );
+			$this->colorize_log( 'Creating ' . static::$mu_plugin_dir . '...' );
+
+			mkdir( static::$mu_plugin_dir );
 		}
 
-		if ( $tried_making_dir && is_dir( $mu_plugin_dir )  ) {
+		if ( $tried_making_dir && is_dir( static::$mu_plugin_dir ) ) {
 			$this->success( 'Created ' . static::$mu_plugin_dir );
-		} elseif ( $tried_making_dir ) {
+		} else {
 			$this->error( 'Failed to create ' . static::$mu_plugin_dir . '. Update write permissions and try again.' );
 		}
 	}
 
 	/**
-	 * Check for a mu-plugin and if file exists, remove it.
+	 * Remove $this->current_plugin_path from directory, report failure or if it wasn't there.
 	 */
-	private function remove_mu_plugin( $file ) {
-		if ( file_exists( $file ) ) {
-			if ( unlink( $file ) ) {
+	private function remove_mu_plugin() {
+		if ( file_exists( $this->current_plugin_path ) ) {
+			if ( unlink( $this->current_plugin_path ) ) {
 				save_mod_rewrite_rules();
 				$this->success( ucfirst( $this->current_type ) . ' caching disabled.' );
 			} else {
@@ -220,9 +252,9 @@ class EIG_WP_CLI_Cache extends EIG_WP_CLI_Command {
 	/**
 	 * Simple URL construction method from class constants
 	 *
-	 * @param $root
-	 * @param $repo_branch
-	 * @param $filename
+	 * @param string $root
+	 * @param string $repo_branch
+	 * @param string $filename
 	 *
 	 * @return string
 	 */

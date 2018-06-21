@@ -25,7 +25,7 @@ if ( ! defined( 'EIG_WP_CLI_COMMANDS' ) ) {
 		'branding'                => 'EIG_WP_CLI_Branding',
 		'cache'                   => 'EIG_WP_CLI_Cache',
 		'digest'                  => 'EIG_WP_CLI_Digest',
-		'salts'                   => 'EIG_WP_CLI_Salts',
+		'secrets'                 => 'EIG_WP_CLI_Secrets',
 		'remove_orphan_post_meta' => 'EIG_WP_CLI_Remove_Orphan_Post_Meta',
 		'sso'                     => 'EIG_WP_CLI_SSO',
 		'staging'                 => 'EIG_WP_CLI_Staging',
