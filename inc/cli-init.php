@@ -7,10 +7,14 @@ if ( ! class_exists( 'WP_CLI' ) ) {
 /**
  * Load WP-CLI Commands, checking if environment supports commands.
  *
+ * @see /cli/README.md for instructions on registering new commands.
+ *
  * Class EIG_WP_CLI_Loader
  */
 class EIG_WP_CLI_Loader {
 	/**
+	 * Main variable containing all WP-CLI commands and callbacks.
+	 *
 	 * @var array
 	 */
 	protected $cmds = array(
@@ -49,7 +53,7 @@ class EIG_WP_CLI_Loader {
 		),
 		array(
 			'cmd'   => 'module',
-			'class' => 'EIG_WP_CLI_Module'
+			'class' => 'EIG_WP_CLI_Module',
 		),
 	);
 
@@ -113,16 +117,10 @@ class EIG_WP_CLI_Loader {
 	}
 
 	/**
-	 * Loads Command Files
+	 * Loads Command Files.
 	 */
 	protected function load_files() {
-		/**
-		 * ## REGISTERING NEW WP-CLI COMMANDS
-		 *
-		 * 1. Create new file in /inc/cli.
-		 * 2. Within the file, define a new class extending EIG_WP_CLI_Command.
-		 * 3. Add command & classname to $commands array below.
-		 */
+
 		require_once 'cli/abstract-eig-wp-cli-command.php';
 
 		foreach ( glob( dirname( __FILE__ ) . '/cli/*.php' ) as $file ) {
