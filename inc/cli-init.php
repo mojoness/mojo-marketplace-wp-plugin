@@ -107,7 +107,7 @@ class EIG_WP_CLI_Loader {
 			self::$instance->initialize();
 		}
 
-		do_action( 'eig_wp_cli_commands_init', $instance );
+		do_action( 'eig_wp_cli_commands_init', self::$instance );
 
 		return self::$instance;
 	}
