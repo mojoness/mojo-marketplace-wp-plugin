@@ -6,14 +6,35 @@ define( 'MM_PLUGIN_SLUG', basename( dirname( __FILE__ ) ) );
 class Endurance_Plugin_Updater {
 	function __construct() {
 		$this->hooks();
-		$this->plugin_checked = false;
-		$this->mu_plugin_checked = false;
+		$this->checked = array();
 	}
 
 	function hooks() {
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_plugin_update' ) );
 		add_filter( 'plugins_api', array( $this, 'plugin_api_call', 10, 3 ) );
 		add_action( 'mm_check_muplugin_update', array( $this, 'update_muplugins' ) );
+	}
+
+	function allow_check( $slug, $time = HOUR_IN_SECONDS ) {
+		$last_checked = get_option( 'mm_update_last_checked', array() );
+		$allow = true;
+
+		if ( array_key_exists( $slug, $this->checked ) && $this->checked[ $slug ] ) {
+			$allow = false;
+		}
+
+		if ( array_key_exists( $slug, $last_checked ) && $last_checked[ $slug ] + $time > time() ) {
+			$allow = false;
+		}
+
+		return $allow;
+	}
+
+	function did_check( $slug ) {
+		$last_checked = get_option( 'mm_update_last_checked', array() );
+		$last_checked[ $slug ] = time();
+		update_option( 'mm_update_last_checked', $last_checked );
+		$this->checked[ $slug ] = true;
 	}
 
 	function check_for_plugin_update( $checked_data ) {
@@ -35,7 +56,7 @@ class Endurance_Plugin_Updater {
 
 		if ( false === is_wp_error( $raw_response ) && ( 200 === $raw_response['response']['code'] ) ) {
 			$response = unserialize( $raw_response['body'] );
-			$this->plugin_checked = true;
+			$this->did_check( MM_PLUGIN_SLUG );
 		}
 
 		if ( isset( $response ) && is_object( $response ) && ! empty( $response ) ) {
@@ -93,20 +114,19 @@ class Endurance_Plugin_Updater {
 
 		$muplugins_details = wp_remote_get( 'https://api.mojomarketplace.com/mojo-plugin-assets/json/mu-plugins.json' );
 
-		if ( is_wp_error( $muplugins_details ) || ! isset( $muplugins_details['body'] ) || true === $this->mu_plugin_checked ) {
+		if ( is_wp_error( $muplugins_details ) || ! isset( $muplugins_details['body'] ) ) {
 			return;
-		} else {
-			$this->mu_plugin_checked = true;
 		}
 
 		$mu_plugin = json_decode( $muplugins_details['body'], true );
 
 		if ( ! is_null( $mu_plugin ) ) {
 			foreach ( $mu_plugin as $slug => $info ) {
-				if ( isset( $info['constant'] ) && defined( $info['constant'] ) ) {
+				if ( $this->allow_check( $slug ) && isset( $info['constant'] ) && defined( $info['constant'] ) ) {
 					if ( (float) $info['version'] > (float) constant( $info['constant'] ) ) {
 						$file = wp_remote_get( $info['source'] );
 						if ( ! is_wp_error( $file ) && isset( $file['body'] ) && strpos( $file['body'], $info['constant'] ) ) {
+							$this->did_check( $slug );
 							file_put_contents( WP_CONTENT_DIR . $info['destination'], $file['body'] );
 						}
 					}
