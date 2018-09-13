@@ -137,41 +137,17 @@ function mm_cs_content() {
 	}
 }
 
-/**
- * When the coming soon module is enabled, add a filter to override Jetpack to prevent emails from being sent.
- */
-function mm_coming_soon_prevent_emails() {
-
-	$enabled = get_option( 'mm_coming_soon', 'false' );
-	if ( 'true' === $enabled ) {
-	    add_filter(
-	        'jetpack_subscriptions_exclude_all_categories_except',
-	        'mm_return_array'
-	    );
-	}
-
-}
-add_action( 'plugins_loaded', 'mm_coming_soon_prevent_emails' );
-
-function mm_return_array() {
-
-    return array(
-        'please-for-the-love-of-all-things-do-not-exist'
-    );
-
-}
-
 // Handle Ajax response
 function mm_coming_soon_subscribe() {
 	
 	$response 	= array();
-	$a_response = array();
+	$a_response 	= array();
 	$email 		= sanitize_email( wp_unslash( $_POST['email'] ) );
 
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['nonce'] ), 'mm_coming_soon_subscribe_nonce' ) ) {
 
-		    $a_response['message'] 	= __( 'Gotcha!', 'mojo' );
-		    $a_response['status'] 	= 'nonce_failure';
+		$a_response['message'] 	= __( 'Gotcha!', 'mojo' );
+		$a_response['status'] 	= 'nonce_failure';
 
 	} else {
 		
@@ -180,26 +156,26 @@ function mm_coming_soon_subscribe() {
 
 		if ( ! is_email( $email ) ) {
 
-		    $a_response['message'] 	= __( 'Please provide a valid email address', 'mojo' );
-		    $a_response['status'] 	= 'invalid_email';
+			$a_response['message'] 	= __( 'Please provide a valid email address', 'mojo' );
+			$a_response['status'] 	= 'invalid_email';
 
 		} else {
 
 			// Get JetPack response and subscribe email if response is true
-			$response 	= $jetpack->subscribe( $email, 0, false );
+			$response = $jetpack->subscribe( $email, 0, false );
 
 			if( isset( $response[0]->errors ) ) {
 
 				$error_text = array_keys( $response[0]->errors );
 				$error_text = $error_text[0];
 
-			    $a_response['message'] 	= __( 'There was an error with the subscription', 'mojo' );
-			    $a_response['status'] 	= $error_text;
+				$a_response['message'] 	= __( 'There was an error with the subscription', 'mojo' );
+				$a_response['status'] 	= $error_text;
 
-		    } else {
+		    	} else {
 
-		    	$a_response['message'] 	= __( 'Subscription successful', 'mojo' );
-		    	$a_response['status'] 	= 'success';
+				$a_response['message'] 	= __( 'Subscription successful', 'mojo' );
+		    		$a_response['status'] 	= 'success';
 
 			}
 
@@ -212,3 +188,27 @@ function mm_coming_soon_subscribe() {
 }
 add_action( 'wp_ajax_mm_coming_soon_subscribe', 'mm_coming_soon_subscribe' );
 add_action( 'wp_ajax_nopriv_mm_coming_soon_subscribe', 'mm_coming_soon_subscribe' );
+
+/**
+ * When the coming soon module is enabled, add a filter to override Jetpack to prevent emails from being sent.
+ */
+function mm_coming_soon_prevent_emails() {
+
+	$enabled = get_option( 'mm_coming_soon', 'false' );
+	if ( 'true' === $enabled ) {
+	    add_filter(
+	        'jetpack_subscriptions_exclude_all_categories_except',
+	        'mm_coming_soon_prevent_emails_return_array'
+	    );
+	}
+
+}
+add_action( 'plugins_loaded', 'mm_coming_soon_prevent_emails' );
+
+function mm_coming_soon_prevent_emails_return_array() {
+
+    return array(
+        'please-for-the-love-of-all-things-do-not-exist'
+    );
+
+}
