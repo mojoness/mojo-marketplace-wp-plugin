@@ -20,7 +20,6 @@ function mm_bh_cs_notice_display() {
 		<div class="col-xs-12 col-sm-12">
 			<div class="panel panel-default panel-body panel-error">
 				<div>
-					<span style="color: #ce0000;" class="pull-left dashicons dashicons-flag"></span>
 					<h2>Coming Soon Active</h2>
 					<p>Your site is currently displaying a "Coming Soon" page. This allows you to work on your site without the public seeing until you are ready to unveil it.</p>
 					<div class="col-xs-12 col-sm-12 text-right">
