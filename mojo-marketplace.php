@@ -43,7 +43,6 @@ require_once( MM_BASE_DIR . 'inc/coming-soon.php' );
 require_once( MM_BASE_DIR . 'inc/tests.php' );
 require_once( MM_BASE_DIR . 'inc/performance.php' );
 mm_require( MM_BASE_DIR . 'inc/branding.php' );
-mm_require( MM_BASE_DIR . 'inc/sso.php' );
 if ( mm_jetpack_bluehost_only() ) {
 	$mm_test = get_transient( 'mm_test' );
 	if ( isset( $mm_test['name'] ) && false !== strpos( $mm_test['name'], 'jetpack-onboarding' ) ) {
@@ -56,3 +55,4 @@ if ( mm_jetpack_bluehost_only() ) {
 }
 mm_require( MM_BASE_DIR . 'updater.php' );
 mm_require( MM_BASE_DIR . 'inc/cli.php' );
+mm_require( MM_BASE_DIR . 'inc/admin-page-notifications-blocker.php' );
