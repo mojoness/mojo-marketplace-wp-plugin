@@ -6,7 +6,7 @@
 function mm_cs_notice_display() {
 	if ( 'true' === get_option( 'mm_coming_soon', 'false' ) && 'bluehost' != mm_brand() ) {
 		?>
-		<div class='notice notice-info'>
+		<div class='notice notice-warning'>
 			<p>Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site <a href='<?php echo esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) );?>'>click here</a>.</p>
 		</div>
 		<?php
