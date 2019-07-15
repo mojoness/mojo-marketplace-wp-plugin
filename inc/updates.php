@@ -13,7 +13,7 @@ function mm_auto_update_make_bool( $value, $default = true ) {
 function mm_auto_update_callback( $args ) {
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || AUTOMATIC_UPDATER_DISABLED === false ) {
 		$defaults = array(
-			'allow_major_auto_core_updates' => 'true',
+			'allow_major_auto_core_updates' => 'false',
 			'allow_minor_auto_core_updates' => 'true',
 			'auto_update_plugin'            => 'true',
 			'auto_update_theme'             => 'true',
