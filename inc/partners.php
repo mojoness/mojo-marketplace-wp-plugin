@@ -84,7 +84,6 @@ function mm_ecomdash_bh_content() {
 		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-bluehost.png" />
 		<div>
 			<a class="promo-btn-primary" href="https://ecomdash.com/bluehost/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_bluehost&utm_content=start-selling" target="_blank">Start selling</a>
-			<a class="promo-btn-secondary" href="https://app.ecomdash.com/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_bluehost&utm_content=login" target="_blank">Log in</a>
 		</div>
 	</div>
 	<?php
@@ -133,7 +132,6 @@ function mm_ecomdash_hg_content() {
 		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-hostgator.png" />
 		<div>
 			<a class="promo-btn-primary" href="https://ecomdash.com/hostgator/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_hostgator&utm_content=start-selling" target="_blank">Start selling</a>
-			<a class="promo-btn-secondary" href="https://app.ecomdash.com/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_hostgator&utm_content=login" target="_blank">Log in</a>
 		</div>
 	</div>
 	<?php
