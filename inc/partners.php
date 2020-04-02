@@ -81,7 +81,7 @@ function mm_ecomdash_bh_content() {
 		}
 	</style>
 	<div id="ecomdash-bluehost">
-		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-bluehost.png" />
+		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-bluehost.png" alt="Ecomdash and Bluehost. Ecomdash brings all your data together so you can sell everywhere, and manage it all from one easy place. Sell using WooCommerce, Etsy, Amazon and More. Click to start selling! " />
 		<div>
 			<a class="promo-btn-primary" href="https://ecomdash.com/bluehost/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_bluehost&utm_content=start-selling" target="_blank">Start selling</a>
 		</div>
@@ -129,7 +129,7 @@ function mm_ecomdash_hg_content() {
 		}
 	</style>
 	<div id="ecomdash-hostgator">
-		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-hostgator.png" />
+		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-hostgator.png" alt="Ecomdash and HostGator. Ecomdash brings all your data together so you can sell everywhere, and manage it all from one easy place. Sell using WooCommerce, Etsy, Amazon and More. Click to start selling! " />
 		<div>
 			<a class="promo-btn-primary" href="https://ecomdash.com/hostgator/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_hostgator&utm_content=start-selling" target="_blank">Start selling</a>
 		</div>
