@@ -10,7 +10,12 @@ $theme = mm_api_cache( $api_url );
 $other_viewed = mm_api_cache( add_query_arg( array( 'category' => 'wordpress', 'type' => 'themes', 'order' => 'random', 'count' => 4 ), 'https://api.mojomarketplace.com/api/v2/items' ) );
 
 if ( is_wp_error( $theme ) ) {
-	echo "<div class='error'><p>Unable to load theme preview. <a href='admin.php?page=mojo-themes&items=" . esc_attr( $_GET['items'] ) . "'>Return to themes</a></p></div>";
+	printf(
+		'<div class="error"><p>%s <a href="%s">%s</a></p></div>',
+		esc_html__( 'Unable to load theme preview.',
+		'admin.php?page=mojo-themes&items=' . esc_attr( $_GET['items'] ),
+		esc_html__( 'Return to themes' )
+	);
 } else {
 	$theme = json_decode( $theme['body'] );
 	$theme = $theme->items[0];
@@ -34,14 +39,14 @@ if ( is_wp_error( $theme ) ) {
 					<?php mm_stars( $theme->rating, $theme->sales_count ); ?>
 					<div class="theme-details text-center">
 						<div role="group" class="btn-group-horizontal">
-							<a class="btn btn-default" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item_id ), admin_url( 'admin.php' ) ) ); ?>">Details</a>
-							<a class="btn btn-success mm_buy_now" href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item_id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_preview' ) ); ?>">Buy Now</a>
+							<a class="btn btn-default" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item_id ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Details' ); ?></a>
+							<a class="btn btn-success mm_buy_now" href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item_id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_preview' ) ); ?>"><?php esc_html_e( 'Buy Now' ); ?></a>
 						</div>
 						<br/>
 						<div class="price">
-							<span class="price-number">$<span><?php echo number_format( $theme->prices->single_domain_license ); ?></span></span>
+							<span class="price-number"><?php esc_html_e( '$' ); ?><span><?php echo number_format( $theme->prices->single_domain_license ); ?></span></span>
 							<br/>
-							<span class="currency">USD</span>
+							<span class="currency"><?php esc_html_e( 'USD' ); ?></span>
 						</div>
 						<div>
 						<?php echo esc_html( $theme->short_description ); ?>
@@ -52,7 +57,7 @@ if ( is_wp_error( $theme ) ) {
 						<?php
 						if ( ! is_wp_error( $other_viewed ) ) {
 							?>
-							<h5>Other People Also Viewed</h5>
+							<h5><?php esc_html_e( 'Other People Also Viewed' ); ?></h5>
 							<?php
 							$other_items = json_decode( $other_viewed['body'] );
 							$other_items = $other_items->items;

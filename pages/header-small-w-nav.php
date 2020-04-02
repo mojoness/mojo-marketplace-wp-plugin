@@ -15,13 +15,13 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav navbar-nav justified-nav">
 								<li class="active">
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ),         admin_url( 'admin.php' ) ) ); ?>">Home</a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Home' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ),         admin_url( 'admin.php' ) ) ); ?>">Marketplace</a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Marketplace' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'),         admin_url( 'admin.php' ) ) ); ?>">Site Performance</a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Site Performance' ); ?></a>
 								</li>
 							</ul>
 						</div>
@@ -35,19 +35,19 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav sub-navbar-nav navbar-nav justified-nav">
 								<li>
-									<a class="scroll" href="#content">Site Content</a>
+									<a class="scroll" href="#content"><?php esc_html_e( 'Site Content' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#design">Design &amp; Build</a>
+									<a class="scroll" href="#design"><?php esc_html_e( 'Design &amp; Build' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#traffic">Traffic &amp; Engagement</a>
+									<a class="scroll" href="#traffic"><?php esc_html_e( 'Traffic &amp; Engagement' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#performance">Site Performance</a>
+									<a class="scroll" href="#performance"><?php esc_html_e( 'Site Performance' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#hosting">Hosting</a>
+									<a class="scroll" href="#hosting"><?php esc_html_e( 'Hosting' ); ?></a>
 								</li>
 							</ul>
 						</div>

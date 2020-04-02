@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width">
-<title><?php echo get_option( 'blogname' ); ?> &mdash; Coming Soon</title>
+<title><?php printf( __( '%s &mdash; Coming Soon' ), get_option( 'blogname' ) ); ?></title>
 <?php echo mm_cs_meta(); ?>
 <script src="<?php echo esc_url( includes_url( 'js/jquery/jquery.js' ) ); ?>"></script>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
@@ -270,18 +270,18 @@ footer p a:hover {
 			<?php if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'subscriptions' ) ) { ?>
 
 				<div class="bh_subscription_widget">
-					<h2 class="widgettitle">Coming Soon!</h2>
+					<h2 class="widgettitle"><?php esc_html_e( 'Coming Soon!' ); ?></h2>
 					<div id="subscribe-text">
-						<p>Be the first to know when we launch, enter your email address and we will let you know when we go live and any future website updates we have.</p>
+						<p><?php esc_html_e( 'Be the first to know when we launch, enter your email address and we will let you know when we go live and any future website updates we have.' ); ?></p>
 					</div>
-					<div id="success">Thank you, please check your email to confirm your subscription.</div>
-					<div id="error">There was an error with your submission and you were not subscribed. Please try again with a different email address.</div>
+					<div id="success"><?php esc_html_e( 'Thank you, please check your email to confirm your subscription.' ); ?></div>
+					<div id="error"><?php esc_html_e( 'There was an error with your submission and you were not subscribed. Please try again with a different email address.' ); ?></div>
 					<form action="" method="post" accept-charset="utf-8" id="subscribe-bh">
 						<input type="hidden" name="action" value="mm_coming_soon_subscribe">
 						<?php wp_nonce_field( 'mm_coming_soon_subscribe_nonce', 'mm_nonce-coming-soon-subscribe' ); ?>
 						<span class="bh-inputs email" id="subscribe-email">
-							<label id="bh-subscribe-label" for="subscribe-field-bh">Email</label>
-							<input type="email" name="email" required="required" value="" id="subscribe-field-bh" placeholder="Enter your email address">
+							<label id="bh-subscribe-label" for="subscribe-field-bh"><?php esc_html_e( 'Email' ); ?></label>
+							<input type="email" name="email" required="required" value="" id="subscribe-field-bh" placeholder="<?php esc_attr_e( 'Enter your email address' ); ?>">
 						</span>
 						<span class="bh-inputs submit" id="subscribe-submit">
 							<input class="btn" type="submit" value="Subscribe" name="bh_subscriptions_widget">
@@ -306,9 +306,9 @@ footer p a:hover {
 
 			<?php } else { ?>
 
-				<h1>A New WordPress Site</h1>
-				<h2>Coming Soon!</h2>
-				<a class="btn" href="<?php echo esc_url( wp_login_url() ); ?>">Admin Login</a>
+				<h1><?php esc_html_e( 'A New WordPress Site' ); ?></h1>
+				<h2><?php esc_html_e( 'Coming Soon!' ); ?></h2>
+				<a class="btn" href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Admin Login' ); ?></a>
 
 			<?php } ?>
 

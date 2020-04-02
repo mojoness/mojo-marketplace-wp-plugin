@@ -5,7 +5,7 @@
 			<div class="container">
 				<div class="inner-holder">
 					<a class="navbar-brand" href="#">
-						<img src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-icon-%s.svg' ); ?>" alt="Marketplace">
+						<img src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-icon-%s.svg' ); ?>" alt="<?php esc_attr_e( 'Marketplace' ); ?>">
 					</a>
 				</div>
 			</div>
@@ -15,14 +15,14 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav navbar-nav justified-nav">
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ), admin_url( 'admin.php' ) ) ); ?>">Home</a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Home' ); ?></a>
 								</li>
 								<li class="active">
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ), admin_url( 'admin.php' ) ) ); ?>">Marketplace</a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Marketplace' ); ?></a>
 								</li>
 								<?php if ( 'bluehost' == mm_brand() ) { ?>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'), admin_url( 'admin.php' ) ) ); ?>">Site Performance</a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Site Performance' ); ?></a>
 								</li>
 								<?php } ?>
 							</ul>
@@ -37,16 +37,16 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav sub-navbar-nav navbar-nav justified-nav">
                 <li>
-									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ), admin_url( 'admin.php' ) ) ); ?>">Themes</a>
+									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Themes' ); ?></a>
 								</li>
                 <li>
-									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'plugins' ), admin_url( 'admin.php' ) ) ); ?>">Plugins</a>
+									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'plugins' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Plugins' ); ?></a>
 								</li>
                 <li>
-									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'graphics' ), admin_url( 'admin.php' ) ) ); ?>">Graphics</a>
+									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'graphics' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Graphics' ); ?></a>
 								</li>
                 <li>
-									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'business-tools' ), admin_url( 'admin.php' ) ) ); ?>">Business Tools</a>
+									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'business-tools' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Business Tools' ); ?></a>
 								</li>
 							</ul>
 						</div>

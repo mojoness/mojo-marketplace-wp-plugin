@@ -8,10 +8,10 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 text-center">
-					<h1>We&#8217;re setting up your new staging environment!</h1>
-					<p style="font-size: 18px;">This might take a few minutes &hellip;</p>
+					<h1><?php esc_html_e( 'We are setting up your new staging environment!' ); ?></h1>
+					<p style="font-size: 18px;"><?php esc_html_e( 'This might take a few minutes &hellip;' ); ?></p>
 					<br/>
-					<p style="font-size: 18px;">While you wait, check out this week&#8217;s top items from the Marketplace:</p>
+					<p style="font-size: 18px;"><?php esc_html_e( 'While you wait, check out this week&#8217;s top items from the Marketplace' ); ?>:</p>
 				</div>
 			</div>
 			<div class="row">

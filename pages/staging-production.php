@@ -27,14 +27,14 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 									<circle class="spin" fill="none" stroke="#8ad332 " stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12.2175,12.2175" cx="80.6" cy="80.6" r="73.9"/>
 								</svg>
 							</div>
-							<h1>Your staging environment is ready!</h1>
+							<h1><?php esc_html_e( 'Your staging environment is ready!' ); ?></h1>
 						</div>
 					</div>
 					<?php } ?>
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li>Production Environment</li>
+								<li><?php esc_html_e( 'Production Environment' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -42,7 +42,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
-							<p>Below are the details of your staging environment.</p>
+							<p><?php esc_html_e( 'Below are the details of your staging environment.' ); ?></p>
 						</div>
 					</div>
 					<div class="row">
@@ -54,25 +54,37 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 
 								<?php
 								if ( isset( $config['staging_url'] ) ) {
-									echo '<tr><td>Staging URL:</td><td><a href="' . esc_url( $config['staging_url'] ) . '" target="_blank">' . $config['staging_url'] . '</a></td></tr>';
+									printf(
+										'<tr><td>%1$s:</td><td><a href="%2$s" target="_blank">%2$s</a></td></tr>',
+										esc_html__( 'Staging URL' ),
+										esc_url( $config['staging_url'] )
+									);
 								}
 								if ( isset( $config['staging_dir'] ) ) {
-									echo '<tr><td>Staging Directory:</td><td>' . $config['staging_dir'] . '</td></tr>';
+									printf(
+										'<tr><td>%s:</td><td>%s</td></tr>',
+										esc_html__( 'Staging Directory' ),
+										esc_html( $config['staging_dir'] )
+									);
 								}
 								if ( isset( $config['creation_date'] ) ) {
-									echo '<tr><td>Creation Date:</td><td>' . $config['creation_date'] . '</td></tr>';
+									printf(
+										'<tr><td>%s:</td><td>%s</td></tr>',
+										esc_html__( 'Creation Date' ),
+										$config['creation_date']
+									)
 								}
 								?>
 
 							</table>
 						</div>
 						<div class="col-xs-12 col-sm-4">
-							<button class="btn btn-success btn-lg staging-action" data-staging-action="mm_sso_staging">Go To Staging Site</button>
+							<button class="btn btn-success btn-lg staging-action" data-staging-action="mm_sso_staging"><?php esc_html_e( 'Go To Staging Site' ); ?></button>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
-							<p>Ready to deploy your changes? Go to your staging site and deploy from the administration panel.</p>
+							<p><?php esc_html_e( 'Ready to deploy your changes? Go to your staging site and deploy from the administration panel.' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -83,7 +95,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li>Staging Options</li>
+								<li><?php esc_html_e( 'Staging Options' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -91,19 +103,19 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 text-center">
-							<h2>Clone Production To Staging</h2>
+							<h2><?php esc_html_e( 'Clone Production To Staging' ); ?></h2>
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/production-to-staging.png' ); ?>" />
 							</div>
-							<p>Copy your current production site and your settings to your staging environment.</p>
-							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_clone">Clone</button>
+							<p><?php esc_html_e( 'Copy your current production site and your settings to your staging environment.' ); ?></p>
+							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_clone"><?php esc_html_e( 'Clone' ); ?></button>
 						</div>
 						<div class="col-xs-12 col-sm-6 text-center">
-							<h2>Destroy Staging Environment</h2>
+							<h2><?php esc_html_e( 'Destroy Staging Environment' ); ?></h2>
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/destroy-staging.png' ); ?>" />
 							</div>
-							<p>Need to start fresh? This will completely remove your current staging environment.</p>
+							<p>Need to start fresh? This will completely remove your current staging environment.' ); ?></p>
 							<button class="btn btn-primary btn-lg mm-modal" data-mm-modal="destroy-confirm">Destroy Staging</button>
 						</div>
 					</div>

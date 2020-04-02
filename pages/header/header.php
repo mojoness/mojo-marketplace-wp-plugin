@@ -5,7 +5,7 @@
 			<div class="container">
 				<div class="inner-holder">
 					<a class="navbar-brand" href="#">
-						<img src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-icon-%s.svg' ); ?>" alt="Marketplace">
+						<img src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-icon-%s.svg' ); ?>" alt="<?php esc_attr_e( 'Marketplace' ); ?>">
 					</a>
 				</div>
 			</div>
