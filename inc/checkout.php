@@ -49,7 +49,7 @@ function mm_buy_now() {
 		echo wp_json_encode(
 			array(
 				'status' => 'error',
-				'error'  => 'Unable to process order.',
+				'error'  => esc_html__( 'Unable to process order.' ),
 			)
 		);
 	}

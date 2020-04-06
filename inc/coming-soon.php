@@ -7,7 +7,15 @@ function mm_cs_notice_display() {
 	if ( 'true' === get_option( 'mm_coming_soon', 'false' ) && 'bluehost' != mm_brand() ) {
 		?>
 		<div class='notice notice-warning'>
-			<p>Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site <a href='<?php echo esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) );?>'>click here</a>.</p>
+			<p>
+				<?php
+					printf(
+						__( 'Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site %sclick here%s.' ),
+						'<a href=' . esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) ) . '">',
+						'</a>'
+					);
+				?>
+			</p>
 		</div>
 		<?php
 	}
@@ -22,10 +30,10 @@ function mm_bh_cs_notice_display() {
 			<div class="col-xs-12 col-sm-12">
 				<div class="panel panel-default panel-body panel-warning">
 					<div>
-						<h2>Coming Soon Active</h2>
-						<p>Your site is currently displaying a "Coming Soon" page. This allows you to work on your site without the public seeing until you are ready to unveil it.</p>
+						<h2><?php esc_html_e( 'Coming Soon Active' ); ?></h2>
+						<p><?php esc_html_e( 'Your site is currently displaying a "Coming Soon" page. This allows you to work on your site without the public seeing until you are ready to unveil it.' ); ?></p>
 						<div class="col-xs-12 col-sm-12 text-right">
-							<a class="btn btn-default btn-md" href="<?php echo esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) );?>">Launch your site</a>
+							<a class="btn btn-default btn-md" href="<?php echo esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) );?>"><?php esc_html_e( 'Launch your site' ); ?></a>
 						</div>
 					</div>
 				</div>
@@ -43,10 +51,10 @@ function mm_bh_cs_notice_launch_message() {
 				<div class="panel panel-default panel-body panel-success">
 					<div>
 						<span class="pull-left dashicons dashicons-yes"></span>
-						<h2>Congratulations your site is now live!</h2>
-						<p>Your site is now live for the public to see! Make sure you are checking back frequently to see your visitors comments and feedback.</p>
+						<h2><?php esc_html_e( 'Congratulations your site is now live!' ); ?></h2>
+						<p><?php esc_html_e( 'Your site is now live for the public to see! Make sure you are checking back frequently to see your visitors comments and feedback.' ); ?></p>
 						<div class="col-xs-12 col-sm-12 text-right">
-							<a class="btn btn-success btn-md" href="<?php echo esc_url( get_option( 'siteurl' ) ); ?>">View Site</a>
+							<a class="btn btn-success btn-md" href="<?php echo esc_url( get_option( 'siteurl' ) ); ?>"><?php esc_html_e( 'View Site' ); ?></a>
 						</div>
 					</div>
 				</div>
@@ -58,7 +66,15 @@ function mm_bh_cs_notice_launch_message() {
 function mm_cs_notice_launch_message() {
 	?>
 		<div class='notice updated'>
-			<p>Congratulations. Your site is now live, <a target='_blank' href='<?php echo esc_url( get_option( 'siteurl' ) ); ?>'>click here</a> to view it.</p>
+			<p>
+				<?php
+					printf(
+						__( 'Congratulations. Your site is now live, %sclick here%s to view it.' ),
+						'<a target="_blank" href="' . esc_url( get_option( 'siteurl' ) ) . '">',
+						'</a>'
+					);
+				?>
+			</p>
 		</div>
 	<?php
 }
@@ -107,21 +123,21 @@ function mm_cs_settings() {
 	$section_hook = 'general';
 
 	if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
-		$brand = 'Bluehost';
+		$brand = esc_html__( 'Bluehost' );
 	} else {
 		$brand = mm_brand();
 	}
 
 	add_settings_section(
 		$section_name, //Section
-		$brand . ' Coming Soon Page', //Title
+		$brand . esc_html__( 'Coming Soon Page' ), //Title
 		'__return_false', //section description callback
 		$section_hook //Setting Hook
 	);
 
 	add_settings_field(
 		'mm_coming_soon',
-		'Enable',
+		esc_html__( 'Enable' ),
 		'mm_cs_enabled_callback',
 		$section_hook,
 		$section_name,

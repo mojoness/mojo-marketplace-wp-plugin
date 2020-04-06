@@ -15,15 +15,15 @@ function mm_main_menu() {
 		$menu_name = $brand;
 	} else {
 		$menu_position = 59;
-		$menu_name = 'Marketplace';
+		$menu_name = __( 'Marketplace' );
 	}
 
 	if ( 'BlueHost' == $menu_name ) {
-		$menu_name = 'Bluehost';
+		$menu_name = __( 'Bluehost' );
 	}
 
 	if ( 'Bluehost_India' == $menu_name ) {
-		$menu_name = 'Bluehost';
+		$menu_name = __( 'Bluehost' );
 	}
 
 	$menu_name = str_replace( '_', ' ', $menu_name );
@@ -37,8 +37,8 @@ function mm_main_menu_fix_subdomain_label() {
 	global $submenu;
 	$home = null;
 	if ( isset( $submenu['mojo-marketplace'] ) && is_array( $submenu['mojo-marketplace'] ) ) {
-		$submenu['mojo-marketplace'][0][0] = 'Marketplace';
-		$home = array_search( array( 'Home', 'manage_options', 'mojo-home', 'Home' ), $submenu['mojo-marketplace'] );
+		$submenu['mojo-marketplace'][0][0] = __( 'Marketplace' );
+		$home = array_search( array( __( 'Home' ), 'manage_options', 'mojo-home', 'Home' ), $submenu['mojo-marketplace'] );
 	}
 
 	if ( ! is_null( $home ) && is_numeric( $home ) ) {
@@ -50,7 +50,7 @@ function mm_main_menu_fix_subdomain_label() {
 add_action( 'admin_menu', 'mm_main_menu_fix_subdomain_label', 11 );
 
 function mm_preview_menu() {
-	add_submenu_page( null, 'Theme Preview', 'Theme Preview', 'manage_options', 'mojo-theme-preview', 'mm_theme_preview_page' );
+	add_submenu_page( null, __( 'Theme Preview' ), __( 'Theme Preview' ), 'manage_options', 'mojo-theme-preview', 'mm_theme_preview_page' );
 }
 add_action( 'admin_menu', 'mm_preview_menu' );
 
@@ -62,7 +62,7 @@ function mm_add_tool_bar_items( $admin_bar ) {
 				'href'  => admin_url( 'admin.php?page=mojo-staging' ),
 				'title' => '<div style="background-color: #ce0000; padding: 0px 10px;color:#fff;">Staging Environment</div>',
 				'meta'  => array(
-					'title' => 'Staging Actions',
+					'title' => __( 'Staging Actions' ),
 				),
 			);
 			$admin_bar->add_menu( $args );
@@ -73,7 +73,7 @@ function mm_add_tool_bar_items( $admin_bar ) {
 				'href'  => 'http://mojo.live/desktopserver',
 				'title' => '<div style="background-color: #3575C0; padding: 0px 10px;color:#fff;">Get Online Now</div>',
 				'meta'  => array(
-					'title' => 'Get Online Now',
+					'title' => __( 'Get Online Now' ),
 				),
 			);
 			$admin_bar->add_menu( $args );
@@ -171,6 +171,10 @@ function mm_staging_page() {
 			require_once( MM_BASE_DIR . 'pages/staging-create.php' );
 			break;
 	}
+
+	printf(
+		''
+	)
 	echo "<a target='_blank' href='https://goo.gl/forms/HNmqYgRkpzu9KQfM2' style='z-index: 10;position: fixed; padding: 4px 10px; color: #fff;background-color: #000;right:0px;bottom:0px;'>Staging Feedback</a>";
 }
 
@@ -180,20 +184,20 @@ function mm_my_purchases_page() {
 
 function mm_hosting_menu() {
 	if ( 'bluehost' == mm_brand() ) {
-		add_submenu_page( 'mojo-marketplace', 'Back to Bluehost', 'Back to Bluehost', 'manage_options', 'mojo-hosting-panel', '__return_false' );
+		add_submenu_page( 'mojo-marketplace', __( 'Back to Bluehost' ), __( 'Back to Bluehost' ), 'manage_options', 'mojo-hosting-panel', '__return_false' );
 	}
 }
 add_action( 'admin_menu', 'mm_hosting_menu' );
 
 function mm_jetpack_connect_menu() {
 	if ( 'bluehost' == mm_brand() ) {
-		add_submenu_page( null, 'Connect Jetpack', 'Connect Jetpack', 'manage_options', 'mojo-jetpack-connect-bounce', '__return_false' );
+		add_submenu_page( null, __( 'Connect Jetpack' ), __( 'Connect Jetpack' ), 'manage_options', 'mojo-jetpack-connect-bounce', '__return_false' );
 	}
 }
 add_action( 'admin_menu', 'mm_jetpack_connect_menu' );
 
 function mm_item_search_menu() {
-	add_submenu_page( null, 'Search Items', 'Search Items', 'manage_options', 'mojo-search', 'mm_item_search_page' );
+	add_submenu_page( null, __( 'Search Items' ), __( 'Search Items' ), 'manage_options', 'mojo-search', 'mm_item_search_page' );
 }
 add_action( 'admin_menu', 'mm_item_search_menu' );
 
