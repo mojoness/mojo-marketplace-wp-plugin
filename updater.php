@@ -49,7 +49,13 @@ function mm_plugin_api_call( $def, $action, $args ) {
 	$request = wp_remote_post( MM_UPDATE_API, $request_string );
 
 	if ( is_wp_error( $request ) ) {
-		$res = new WP_Error( 'plugins_api_failed', __( 'An Unexpected HTTP Error occurred during the API request.</p> <p><a href="?" onclick="document.location.reload(); return false;">Try again</a>' ), $request->get_error_message() );
+		$res = new WP_Error( 'plugins_api_failed',
+			sprintf(
+				'%s</p> <p><a href="?" onclick="document.location.reload(); return false;">%s</a>',
+				__( 'An Unexpected HTTP Error occurred during the API request.', 'mojo-marketplace-wp-plugin' ),
+				__( 'Try again', 'mojo-marketplace-wp-plugin' )
+			), $request->get_error_message()
+		);
 	} else {
 		$res = unserialize( $request['body'] );
 	}

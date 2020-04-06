@@ -27,14 +27,14 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 									<circle class="spin" fill="none" stroke="#8ad332 " stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12.2175,12.2175" cx="80.6" cy="80.6" r="73.9"/>
 								</svg>
 							</div>
-							<h1><?php esc_html_e( 'Your staging environment is ready!' ); ?></h1>
+							<h1><?php esc_html_e( 'Your staging environment is ready!', 'mojo-marketplace-wp-plugin' ); ?></h1>
 						</div>
 					</div>
 					<?php } ?>
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li><?php esc_html_e( 'Production Environment' ); ?></li>
+								<li><?php esc_html_e( 'Production Environment', 'mojo-marketplace-wp-plugin' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -42,7 +42,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
-							<p><?php esc_html_e( 'Below are the details of your staging environment.' ); ?></p>
+							<p><?php esc_html_e( 'Below are the details of your staging environment.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 					</div>
 					<div class="row">
@@ -56,21 +56,21 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 								if ( isset( $config['staging_url'] ) ) {
 									printf(
 										'<tr><td>%1$s:</td><td><a href="%2$s" target="_blank">%2$s</a></td></tr>',
-										esc_html__( 'Staging URL' ),
+										esc_html__( 'Staging URL', 'mojo-marketplace-wp-plugin' ),
 										esc_url( $config['staging_url'] )
 									);
 								}
 								if ( isset( $config['staging_dir'] ) ) {
 									printf(
 										'<tr><td>%s:</td><td>%s</td></tr>',
-										esc_html__( 'Staging Directory' ),
+										esc_html__( 'Staging Directory', 'mojo-marketplace-wp-plugin' ),
 										esc_html( $config['staging_dir'] )
 									);
 								}
 								if ( isset( $config['creation_date'] ) ) {
 									printf(
 										'<tr><td>%s:</td><td>%s</td></tr>',
-										esc_html__( 'Creation Date' ),
+										esc_html__( 'Creation Date', 'mojo-marketplace-wp-plugin' ),
 										$config['creation_date']
 									)
 								}
@@ -79,12 +79,12 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 							</table>
 						</div>
 						<div class="col-xs-12 col-sm-4">
-							<button class="btn btn-success btn-lg staging-action" data-staging-action="mm_sso_staging"><?php esc_html_e( 'Go To Staging Site' ); ?></button>
+							<button class="btn btn-success btn-lg staging-action" data-staging-action="mm_sso_staging"><?php esc_html_e( 'Go To Staging Site', 'mojo-marketplace-wp-plugin' ); ?></button>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
-							<p><?php esc_html_e( 'Ready to deploy your changes? Go to your staging site and deploy from the administration panel.' ); ?></p>
+							<p><?php esc_html_e( 'Ready to deploy your changes? Go to your staging site and deploy from the administration panel.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li><?php esc_html_e( 'Staging Options' ); ?></li>
+								<li><?php esc_html_e( 'Staging Options', 'mojo-marketplace-wp-plugin' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -103,15 +103,15 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 text-center">
-							<h2><?php esc_html_e( 'Clone Production To Staging' ); ?></h2>
+							<h2><?php esc_html_e( 'Clone Production To Staging', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/production-to-staging.png' ); ?>" />
 							</div>
-							<p><?php esc_html_e( 'Copy your current production site and your settings to your staging environment.' ); ?></p>
-							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_clone"><?php esc_html_e( 'Clone' ); ?></button>
+							<p><?php esc_html_e( 'Copy your current production site and your settings to your staging environment.', 'mojo-marketplace-wp-plugin' ); ?></p>
+							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_clone"><?php esc_html_e( 'Clone', 'mojo-marketplace-wp-plugin' ); ?></button>
 						</div>
 						<div class="col-xs-12 col-sm-6 text-center">
-							<h2><?php esc_html_e( 'Destroy Staging Environment' ); ?></h2>
+							<h2><?php esc_html_e( 'Destroy Staging Environment', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/destroy-staging.png' ); ?>" />
 							</div>

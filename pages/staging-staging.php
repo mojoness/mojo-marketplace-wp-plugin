@@ -20,7 +20,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
-							<p><?php esc_html_e( 'Below are the details of your staging environment.' ); ?></p>
+							<p><?php esc_html_e( 'Below are the details of your staging environment.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 					</div>
 					<div class="row">
@@ -45,7 +45,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 							</table>
 						</div>
 						<div class="col-xs-12 col-sm-4">
-							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_sso_production"><?php esc_html_e( 'Go To Production Site' ); ?></button>
+							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_sso_production"><?php esc_html_e( 'Go To Production Site', 'mojo-marketplace-wp-plugin' ); ?></button>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li><?php esc_html_e( 'Deployment Options' ); ?></li>
+								<li><?php esc_html_e( 'Deployment Options', 'mojo-marketplace-wp-plugin' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -63,11 +63,11 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-sm-offset-3  text-center">
-							<h2><?php esc_html_e( 'Deploy Staging To Production' ); ?></h2>
+							<h2><?php esc_html_e( 'Deploy Staging To Production', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<br/>
 							<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/staging-to-production.png' ); ?>" />
 							<br/>
-							<p><?php esc_html_e( 'Ready to make your changes live? These options will push the changes you have made on staging up to your production site.' ); ?></p>
+							<p><?php esc_html_e( 'Ready to make your changes live? These options will push the changes you have made on staging up to your production site.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 					</div>
 					<br/>
@@ -76,25 +76,25 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/files.png' ); ?>" />
 							</div>
-							<button class="btn btn-success btn-lg mm-modal" data-mm-modal="deploy-files"><?php esc_html_e( 'Deploy Files Only' ); ?></button>
+							<button class="btn btn-success btn-lg mm-modal" data-mm-modal="deploy-files"><?php esc_html_e( 'Deploy Files Only', 'mojo-marketplace-wp-plugin' ); ?></button>
 							<br/>
-							<p><?php esc_html_e( 'This will only upload the files you have changed (ie. html or css files). It will not upload any changes you have made to your staging database.' ); ?></p>
+							<p><?php esc_html_e( 'This will only upload the files you have changed (ie. html or css files). It will not upload any changes you have made to your staging database.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 						<div class="col-xs-12 col-sm-4 text-center">
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/files-db.png' ); ?>" />
 							</div>
-							<button class="btn btn-success btn-lg mm-modal" data-mm-modal="deploy-files-database"><?php esc_html_e( 'Deploy Files &amp; Database' ); ?></button>
+							<button class="btn btn-success btn-lg mm-modal" data-mm-modal="deploy-files-database"><?php esc_html_e( 'Deploy Files &amp; Database', 'mojo-marketplace-wp-plugin' ); ?></button>
 							<br/>
-							<p><?php esc_html_e( 'Deploy all changes you have made to the file system and database of your website.' ); ?></p>
+							<p><?php esc_html_e( 'Deploy all changes you have made to the file system and database of your website.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 						<div class="col-xs-12 col-sm-4 text-center">
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/database.png' ); ?>" />
 							</div>
-							<button class="btn btn-success btn-lg mm-modal" data-mm-modal="deploy-database"><?php esc_html_e( 'Deploy Database Only' ); ?></button>
+							<button class="btn btn-success btn-lg mm-modal" data-mm-modal="deploy-database"><?php esc_html_e( 'Deploy Database Only', 'mojo-marketplace-wp-plugin' ); ?></button>
 							<br/>
-							<p><?php esc_html_e( 'Only upload changes you have made to the database on your staging server. For example, adding a new blog post to your website is a database change.' ); ?></p>
+							<p><?php esc_html_e( 'Only upload changes you have made to the database on your staging server. For example, adding a new blog post to your website is a database change.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -110,7 +110,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li><?php esc_html_e( 'Restoration Options' ); ?></li>
+								<li><?php esc_html_e( 'Restoration Options', 'mojo-marketplace-wp-plugin' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -118,16 +118,16 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-8">
-							<p><?php esc_html_e( 'Save the current staging environment or restore a previously saved staging environment.' ); ?></p>
+							<p><?php esc_html_e( 'Save the current staging environment or restore a previously saved staging environment.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						</div>
 						<div class="col-xs-12 col-sm-4 text-right">
-							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_save_state"><?php esc_html_e( 'Add Restoration Point' ); ?></button>
+							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_save_state"><?php esc_html_e( 'Add Restoration Point', 'mojo-marketplace-wp-plugin' ); ?></button>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<table class="table">
-								<tr><th><?php esc_html_e( 'Message' ); ?></th><th><?php esc_html_e( 'Date' ); ?></th><th>&nbsp;</th></tr>
+								<tr><th><?php esc_html_e( 'Message', 'mojo-marketplace-wp-plugin' ); ?></th><th><?php esc_html_e( 'Date', 'mojo-marketplace-wp-plugin' ); ?></th><th>&nbsp;</th></tr>
 								<tr id="staging-revisions-loader"><td colspan="3" class="text-center"><img src="<?php echo MM_ASSETS_URL . 'img/loader-balls.svg';?>"/></td></tr>
 							</table>
 						</div>

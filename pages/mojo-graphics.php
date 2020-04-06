@@ -88,13 +88,13 @@ $response = mm_api_cache( $api_url );
 						</div>
 						<div class="col-xs-12 col-sm-4">
 							<form class="form-horizontal graphics-sort">
-								<label for="sort_select" class="control-label"><?php esc_html_e( 'Sort By' ); ?></label>
+								<label for="sort_select" class="control-label"><?php esc_html_e( 'Sort By', 'mojo-marketplace-wp-plugin' ); ?></label>
 								<span class="fake-select">
 									<select class="form-control input-sm" id="sort_select">
-										<option value=''><?php esc_html_e( 'Popular' ); ?></option>
-										<option value='price'<?php selected( 'price', $query['order'] ); ?>><?php esc_html_e( 'Price' ); ?></option>
-										<option value='latest'<?php selected( 'latest', $query['order'] ); ?>><?php esc_html_e( 'Date Added' ); ?></option>
-										<option value='random'<?php selected( 'random', $query['order'] ); ?>><?php esc_html_e( 'Random' ); ?></option>
+										<option value=''><?php esc_html_e( 'Popular', 'mojo-marketplace-wp-plugin' ); ?></option>
+										<option value='price'<?php selected( 'price', $query['order'] ); ?>><?php esc_html_e( 'Price', 'mojo-marketplace-wp-plugin' ); ?></option>
+										<option value='latest'<?php selected( 'latest', $query['order'] ); ?>><?php esc_html_e( 'Date Added', 'mojo-marketplace-wp-plugin' ); ?></option>
+										<option value='random'<?php selected( 'random', $query['order'] ); ?>><?php esc_html_e( 'Random', 'mojo-marketplace-wp-plugin' ); ?></option>
 									</select>
 								</span>
 								<a href='#' class='sort-direction'><span class="dashicons dashicons-sort"></span></a>
@@ -138,12 +138,12 @@ $response = mm_api_cache( $api_url );
 								<div class="col-xs-12 col-sm-3 col-md-2">
 									<div class="text-center info-box">
 										<div class="price">
-											<span class="currency"><?php esc_html_e( 'USD' ); ?></span>
-											<span class="price-number"><?php esc_html_e( '$' ); ?><span><?php echo number_format( $item->prices->single_domain_license ); ?></span></span>
+											<span class="currency"><?php esc_html_e( 'USD', 'mojo-marketplace-wp-plugin' ); ?></span>
+											<span class="price-number"><?php esc_html_e( '$', 'mojo-marketplace-wp-plugin' ); ?><span><?php echo number_format( $item->prices->single_domain_license ); ?></span></span>
 										</div>
 										<div class="btn-group-vertical" role="group">
-											<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>" class="btn btn-primary btn-lg"><?php esc_html_e( 'Details' ); ?></a>
-											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_list' ) ); ?>" class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="graphics_list"><?php esc_html_e( 'Buy Now' ); ?></a>
+											<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>" class="btn btn-primary btn-lg"><?php esc_html_e( 'Details', 'mojo-marketplace-wp-plugin' ); ?></a>
+											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_list' ) ); ?>" class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="graphics_list"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
 										</div>
 									</div>
 								</div>

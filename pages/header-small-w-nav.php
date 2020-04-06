@@ -15,13 +15,13 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav navbar-nav justified-nav">
 								<li class="active">
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Home' ); ?></a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Home', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Marketplace' ); ?></a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Marketplace', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Site Performance' ); ?></a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Site Performance', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 							</ul>
 						</div>
@@ -35,19 +35,19 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav sub-navbar-nav navbar-nav justified-nav">
 								<li>
-									<a class="scroll" href="#content"><?php esc_html_e( 'Site Content' ); ?></a>
+									<a class="scroll" href="#content"><?php esc_html_e( 'Site Content', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#design"><?php esc_html_e( 'Design &amp; Build' ); ?></a>
+									<a class="scroll" href="#design"><?php esc_html_e( 'Design &amp; Build', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#traffic"><?php esc_html_e( 'Traffic &amp; Engagement' ); ?></a>
+									<a class="scroll" href="#traffic"><?php esc_html_e( 'Traffic &amp; Engagement', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#performance"><?php esc_html_e( 'Site Performance' ); ?></a>
+									<a class="scroll" href="#performance"><?php esc_html_e( 'Site Performance', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="#hosting"><?php esc_html_e( 'Hosting' ); ?></a>
+									<a class="scroll" href="#hosting"><?php esc_html_e( 'Hosting', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 							</ul>
 						</div>

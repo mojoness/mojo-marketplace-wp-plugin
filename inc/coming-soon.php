@@ -10,7 +10,7 @@ function mm_cs_notice_display() {
 			<p>
 				<?php
 					printf(
-						__( 'Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site %sclick here%s.' ),
+						__( 'Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site %sclick here%s.', 'mojo-marketplace-wp-plugin' ),
 						'<a href=' . esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) ) . '">',
 						'</a>'
 					);
@@ -30,10 +30,10 @@ function mm_bh_cs_notice_display() {
 			<div class="col-xs-12 col-sm-12">
 				<div class="panel panel-default panel-body panel-warning">
 					<div>
-						<h2><?php esc_html_e( 'Coming Soon Active' ); ?></h2>
-						<p><?php esc_html_e( 'Your site is currently displaying a "Coming Soon" page. This allows you to work on your site without the public seeing until you are ready to unveil it.' ); ?></p>
+						<h2><?php esc_html_e( 'Coming Soon Active', 'mojo-marketplace-wp-plugin' ); ?></h2>
+						<p><?php esc_html_e( 'Your site is currently displaying a "Coming Soon" page. This allows you to work on your site without the public seeing until you are ready to unveil it.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						<div class="col-xs-12 col-sm-12 text-right">
-							<a class="btn btn-default btn-md" href="<?php echo esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) );?>"><?php esc_html_e( 'Launch your site' ); ?></a>
+							<a class="btn btn-default btn-md" href="<?php echo esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) );?>"><?php esc_html_e( 'Launch your site', 'mojo-marketplace-wp-plugin' ); ?></a>
 						</div>
 					</div>
 				</div>
@@ -51,10 +51,10 @@ function mm_bh_cs_notice_launch_message() {
 				<div class="panel panel-default panel-body panel-success">
 					<div>
 						<span class="pull-left dashicons dashicons-yes"></span>
-						<h2><?php esc_html_e( 'Congratulations your site is now live!' ); ?></h2>
-						<p><?php esc_html_e( 'Your site is now live for the public to see! Make sure you are checking back frequently to see your visitors comments and feedback.' ); ?></p>
+						<h2><?php esc_html_e( 'Congratulations your site is now live!', 'mojo-marketplace-wp-plugin' ); ?></h2>
+						<p><?php esc_html_e( 'Your site is now live for the public to see! Make sure you are checking back frequently to see your visitors comments and feedback.', 'mojo-marketplace-wp-plugin' ); ?></p>
 						<div class="col-xs-12 col-sm-12 text-right">
-							<a class="btn btn-success btn-md" href="<?php echo esc_url( get_option( 'siteurl' ) ); ?>"><?php esc_html_e( 'View Site' ); ?></a>
+							<a class="btn btn-success btn-md" href="<?php echo esc_url( get_option( 'siteurl' ) ); ?>"><?php esc_html_e( 'View Site', 'mojo-marketplace-wp-plugin' ); ?></a>
 						</div>
 					</div>
 				</div>
@@ -69,7 +69,7 @@ function mm_cs_notice_launch_message() {
 			<p>
 				<?php
 					printf(
-						__( 'Congratulations. Your site is now live, %sclick here%s to view it.' ),
+						__( 'Congratulations. Your site is now live, %sclick here%s to view it.', 'mojo-marketplace-wp-plugin' ),
 						'<a target="_blank" href="' . esc_url( get_option( 'siteurl' ) ) . '">',
 						'</a>'
 					);
@@ -123,21 +123,21 @@ function mm_cs_settings() {
 	$section_hook = 'general';
 
 	if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
-		$brand = esc_html__( 'Bluehost' );
+		$brand = esc_html__( 'Bluehost', 'mojo-marketplace-wp-plugin' );
 	} else {
 		$brand = mm_brand();
 	}
 
 	add_settings_section(
 		$section_name, //Section
-		$brand . esc_html__( 'Coming Soon Page' ), //Title
+		$brand . esc_html__( 'Coming Soon Page', 'mojo-marketplace-wp-plugin' ), //Title
 		'__return_false', //section description callback
 		$section_hook //Setting Hook
 	);
 
 	add_settings_field(
 		'mm_coming_soon',
-		esc_html__( 'Enable' ),
+		esc_html__( 'Enable', 'mojo-marketplace-wp-plugin' ),
 		'mm_cs_enabled_callback',
 		$section_hook,
 		$section_name,
@@ -166,7 +166,7 @@ function mm_coming_soon_subscribe() {
 
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['nonce'] ), 'mm_coming_soon_subscribe_nonce' ) ) {
 
-		$a_response['message'] 	= __( 'Gotcha!', 'mojo' );
+		$a_response['message'] 	= __( 'Gotcha!', 'mojo-marketplace-wp-plugin' );
 		$a_response['status'] 	= 'nonce_failure';
 
 	} else {
@@ -176,7 +176,7 @@ function mm_coming_soon_subscribe() {
 
 		if ( ! is_email( $email ) ) {
 
-			$a_response['message'] 	= __( 'Please provide a valid email address', 'mojo' );
+			$a_response['message'] 	= __( 'Please provide a valid email address', 'mojo-marketplace-wp-plugin' );
 			$a_response['status'] 	= 'invalid_email';
 
 		} else {
@@ -189,12 +189,12 @@ function mm_coming_soon_subscribe() {
 				$error_text = array_keys( $response[0]->errors );
 				$error_text = $error_text[0];
 
-				$a_response['message'] 	= __( 'There was an error with the subscription', 'mojo' );
+				$a_response['message'] 	= __( 'There was an error with the subscription', 'mojo-marketplace-wp-plugin' );
 				$a_response['status'] 	= $error_text;
 
 		    	} else {
 
-				$a_response['message'] 	= __( 'Subscription successful', 'mojo' );
+				$a_response['message'] 	= __( 'Subscription successful', 'mojo-marketplace-wp-plugin' );
 		    		$a_response['status'] 	= 'success';
 
 			}

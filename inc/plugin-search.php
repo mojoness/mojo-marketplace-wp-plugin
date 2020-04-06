@@ -37,7 +37,7 @@ function mm_plugin_search_result() {
 		$image = ( isset( $plugin['img'] ) ) ? $plugin['img'] : 'https://marketplace-images-production.s3-us-west-2.amazonaws.com/vault/items/thumbnail-54340948-aff4-41d1-b5d4-0cf10a141528-260x156-i5o1C.jpg';
 		$title = ( isset( $plugin['title'] ) ) ? $plugin['title'] : $plugin['name'];
 		$short_desc = ( isset( $plugin['short_desc'] ) ) ? $plugin['short_desc'] : '';
-		$author = ( isset( $plugin['author'] ) ) ? $plugin['author'] : esc_html__( 'MOJO Marketplace' );
+		$author = ( isset( $plugin['author'] ) ) ? $plugin['author'] : esc_html__( 'MOJO Marketplace', 'mojo-marketplace-wp-plugin' );
 		$author_url = ( isset( $plugin['author_url'] ) ) ? $plugin['author_url'] : 'http://www.mojomarketplace.com';
 		$author_url = mm_build_link( $author_url, array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'plugin_search_author_link' ) );
 		$button_class = ( isset( $plugin['button_class'] ) ) ? $plugin['button_class'] : 'button';
@@ -54,7 +54,7 @@ function mm_plugin_search_result() {
 			<a href="' . $buy_now . '" class="' . $button_class . '">' . $buy_now_btn . '</a>
 		</li>';
 
-		$plugin_html .= '<li><a href="' . $link . '" class="' . $detail_class . '">' . esc_html__( 'More Details' ) . '</a></li>';
+		$plugin_html .= '<li><a href="' . $link . '" class="' . $detail_class . '">' . esc_html__( 'More Details', 'mojo-marketplace-wp-plugin' ) . '</a></li>';
 
 		$plugin_html .= '</ul>
 									</div>
@@ -66,7 +66,7 @@ function mm_plugin_search_result() {
 							</div>
 							<div class="plugin-card-bottom">
 				<div class="column-compatibility">
-					<span class="">' . esc_html__( 'Professional Plugin Service' ) . '</div>
+					<span class="">' . esc_html__( 'Professional Plugin Service', 'mojo-marketplace-wp-plugin' ) . '</div>
 				</div>
 			</div>';
 		$plugin_html = mm_minify( $plugin_html );

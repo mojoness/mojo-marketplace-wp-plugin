@@ -5,9 +5,9 @@ function mm_add_theme_button() {
 	?>
 	<script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
-		$( '.page-title-action' ).html( '<?php esc_html_e( 'WordPress.org Themes' ); ?>' );
-		$( '.page-title-action' ).before( '<a class="add-new-h2" href="admin.php?page=mojo-themes"><?php esc_html_e( 'Premium Themes' ); ?></a>' );
-		$( '.page-title-action:nth-of-type(2)' ).after( '<a class="add-new-h2" href="theme-install.php?upload"><?php esc_html_e( 'Upload' ); ?></a>' );
+		$( '.page-title-action' ).html( '<?php esc_html_e( 'WordPress.org Themes', 'mojo-marketplace-wp-plugin' ); ?>' );
+		$( '.page-title-action' ).before( '<a class="add-new-h2" href="admin.php?page=mojo-themes"><?php esc_html_e( 'Premium Themes', 'mojo-marketplace-wp-plugin' ); ?></a>' );
+		$( '.page-title-action:nth-of-type(2)' ).after( '<a class="add-new-h2" href="theme-install.php?upload"><?php esc_html_e( 'Upload', 'mojo-marketplace-wp-plugin' ); ?></a>' );
 	} );
 	</script>
 	<?php
@@ -19,7 +19,7 @@ function mm_add_premium_link() {
 	?>
 	<script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
-		$( '.wp-filter .filter-links li:last-of-type' ).after( '<li><a style="text-decoration: none;" onclick="location.href=\'admin.php?page=mojo-themes&btn=appearance_premium\'"><?php esc_html_e( 'Premium' ); ?></a></li>' );
+		$( '.wp-filter .filter-links li:last-of-type' ).after( '<li><a style="text-decoration: none;" onclick="location.href=\'admin.php?page=mojo-themes&btn=appearance_premium\'"><?php esc_html_e( 'Premium', 'mojo-marketplace-wp-plugin' ); ?></a></li>' );
 	} );
 	</script>
 	<?php
@@ -27,7 +27,7 @@ function mm_add_premium_link() {
 add_action( 'admin_head-theme-install.php', 'mm_add_premium_link' );
 
 function mm_add_theme_page() {
-	add_theme_page( __( 'Premium Themes' ), __( 'Premium Themes' ), 'install_themes', 'themes-mojo', '__return_false' );
+	add_theme_page( __( 'Premium Themes', 'mojo-marketplace-wp-plugin' ), __( 'Premium Themes', 'mojo-marketplace-wp-plugin' ), 'install_themes', 'themes-mojo', '__return_false' );
 }
 add_action( 'admin_menu', 'mm_add_theme_page' );
 
