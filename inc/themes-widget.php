@@ -16,56 +16,58 @@ class MOJO_Widget extends WP_Widget {
 		'mojo-aff-id' => ''
 	);
 	public function __construct() {
+		$this->defaults['mojo-title'] = __( 'Mojo Marketplace' );
+
 		parent::__construct(
 			'mojo_widget',
-			'MOJO WordPress Themes',
+			__( 'MOJO WordPress Themes' ),
 			array( 'description' => __( 'Add Themes/Plugins from MOJO.', 'mojo-widget' ) )
 		);
 	}
 	public function form( $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
 		?>
-		<label for="<?php echo $this->get_field_name( 'mojo-title' ); ?>">Title:</label>
+		<label for="<?php echo $this->get_field_name( 'mojo-title' ); ?>"><?php esc_html_e( 'Title' ); ?>:</label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'mojo-title' ); ?>" name="<?php echo $this->get_field_name( 'mojo-title' ); ?>" type="text" value="<?php echo esc_attr( $instance['mojo-title'] ); ?>" />
-		
-		<label for="<?php echo $this->get_field_name( 'mojo-platform' ); ?>">Platform:</label> 
+
+		<label for="<?php echo $this->get_field_name( 'mojo-platform' ); ?>"><?php esc_html_e( 'Platform' ); ?>:</label>
 		<select  class="widefat mojo-wid-type" id="<?php echo $this->get_field_id( 'mojo-platform' ); ?>" name="<?php echo $this->get_field_name( 'mojo-platform' ); ?>">
-			<option value='wordpress' <?php selected( $instance['mojo-platform'], 'wordpress', true ); ?>>WordPress</option>
-			<option value='joomla' <?php selected( $instance['mojo-platform'], 'joomla', true ); ?>>Joomla</option>
-			<option value='drupal' <?php selected( $instance['mojo-platform'], 'drupal', true ); ?>>Drupal</option>
-			<option value='magento' <?php selected( $instance['mojo-platform'], 'magento', true ); ?>>Magento</option>
-			<option value='prestashop' <?php selected( $instance['mojo-platform'], 'prestashop', true ); ?>>PrestaShop</option>
+			<option value='wordpress' <?php selected( $instance['mojo-platform'], 'wordpress', true ); ?>><?php esc_html_e( 'WordPress' ); ?></option>
+			<option value='joomla' <?php selected( $instance['mojo-platform'], 'joomla', true ); ?>><?php esc_html_e( 'Joomla' ); ?></option>
+			<option value='drupal' <?php selected( $instance['mojo-platform'], 'drupal', true ); ?>><?php esc_html_e( 'Drupal' ); ?></option>
+			<option value='magento' <?php selected( $instance['mojo-platform'], 'magento', true ); ?>><?php esc_html_e( 'Magento' ); ?></option>
+			<option value='prestashop' <?php selected( $instance['mojo-platform'], 'prestashop', true ); ?>><?php esc_html_e( 'PrestaShop' ); ?></option>
 		</select>
 
-		<label for="<?php echo $this->get_field_name( 'mojo-type' ); ?>">Type:</label> 
+		<label for="<?php echo $this->get_field_name( 'mojo-type' ); ?>">Type:</label>
 		<select  class="widefat mojo-wid-type" id="<?php echo $this->get_field_id( 'mojo-type' ); ?>" name="<?php echo $this->get_field_name( 'mojo-type' ); ?>">
-			<option value='themes' <?php selected( $instance['mojo-type'], 'themes', true ); ?>>Themes</option>
-			<option value='plugins' <?php selected( $instance['mojo-type'], 'plugins', true ); ?>>Plugins</option>
+			<option value='themes' <?php selected( $instance['mojo-type'], 'themes', true ); ?>><?php esc_html_e( 'Themes' ); ?></option>
+			<option value='plugins' <?php selected( $instance['mojo-type'], 'plugins', true ); ?>><?php esc_html_e( 'Plugins' ); ?></option>
 		</select>
 
-		<label for="<?php echo $this->get_field_name( 'mojo-items' ); ?>">Items:</label> 
+		<label for="<?php echo $this->get_field_name( 'mojo-items' ); ?>">Items:</label>
 		<select  class="widefat mojo-wid-type" id="<?php echo $this->get_field_id( 'mojo-items' ); ?>" name="<?php echo $this->get_field_name( 'mojo-items' ); ?>">
-			<option value='popular' <?php selected( $instance['mojo-items'], 'popular', true ); ?>>Popular</option>
-			<option value='recent' <?php selected( $instance['mojo-items'], 'recent', true ); ?>>Recent</option>
+			<option value='popular' <?php selected( $instance['mojo-items'], 'popular', true ); ?>><?php esc_html_e( 'Popular' ); ?></option>
+			<option value='recent' <?php selected( $instance['mojo-items'], 'recent', true ); ?>><?php esc_html_e( 'Recent' ); ?></option>
 		</select>
 
-		<label for="<?php echo $this->get_field_name( 'mojo-image-size' ); ?>">Image Size:</label> 
+		<label for="<?php echo $this->get_field_name( 'mojo-image-size' ); ?>">Image Size:</label>
 		<select  class="widefat mojo-wid-type" id="<?php echo $this->get_field_id( 'mojo-image-size' ); ?>" name="<?php echo $this->get_field_name( 'mojo-image-size' ); ?>">
-			<option value='square_thumbnail_url' <?php selected( $instance['mojo-image-size'], 'square_thumbnail_url', true ); ?>>Square Thumbnail</option>
-			<option value='thumbnail_url' <?php selected( $instance['mojo-image-size'], 'thumbnail_url', true ); ?>>Thumbnail</option>
-			<option value='large_thumbnail_url' <?php selected( $instance['mojo-image-size'], 'large_thumbnail_url', true ); ?>>Large</option>
+			<option value='square_thumbnail_url' <?php selected( $instance['mojo-image-size'], 'square_thumbnail_url', true ); ?>><?php esc_html_e( 'Square Thumbnail' ); ?></option>
+			<option value='thumbnail_url' <?php selected( $instance['mojo-image-size'], 'thumbnail_url', true ); ?>><?php esc_html_e( 'Thumbnail' ); ?></option>
+			<option value='large_thumbnail_url' <?php selected( $instance['mojo-image-size'], 'large_thumbnail_url', true ); ?>><?php esc_html_e( 'Large' ); ?></option>
 		</select>
 
-		<label for="<?php echo $this->get_field_name( 'mojo-seller' ); ?>">Seller Profile <small>(optional)</small>:</label> 
+		<label for="<?php echo $this->get_field_name( 'mojo-seller' ); ?>"><?php esc_html_e( 'Seller Profile <small>(optional)</small>' ); ?>:</label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'mojo-seller' ); ?>" name="<?php echo $this->get_field_name( 'mojo-seller' ); ?>" type="text" value="<?php echo esc_attr( $instance['mojo-seller'] ); ?>" />
 
-		<label for="<?php echo $this->get_field_name( 'mojo-preview' ); ?>">Preview on hover:</label>		
+		<label for="<?php echo $this->get_field_name( 'mojo-preview' ); ?>"><?php esc_html_e( 'Preview on hover' ); ?>:</label>
 		<input type="checkbox" id="<?php echo $this->get_field_id( 'mojo-preview' ); ?>" name="<?php echo $this->get_field_name( 'mojo-preview' ); ?>" <?php checked( $instance['mojo-preview'], 'on', true ); ?>/>
 
-		<label for="<?php echo $this->get_field_name( 'mojo-quantity' ); ?>">Quantity:</label>
+		<label for="<?php echo $this->get_field_name( 'mojo-quantity' ); ?>"><?php esc_html_e( 'Quantity' ); ?>:</label>
 		<select id="<?php echo $this->get_field_id( 'mojo-quantity' ); ?>" name="<?php echo $this->get_field_name( 'mojo-quantity' ); ?>">
 			<?php
-			for ( $i = 1; $i <= 10; $i++ ) { 
+			for ( $i = 1; $i <= 10; $i++ ) {
 				?>
 			<option value='<?php echo $i; ?>' <?php selected( $instance['mojo-quantity'], $i, true ); ?>><?php echo $i; ?></option>
 				<?php
@@ -73,16 +75,16 @@ class MOJO_Widget extends WP_Widget {
 			?>
 		</select>
 		<br/>
-		
+
 		<?php
 		if( defined( 'MMAFF' ) && $instance['mojo-aff-id'] == MMAFF ) {
 			$instance['mojo-aff-id'] = "";
 		}
 		?>
 
-		<label for="<?php echo $this->get_field_name( 'mojo-aff-id' ); ?>">Affiliate ID:</label> 
+		<label for="<?php echo $this->get_field_name( 'mojo-aff-id' ); ?>"><?php esc_html_e( 'Affiliate ID' ); ?>:</label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'mojo-aff-id' ); ?>" name="<?php echo $this->get_field_name( 'mojo-aff-id' ); ?>" type="text" value="<?php echo esc_attr( $instance['mojo-aff-id'] ); ?>" />
-		
+
 		</p>
 		<?php
 	}
@@ -99,7 +101,7 @@ class MOJO_Widget extends WP_Widget {
 		if( 2 < strlen( $instance['mojo-seller'] ) ) {
 			$query['seller'] = $instance['mojo-seller'];
 		}
-		
+
 		if( 'on' == $instance['mojo-preview'] ) {
 			global $use_mm_styles;
 			$use_mm_styles = true;
@@ -110,7 +112,7 @@ class MOJO_Widget extends WP_Widget {
 		if( strlen( $items['body'] ) < $instance['mojo-quantity'] AND $instance['mojo-items'] == 'popular' ) {
 			$items = mm_api();
 		}
-		
+
 		if( ! is_wp_error( $items ) ) {
 
 			$items = json_decode( $items['body'] );

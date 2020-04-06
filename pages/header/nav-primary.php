@@ -3,12 +3,12 @@ $page = sanitize_key( $_GET['page'] );
 $nav = array(
 	'mojo-marketplace' => array(
 		'href' => add_query_arg( array( 'page' => 'mojo-marketplace' ),admin_url( 'admin.php' ) ),
-		'content' => esc_html_e( 'Marketplace' ),
+		'content' => esc_html__( 'Marketplace' ),
 	),
 
 	'mojo-performance' => array(
 		'href' => add_query_arg( array( 'page' => 'mojo-performance' ),admin_url( 'admin.php' ) ),
-		'content' => esc_html_e( 'Performance' ),
+		'content' => esc_html__( 'Performance' ),
 	),
 
 );
@@ -17,7 +17,7 @@ if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
 	$home = array(
 		'mojo-home' => array(
 			'href' => add_query_arg( array( 'page' => 'mojo-home' ), admin_url( 'admin.php' ) ),
-			'content' => esc_html_e( 'Home' ),
+			'content' => esc_html__( 'Home' ),
 		),
 	);
 	$nav = $home + $nav;
@@ -26,7 +26,7 @@ if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
 if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
 	$nav['mojo-staging'] = array(
 		'href' => add_query_arg( array( 'page' => 'mojo-staging' ),admin_url( 'admin.php' ) ),
-		'content' => esc_html_e( 'Staging' ),
+		'content' => esc_html__( 'Staging' ),
 	);
 }
 

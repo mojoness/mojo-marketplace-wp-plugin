@@ -172,9 +172,6 @@ function mm_staging_page() {
 			break;
 	}
 
-	printf(
-		''
-	)
 	echo "<a target='_blank' href='https://goo.gl/forms/HNmqYgRkpzu9KQfM2' style='z-index: 10;position: fixed; padding: 4px 10px; color: #fff;background-color: #000;right:0px;bottom:0px;'>Staging Feedback</a>";
 }
 
