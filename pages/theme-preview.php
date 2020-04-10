@@ -10,12 +10,36 @@ $theme = mm_api_cache( $api_url );
 $other_viewed = mm_api_cache( add_query_arg( array( 'category' => 'wordpress', 'type' => 'themes', 'order' => 'random', 'count' => 4 ), 'https://api.mojomarketplace.com/api/v2/items' ) );
 
 if ( is_wp_error( $theme ) ) {
-	printf(
-		'<div class="error"><p>%s <a href="%s">%s</a></p></div>',
-		esc_html__( 'Unable to load theme preview.',
-		'mojo-marketplace-wp-plugin' . esc_attr( $_GET['mojo-marketplace-wp-plugin'] ),
-		esc_html__( 'Return to themes', 'mojo-marketplace-wp-plugin' )
-	);
+	?>
+	<div class="error">
+		<p>
+			<?php
+				printf(
+					/* translators: %s:Theme marketplace URL */
+					__( 'Unable to load theme preview. <a href="%s">Return to themes</a>' ),
+					esc_url(
+						add_query_arg(
+							array(
+								'page' => 'mojo-themes',
+								'items' => $items,
+							),
+							admin_url( 'admin.php' )
+						)
+					)
+				);
+			?>
+		</p>
+	</div>
+	<?php
+
+
+function need_admin_init() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_safe_redirect( esc_url( trailingslashit( site_url() ) ) );
+	}
+}
+add_action( 'admin_init', 'need_admin_init' );
+
 } else {
 	$theme = json_decode( $theme['body'] );
 	$theme = $theme->items[0];
@@ -34,7 +58,7 @@ if ( is_wp_error( $theme ) ) {
 			<div class="wp-full-overlay-sidebar-content">
 				<img class="theme-preview-logo" src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-preview-%s.svg' ); ?>" />
 				<div class="install-theme-info">
-					<h3 class="theme-name"><?php esc_html_e( $theme->name, 'mojo-marketplace-wp-plugin' ); ?></h3>
+					<h3 class="theme-name"><?php echo esc_html( $theme->name ); ?></h3>
 					<br/>
 					<?php mm_stars( $theme->rating, $theme->sales_count ); ?>
 					<div class="theme-details text-center">

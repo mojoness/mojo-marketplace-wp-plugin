@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?php echo get_option( 'blogname' ); ?> &mdash; Coming Soon</title>
+<title>
+	<?php
+	printf(
+	/* translators: %s: Blog name */
+		__( '%s &mdash; Coming Soon', 'mojo-marketplace-wp-plugin' ), get_option( 'blogname' ) );
+	?>
+</title>
 <?php echo mm_cs_meta(); ?>
 <style type='text/css'>
 body{
@@ -111,13 +117,21 @@ footer p a:hover{
 <body>
 	<div id='wrap'>
 		<div class='content'>
-			<h1>A New WordPress Site</h1>
-			<h2>Coming Soon!</h2>
-			<a class='btn' href='<?php echo site_url( 'wp-login.php' ); ?>'>Admin Login</a>
+			<h1><?php esc_html_e( 'A New WordPress Site' ); ?></h1>
+			<h2><?php esc_html_e( 'Coming Soon!' ); ?></h2>
+			<a class='btn' href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'Admin Login' ); ?></a>
 		</div>
 	</div>
 	<footer>
-			<p class='text-center'>a <a href='https://www.bluehost.in/optimized-wordpress-hosting.php' class='bluehost'>bluehost india</a> powered website</p>
+			<p class='text-center'>
+				<?php
+					printf(
+						/* translators: %s: Bluehost India WordPress URL */
+						__( 'a <a href="%s" class="bluehost">bluehost india</a> powered website' ),
+						esc_url( 'https://www.bluehost.in/optimized-wordpress-hosting.php' ),
+					);
+				?>
+			</p>
 	</footer>
 </body>
 </html>

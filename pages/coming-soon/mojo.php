@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?php echo get_option( 'blogname' ); ?> &mdash; Coming Soon</title>
+<title>
+	<?php
+	printf(
+	/* translators: %s: Blog name */
+		__( '%s &mdash; Coming Soon', 'mojo-marketplace-wp-plugin' ), get_option( 'blogname' ) );
+	?>
+</title>
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <?php echo mm_cs_meta(); ?>
 <style type='text/css'>
@@ -130,67 +136,87 @@ footer li{
 <body>
 <div id='wrap'>
 	<div class='content'>
-		<h1>Website Coming Soon</h1>
-		<p>This page is used to test the proper operation of your recent <a class='highlight' href='https://www.mojomarketplace.com/explore?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=description_link'>MOJO Marketplace</a> installation of WordPress! If you can read this page it means your installation was successful!</p>
-		<a class='btn green' href='<?php echo site_url( 'wp-login.php' ); ?>'>Admin Login</a>
+		<h1><?php esc_html_e( 'Website Coming Soon' ); ?></h1>
+		<p>
+			<?php
+				printf(
+					/* translators: %s: MOJO Marketplace explore URL */
+					esc_html__( 'This page is used to test the proper operation of your recent <a class="highlight" href="%s">MOJO Marketplace</a> installation of WordPress! If you can read this page it means your installation was successful!' ),
+					esc_url( 'https://www.mojomarketplace.com/explore?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=description_link' )
+				);
+			?>
+		</p>
+		<a class='btn green' href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'Admin Login' ); ?></a>
 		<div class='split-content'>
 			<div>
-				<h3>Just visiting?</h3>
+				<h3><?php esc_html_e( 'Just visiting?' ); ?></h3>
 				<p>
-					The owner of this website is working on making this site awesome. Why not <a class='highlight' href='#' onclick='bookmark();'>bookmark it</a> and come back again later. We are sure you will not be disappointed.
+					<?php
+					printf(
+						/* translators: %s: Bookmark URL */
+						esc_html__( 'The owner of this website is working on making this site awesome. Why not <a class="highlight" href="%s" onclick="bookmark();">bookmark it</a> and come back again later. We are sure you will not be disappointed.' ),
+						'#'
+					);
+					?>
 				</p>
 			</div>
 			<div>
-				<h3>Are you the Site Owner?</h3>
+				<h3><?php esc_html_e( 'Are you the Site Owner?' ); ?></h3>
 				<p>
-					You should <a class='highlight' href='<?php echo site_url( 'wp-login.php' ); ?>'>login</a> to your WordPress installation and prepare your site for launch.
+					<?php
+					printf(
+						/* translators: %s: WordPress login URL */
+						esc_html__( 'You should <a class="highlight" href="%s">login</a> to your WordPress installation and prepare your site for launch.' ),
+						esc_url( site_url( 'wp-login.php' ) )
+					);
+					?>
 				</p>
 				<p>
-					To launch your site just click the link in the banner at the top of the screen.
+					<?php esc_html_e( 'To launch your site just click the link in the banner at the top of the scre   en.' ); ?>
 				</p>
 			</div>
 		</div>
 	</div>
 	<footer>
 		<div class='col'>
-			<h2><a href='https://www.mojomarketplace.com/themes/wordpress?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=wordpress_themes'>WordPress Themes</a></h2>
+			<h2><a href='https://www.mojomarketplace.com/themes/wordpress?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=wordpress_themes'><?php esc_html_e( 'WordPress Themes' ); ?></a></h2>
 			<ul>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/woocommerce?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=woocommerce_themes'>WooCommerce Themes</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/responsive?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=responsive_themes'>Responsive WordPress Themes</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/business?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=business_themes'>Business WordPress Themes</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/blog?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=blog_themes'>Blog WordPress Themes</a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/woocommerce?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=woocommerce_themes'><?php esc_html_e( 'WooCommerce Themes' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/responsive?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=responsive_themes'><?php esc_html_e( 'Responsive WordPress Themes' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/business?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=business_themes'><?php esc_html_e( 'Business WordPress Themes' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/themes/wordpress/blog?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=blog_themes'><?php esc_html_e( 'Blog WordPress Themes' ); ?></a></li>
 			</ul>
 		</div>
 		<div class='col'>
-			<h2><a href='https://www.mojomarketplace.com/services/all/wordpress?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=wordpress_services'>WordPress Services</a></h2>
+			<h2><a href='https://www.mojomarketplace.com/services/all/wordpress?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=wordpress_services'><?php esc_html_e( 'WordPress Services' ); ?></a></h2>
 			<ul>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/item/install-your-wordpress-theme?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=install_theme_service'>Install WordPress Theme</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/item/make-my-wordpress-site-look-like-the-theme-demo?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=theme_demo_service'>Make My Site Look Like the Demo</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/item/backup-your-wordpress-website?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=website_backup_service'>Backup Your WordPress Website</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/item/wordpress-theme-training?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=wp_theme_training_service'>WordPress Theme Training</a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/item/install-your-wordpress-theme?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=install_theme_service'><?php esc_html_e( 'Install WordPress Theme' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/item/make-my-wordpress-site-look-like-the-theme-demo?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=theme_demo_service'><?php esc_html_e( 'Make My Site Look Like the Demo' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/item/backup-your-wordpress-website?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=website_backup_service'><?php esc_html_e( 'Backup Your WordPress Website' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/item/wordpress-theme-training?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=wp_theme_training_service'><?php esc_html_e( 'WordPress Theme Training' ); ?></a></li>
 			</ul>
 		</div>
 		<div class='col'>
-			<h2><a href='https://www.mojomarketplace.com/?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=about_mojo'>About MOJO</a></h2>
+			<h2><a href='https://www.mojomarketplace.com/?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=about_mojo'><?php esc_html_e( 'About MOJO' ); ?></a></h2>
 			<ul>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/explore?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=explore_mojo'>Explore MOJO</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/sellers?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=sell_w_mojo'>Sell with MOJO</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/affiliates?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=mojo_affiliates'>MOJO Affiliates</a></li>
-				<li><a target='_blank' href='https://www.mojomarketplace.com/how-it-works/faq?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=faqs'>FAQs</a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/explore?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=explore_mojo'><?php esc_html_e( 'Explore MOJO' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/sellers?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=sell_w_mojo'><?php esc_html_e( 'Sell with MOJO' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/affiliates?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=mojo_affiliates'><?php esc_html_e( 'MOJO Affiliates' ); ?></a></li>
+				<li><a target='_blank' href='https://www.mojomarketplace.com/how-it-works/faq?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=faqs'><?php esc_html_e( 'FAQs' ); ?></a></li>
 			</ul>
 		</div>
 		<div class='footer-actions'>
-			<a href='<?php echo site_url( 'wp-login.php' ); ?>'>Login</a>
-			<a href='#' id='what-is-this' onClick='what_is_this_show()'>What is this?</a>
+			<a href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'Login' ); ?></a>
+			<a href='#' id='what-is-this' onClick='what_is_this_show()'><?php esc_html_e( 'What is this?' ); ?></a>
 		</div>
 	</footer>
 </div>
 <div id='what-is-this-content'>
-	<p>This is the default coming soon page for this site because it was installed via MOJO Marketplace.</p>
-	<p>If you are the site owner and are finished building the site you can click the link in the banner of the administration panel to disable it.</p>
+	<p><?php esc_html_e( 'This is the default coming soon page for this site because it was installed via MOJO Marketplace.' ); ?></p>
+	<p><?php esc_html_e( 'If you are the site owner and are finished building the site you can click the link in the banner of the administration panel to disable it.' ); ?></p>
 	<div>
-		<a href='#' onClick='what_is_this_hide()'>close</a>
-		<a href='<?php echo site_url( 'wp-login.php' ); ?>'>login</a>
+		<a href='#' onClick='what_is_this_hide()'><?php esc_html_e( 'close' ); ?></a>
+		<a href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'login' ); ?></a>
 	</div>
 </div>
 <script type='text/javascript'>

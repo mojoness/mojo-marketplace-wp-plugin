@@ -10,7 +10,8 @@ function mm_cs_notice_display() {
 			<p>
 				<?php
 					printf(
-						__( 'Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site %sclick here%s.', 'mojo-marketplace-wp-plugin' ),
+						/* translators: 1: opening anchor tag, 2: closing anchor tag */
+						__( 'Your site is currently displaying a "Coming Soon" page. Once you are ready to launch your site %1$sclick here%2$s.', 'mojo-marketplace-wp-plugin' ),
 						'<a href=' . esc_url( add_query_arg( array( 'mm_cs_launch' => true ) ) ) . '">',
 						'</a>'
 					);
@@ -69,7 +70,8 @@ function mm_cs_notice_launch_message() {
 			<p>
 				<?php
 					printf(
-						__( 'Congratulations. Your site is now live, %sclick here%s to view it.', 'mojo-marketplace-wp-plugin' ),
+						/* translators: 1: opening anchor tag, 2: closing anchor tag */
+						__( 'Congratulations. Your site is now live, %1$sclick here%2$s to view it.', 'mojo-marketplace-wp-plugin' ),
 						'<a target="_blank" href="' . esc_url( get_option( 'siteurl' ) ) . '">',
 						'</a>'
 					);
@@ -159,7 +161,7 @@ function mm_cs_content() {
 
 // Handle Ajax response
 function mm_coming_soon_subscribe() {
-	
+
 	$response 	= array();
 	$a_response 	= array();
 	$email 		= sanitize_email( wp_unslash( $_POST['email'] ) );
@@ -170,7 +172,7 @@ function mm_coming_soon_subscribe() {
 		$a_response['status'] 	= 'nonce_failure';
 
 	} else {
-		
+
 		// Initialize JetPack_Subscriptions
 		$jetpack = Jetpack_Subscriptions::init();
 
