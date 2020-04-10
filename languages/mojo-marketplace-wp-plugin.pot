@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MOJO Marketplace 1.5.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mojo-plugin\n"
-"POT-Creation-Date: 2020-04-06 18:52:09+00:00\n"
+"POT-Creation-Date: 2020-04-10 14:15:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,7 +27,7 @@ msgid ""
 "including performance, security, and update features."
 msgstr ""
 
-#: inc/branding.php:34 inc/coming-soon.php:126 inc/menu.php:22 inc/menu.php:26
+#: inc/branding.php:34 inc/coming-soon.php:128 inc/menu.php:22 inc/menu.php:26
 #: inc/updates.php:33 inc/updates.php:41
 msgid "Bluehost"
 msgstr ""
@@ -36,66 +36,68 @@ msgstr ""
 msgid "Unable to process order."
 msgstr ""
 
-#: inc/coming-soon.php:13
+#: inc/coming-soon.php:14
+#. translators: 1: opening anchor tag, 2: closing anchor tag
 msgid ""
 "Your site is currently displaying a \"Coming Soon\" page. Once you are "
-"ready to launch your site %sclick here%s."
-msgstr ""
-
-#: inc/coming-soon.php:33
-msgid "Coming Soon Active"
+"ready to launch your site %1$sclick here%2$s."
 msgstr ""
 
 #: inc/coming-soon.php:34
+msgid "Coming Soon Active"
+msgstr ""
+
+#: inc/coming-soon.php:35
 msgid ""
 "Your site is currently displaying a \"Coming Soon\" page. This allows you "
 "to work on your site without the public seeing until you are ready to "
 "unveil it."
 msgstr ""
 
-#: inc/coming-soon.php:36
+#: inc/coming-soon.php:37
 msgid "Launch your site"
 msgstr ""
 
-#: inc/coming-soon.php:54
+#: inc/coming-soon.php:55
 msgid "Congratulations your site is now live!"
 msgstr ""
 
-#: inc/coming-soon.php:55
+#: inc/coming-soon.php:56
 msgid ""
 "Your site is now live for the public to see! Make sure you are checking "
 "back frequently to see your visitors comments and feedback."
 msgstr ""
 
-#: inc/coming-soon.php:57
+#: inc/coming-soon.php:58
 msgid "View Site"
 msgstr ""
 
-#: inc/coming-soon.php:72
-msgid "Congratulations. Your site is now live, %sclick here%s to view it."
+#: inc/coming-soon.php:74
+#. translators: 1: opening anchor tag, 2: closing anchor tag
+msgid "Congratulations. Your site is now live, %1$sclick here%2$s to view it."
 msgstr ""
 
-#: inc/coming-soon.php:133
+#: inc/coming-soon.php:135
 msgid "Coming Soon Page"
 msgstr ""
 
-#: inc/coming-soon.php:140
+#: inc/coming-soon.php:142
 msgid "Enable"
 msgstr ""
 
-#: inc/coming-soon.php:169
+#: inc/coming-soon.php:171
 msgid "Gotcha!"
 msgstr ""
 
-#: inc/coming-soon.php:179
+#: inc/coming-soon.php:181
 msgid "Please provide a valid email address"
 msgstr ""
 
-#: inc/coming-soon.php:192
+#: inc/coming-soon.php:194
 msgid "There was an error with the subscription"
 msgstr ""
 
-#: inc/coming-soon.php:197
+#: inc/coming-soon.php:199
 msgid "Subscription successful"
 msgstr ""
 
@@ -171,47 +173,51 @@ msgstr ""
 msgid "Object cache not available on your hosting plan."
 msgstr ""
 
-#: inc/performance.php:49
+#: inc/performance.php:53
+#. translators: %s: type of cache
 msgid "%s cache added successfully."
 msgstr ""
 
-#: inc/performance.php:55
+#: inc/performance.php:66
+#. translators: %s: type of cache
 msgid "Unable to add %s cache."
 msgstr ""
 
-#: inc/performance.php:75
+#: inc/performance.php:93
+#. translators: %s: type of cache
 msgid "%s cache removed successfully."
 msgstr ""
 
-#: inc/performance.php:77
+#: inc/performance.php:98
 msgid "Could not remove cache file."
 msgstr ""
 
-#: inc/performance.php:80
+#: inc/performance.php:101
 msgid "Cache file does not exist."
 msgstr ""
 
-#: inc/performance.php:137
+#: inc/performance.php:162
+#. translators: %s: PHP version
 msgid "PHP is updated to %s"
 msgstr ""
 
-#: inc/performance.php:139
+#: inc/performance.php:167
 msgid "Site is incompatible with PHP Edge. Edge removed."
 msgstr ""
 
-#: inc/performance.php:145
+#: inc/performance.php:173
 msgid "Unable to enable PHP Edge."
 msgstr ""
 
-#: inc/performance.php:155
+#: inc/performance.php:183
 msgid "PHP Edge successfully disabled."
 msgstr ""
 
-#: inc/performance.php:157
+#: inc/performance.php:185
 msgid "Unable to remove PHP Edge."
 msgstr ""
 
-#: inc/performance.php:160
+#: inc/performance.php:188
 msgid "PHP Edge file does not exist."
 msgstr ""
 
@@ -356,44 +362,193 @@ msgstr ""
 msgid "Try Again"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:5
+#: pages/coming-soon/bluehost-india.php:8 pages/coming-soon/bluehost.php:9
+#: pages/coming-soon/mojo.php:8
+#. translators: %s: Blog name
 msgid "%s &mdash; Coming Soon"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:273 pages/coming-soon/bluehost.php:310
+#: pages/coming-soon/bluehost-india.php:120 pages/coming-soon/bluehost.php:315
+msgid "A New WordPress Site"
+msgstr ""
+
+#: pages/coming-soon/bluehost-india.php:121 pages/coming-soon/bluehost.php:279
+#: pages/coming-soon/bluehost.php:316
 msgid "Coming Soon!"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:275
+#: pages/coming-soon/bluehost-india.php:122 pages/coming-soon/bluehost.php:317
+#: pages/coming-soon/mojo.php:149
+msgid "Admin Login"
+msgstr ""
+
+#: pages/coming-soon/bluehost-india.php:130
+#. translators: %s: Bluehost India WordPress URL
+msgid "a <a href=\"%s\" class=\"bluehost\">bluehost india</a> powered website"
+msgstr ""
+
+#: pages/coming-soon/bluehost.php:281
 msgid ""
 "Be the first to know when we launch, enter your email address and we will "
 "let you know when we go live and any future website updates we have."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:277
+#: pages/coming-soon/bluehost.php:283
 msgid "Thank you, please check your email to confirm your subscription."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:278
+#: pages/coming-soon/bluehost.php:284
 msgid ""
 "There was an error with your submission and you were not subscribed. Please "
 "try again with a different email address."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:283
+#: pages/coming-soon/bluehost.php:289
 msgid "Email"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:284
+#: pages/coming-soon/bluehost.php:290
 msgid "Enter your email address"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:309
-msgid "A New WordPress Site"
+#: pages/coming-soon/bluehost.php:328
+#. translators: 1: Bluehost WordPress page link, 2: Login URL, 3: My Bluehost
+#. URL
+msgid ""
+"A <a target=\"_blank\" href=\"%1$s\" class=\"bluehost\" "
+"rel=\"nofollow\">Bluehost</a> powered website. Is this your website? Log in "
+"to <a href=\"%2$s\">WordPress</a> or <a target=\"_blank\" href=\"%3$s\" "
+"class=\"bluehost\" rel=\"nofollow\">Bluehost</a>"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:311
-msgid "Admin Login"
+#: pages/coming-soon/mojo.php:139
+msgid "Website Coming Soon"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:144
+#. translators: %s: MOJO Marketplace explore URL
+msgid ""
+"This page is used to test the proper operation of your recent <a "
+"class=\"highlight\" href=\"%s\">MOJO Marketplace</a> installation of "
+"WordPress! If you can read this page it means your installation was "
+"successful!"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:152
+msgid "Just visiting?"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:157
+#. translators: %s: Bookmark URL
+msgid ""
+"The owner of this website is working on making this site awesome. Why not "
+"<a class=\"highlight\" href=\"%s\" onclick=\"bookmark();\">bookmark it</a> "
+"and come back again later. We are sure you will not be disappointed."
+msgstr ""
+
+#: pages/coming-soon/mojo.php:164
+msgid "Are you the Site Owner?"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:169
+#. translators: %s: WordPress login URL
+msgid ""
+"You should <a class=\"highlight\" href=\"%s\">login</a> to your WordPress "
+"installation and prepare your site for launch."
+msgstr ""
+
+#: pages/coming-soon/mojo.php:175
+msgid ""
+"To launch your site just click the link in the banner at the top of the "
+"scre   en."
+msgstr ""
+
+#: pages/coming-soon/mojo.php:182 pages/mojo-themes.php:50
+msgid "WordPress Themes"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:184
+msgid "WooCommerce Themes"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:185
+msgid "Responsive WordPress Themes"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:186
+msgid "Business WordPress Themes"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:187
+msgid "Blog WordPress Themes"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:191
+msgid "WordPress Services"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:193
+msgid "Install WordPress Theme"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:194
+msgid "Make My Site Look Like the Demo"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:195
+msgid "Backup Your WordPress Website"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:196
+msgid "WordPress Theme Training"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:200
+msgid "About MOJO"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:202
+msgid "Explore MOJO"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:203
+msgid "Sell with MOJO"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:204
+msgid "MOJO Affiliates"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:205
+msgid "FAQs"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:209
+msgid "Login"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:210
+msgid "What is this?"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:215
+msgid ""
+"This is the default coming soon page for this site because it was installed "
+"via MOJO Marketplace."
+msgstr ""
+
+#: pages/coming-soon/mojo.php:216
+msgid ""
+"If you are the site owner and are finished building the site you can click "
+"the link in the banner of the administration panel to disable it."
+msgstr ""
+
+#: pages/coming-soon/mojo.php:218
+msgid "close"
+msgstr ""
+
+#: pages/coming-soon/mojo.php:219
+msgid "login"
 msgstr ""
 
 #: pages/header/marketplace-fallback.php:25 pages/header/nav-sub.php:15
@@ -569,26 +724,22 @@ msgid "Random"
 msgstr ""
 
 #: pages/mojo-graphics.php:141 pages/mojo-themes.php:113
-#: pages/theme-preview.php:49
+#: pages/theme-preview.php:73
 msgid "USD"
 msgstr ""
 
 #: pages/mojo-graphics.php:142 pages/mojo-themes.php:114
-#: pages/theme-preview.php:47
+#: pages/theme-preview.php:71
 msgid "$"
 msgstr ""
 
-#: pages/mojo-graphics.php:145 pages/theme-preview.php:42
+#: pages/mojo-graphics.php:145 pages/theme-preview.php:66
 msgid "Details"
 msgstr ""
 
 #: pages/mojo-graphics.php:146 pages/mojo-themes.php:119
-#: pages/theme-preview.php:43
+#: pages/theme-preview.php:67
 msgid "Buy Now"
-msgstr ""
-
-#: pages/mojo-themes.php:50
-msgid "WordPress Themes"
 msgstr ""
 
 #: pages/mojo-themes.php:118
@@ -813,11 +964,12 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: pages/theme-preview.php:15
-msgid "Unable to load theme preview."
+#: pages/theme-preview.php:19
+#. translators: %s:Theme marketplace URL
+msgid "Unable to load theme preview. <a href=\"%s\">Return to themes</a>"
 msgstr ""
 
-#: pages/theme-preview.php:60
+#: pages/theme-preview.php:84
 msgid "Other People Also Viewed"
 msgstr ""
 
@@ -829,7 +981,7 @@ msgstr ""
 msgid "Try again"
 msgstr ""
 
-#: vendor/bluehost/endurance-wp-module-business-reviews/bootstrap.php:13
+#: vendor/bluehost/endurance-wp-module-business-reviews/bootstrap.php:14
 msgid "Business Reviews"
 msgstr ""
 
@@ -843,11 +995,11 @@ msgstr ""
 msgid "Gutenframe"
 msgstr ""
 
-#: vendor/bluehost/endurance-wp-module-spam-prevention/bootstrap.php:13
+#: vendor/bluehost/endurance-wp-module-spam-prevention/bootstrap.php:14
 msgid "Spam Prevention"
 msgstr ""
 
-#: vendor/bluehost/endurance-wp-module-sso/bootstrap.php:13
+#: vendor/bluehost/endurance-wp-module-sso/bootstrap.php:14
 msgid "Single Sign-on"
 msgstr ""
 

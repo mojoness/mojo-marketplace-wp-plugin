@@ -16,7 +16,7 @@ if ( is_wp_error( $theme ) ) {
 			<?php
 				printf(
 					/* translators: %s:Theme marketplace URL */
-					__( 'Unable to load theme preview. <a href="%s">Return to themes</a>' ),
+					__( 'Unable to load theme preview. <a href="%s">Return to themes</a>', 'mojo-marketplace-wp-plugin' ),
 					esc_url(
 						add_query_arg(
 							array(

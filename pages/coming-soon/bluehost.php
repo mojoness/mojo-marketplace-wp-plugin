@@ -325,7 +325,7 @@ footer p a:hover {
 			<?php
 				printf(
 					/* translators: 1: Bluehost WordPress page link, 2: Login URL, 3: My Bluehost URL */
-					esc_html__( 'A <a target="_blank" href="%1$s" class="bluehost" rel="nofollow">Bluehost</a> powered website. Is this your website? Log in to <a href="%2$s">WordPress</a> or <a target="_blank" href="%3$s" class="bluehost" rel="nofollow">Bluehost</a>' ),
+					esc_html__( 'A <a target="_blank" href="%1$s" class="bluehost" rel="nofollow">Bluehost</a> powered website. Is this your website? Log in to <a href="%2$s">WordPress</a> or <a target="_blank" href="%3$s" class="bluehost" rel="nofollow">Bluehost</a>', 'mojo-marketplace-wp-plugin' ),
 					esc_url( 'https://bluehost.com/wordpress' ),
 					esc_url( wp_login_url() ),
 					esc_url( 'https://my.bluehost.com/' )

@@ -117,9 +117,9 @@ footer p a:hover{
 <body>
 	<div id='wrap'>
 		<div class='content'>
-			<h1><?php esc_html_e( 'A New WordPress Site' ); ?></h1>
-			<h2><?php esc_html_e( 'Coming Soon!' ); ?></h2>
-			<a class='btn' href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'Admin Login' ); ?></a>
+			<h1><?php esc_html_e( 'A New WordPress Site', 'mojo-marketplace-wp-plugin' ); ?></h1>
+			<h2><?php esc_html_e( 'Coming Soon!', 'mojo-marketplace-wp-plugin' ); ?></h2>
+			<a class='btn' href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'Admin Login', 'mojo-marketplace-wp-plugin' ); ?></a>
 		</div>
 	</div>
 	<footer>
@@ -127,7 +127,7 @@ footer p a:hover{
 				<?php
 					printf(
 						/* translators: %s: Bluehost India WordPress URL */
-						__( 'a <a href="%s" class="bluehost">bluehost india</a> powered website' ),
+						__( 'a <a href="%s" class="bluehost">bluehost india</a> powered website', 'mojo-marketplace-wp-plugin' ),
 						esc_url( 'https://www.bluehost.in/optimized-wordpress-hosting.php' ),
 					);
 				?>
