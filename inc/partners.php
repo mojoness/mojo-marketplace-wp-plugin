@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Mojo/Bluehost Partners code
  */
 
@@ -19,10 +19,10 @@ function mm_ecomdash_dashboard_promo() {
 	if ( $is_woo && 'BlueHost' === $brand ) {
 		$wp_meta_boxes['dashboard']['normal']['core'] = array( 'mm_ecomdash_promo' => array(
 			'id'       => 'mm_ecomdash_promo',
-			'title'    => 'ecomdash + Bluehost',
+			'title'    => __( 'ecomdash + Bluehost', 'mojo-marketplace-wp-plugin' ),
 			'callback' => 'mm_ecomdash_bh_content',
 			'args'     => array(
-				'__widget_basename' => 'ecomdash + Bluehost'
+				'__widget_basename' => __( 'ecomdash + Bluehost', 'mojo-marketplace-wp-plugin' )
 			)
 		) ) + $wp_meta_boxes['dashboard']['normal']['core'];
 	}
@@ -30,10 +30,10 @@ function mm_ecomdash_dashboard_promo() {
 	if ( $is_woo && false !== strpos( $brand, 'HostGator' ) ) {
 		$wp_meta_boxes['dashboard']['normal']['core'] = array( 'mm_ecomdash_promo' => array(
 			'id'       => 'mm_ecomdash_promo',
-			'title'    => 'ecomdash + HostGator',
+			'title'    => __( 'ecomdash + HostGator', 'mojo-marketplace-wp-plugin' ),
 			'callback' => 'mm_ecomdash_hg_content',
 			'args'     => array(
-				'__widget_basename' => 'ecomdash + Bluehost'
+				'__widget_basename' => __( 'ecomdash + HostGator', 'mojo-marketplace-wp-plugin' )
 			)
 		) ) + $wp_meta_boxes['dashboard']['normal']['core'];
 	}
@@ -81,9 +81,9 @@ function mm_ecomdash_bh_content() {
 		}
 	</style>
 	<div id="ecomdash-bluehost">
-		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-bluehost.png" alt="Ecomdash and Bluehost. Ecomdash brings all your data together so you can sell everywhere, and manage it all from one easy place. Sell using WooCommerce, Etsy, Amazon and More. Click to start selling! " />
+		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-bluehost.png" alt="<?php esc_attr_e( 'Ecomdash and Bluehost. Ecomdash brings all your data together so you can sell everywhere, and manage it all from one easy place. Sell using WooCommerce, Etsy, Amazon and More. Click to start selling!'; ?>" />
 		<div>
-			<a class="promo-btn-primary" href="https://ecomdash.com/bluehost/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_bluehost&utm_content=start-selling" target="_blank">Start selling</a>
+			<a class="promo-btn-primary" href="https://ecomdash.com/bluehost/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_bluehost&utm_content=start-selling" target="_blank"><?php esc_html_e( 'Start selling', 'mojo-marketplace-wp-plugin' ); ?></a>
 		</div>
 	</div>
 	<?php
@@ -129,9 +129,9 @@ function mm_ecomdash_hg_content() {
 		}
 	</style>
 	<div id="ecomdash-hostgator">
-		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-hostgator.png" alt="Ecomdash and HostGator. Ecomdash brings all your data together so you can sell everywhere, and manage it all from one easy place. Sell using WooCommerce, Etsy, Amazon and More. Click to start selling! " />
+		<img src="https://mojomarketplace.com/mojo-plugin-assets/img/ecomdash-hostgator.png" alt="<?php esc_attr_e( 'Ecomdash and HostGator. Ecomdash brings all your data together so you can sell everywhere, and manage it all from one easy place. Sell using WooCommerce, Etsy, Amazon and More. Click to start selling!', 'mojo-marketplace-wp-plugin' ); ?>" />
 		<div>
-			<a class="promo-btn-primary" href="https://ecomdash.com/hostgator/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_hostgator&utm_content=start-selling" target="_blank">Start selling</a>
+			<a class="promo-btn-primary" href="https://ecomdash.com/hostgator/?utm_campaign=secretteam&utm_medium=dashboard-promo&utm_source=plugin_hostgator&utm_content=start-selling" target="_blank"><?php esc_html_e( 'Start selling', 'mojo-marketplace-wp-plugin' ); ?></a>
 		</div>
 	</div>
 	<?php
