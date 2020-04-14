@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MOJO Marketplace 1.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mojo-plugin\n"
-"POT-Creation-Date: 2020-04-10 14:50:27+00:00\n"
+"POT-Creation-Date: 2020-04-14 20:08:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,12 +13,25 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: node-wp-i18n 1.2.3\n"
 
-#: inc/base.php:117
-msgid "Once Weekly"
+#: inc/base.php:15
+#. translators: %s: installation date
+msgid "Install date: %s"
 msgstr ""
 
 #: inc/base.php:121
+msgid "Once Weekly"
+msgstr ""
+
+#: inc/base.php:125
 msgid "Once a month"
+msgstr ""
+
+#: inc/base.php:256
+msgid "Stars"
+msgstr ""
+
+#: inc/base.php:260
+msgid "Sales"
 msgstr ""
 
 #: inc/branding.php:28
@@ -43,7 +56,7 @@ msgid ""
 "ready to launch your site %1$sclick here%2$s."
 msgstr ""
 
-#: inc/coming-soon.php:34
+#: inc/coming-soon.php:34 inc/menu.php:85
 msgid "Coming Soon Active"
 msgstr ""
 
@@ -101,14 +114,15 @@ msgstr ""
 msgid "Subscription successful"
 msgstr ""
 
-#: inc/menu.php:18 inc/menu.php:40 pages/header/header-no-nav.php:7
-#: pages/header/header.php:8 pages/header/marketplace-fallback.php:8
+#: inc/menu.php:18 inc/menu.php:40 inc/menu.php:97
+#: pages/header/header-no-nav.php:7 pages/header/header.php:8
+#: pages/header/marketplace-fallback.php:8
 #: pages/header/marketplace-fallback.php:21 pages/header/nav-primary.php:6
 #: pages/header-small-w-nav.php:21 pages/header-small.php:7 pages/header.php:39
 msgid "Marketplace"
 msgstr ""
 
-#: inc/menu.php:41 pages/header/marketplace-fallback.php:18
+#: inc/menu.php:41 inc/menu.php:143 pages/header/marketplace-fallback.php:18
 #: pages/header/nav-primary.php:20 pages/header-small-w-nav.php:18
 msgid "Home"
 msgstr ""
@@ -117,12 +131,46 @@ msgstr ""
 msgid "Theme Preview"
 msgstr ""
 
+#: inc/menu.php:63
+msgid "Staging Environment"
+msgstr ""
+
 #: inc/menu.php:65
 msgid "Staging Actions"
 msgstr ""
 
-#: inc/menu.php:76
+#: inc/menu.php:74 inc/menu.php:76
 msgid "Get Online Now"
+msgstr ""
+
+#: inc/menu.php:87
+msgid "Launch Your Site"
+msgstr ""
+
+#: inc/menu.php:98 inc/menu.php:99 inc/menu.php:100 inc/menu.php:101
+#: inc/menu.php:102 inc/menu.php:103
+msgid "Redirecting"
+msgstr ""
+
+#: inc/menu.php:121 inc/mojo-themes.php:22
+msgid "Premium"
+msgstr ""
+
+#: inc/menu.php:133 pages/header/nav-primary.php:11
+#: pages/mojo-performance.php:40
+msgid "Performance"
+msgstr ""
+
+#: inc/menu.php:154
+msgid "Staging (beta)"
+msgstr ""
+
+#: inc/menu.php:154
+msgid "Staging <small>(beta)</small>"
+msgstr ""
+
+#: inc/menu.php:175
+msgid "Staging Feedback"
 msgstr ""
 
 #: inc/menu.php:184
@@ -149,16 +197,30 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: inc/mojo-themes.php:22
-msgid "Premium"
-msgstr ""
-
 #: inc/partners.php:22 inc/partners.php:25
 msgid "ecomdash + Bluehost"
 msgstr ""
 
 #: inc/partners.php:33 inc/partners.php:36
 msgid "ecomdash + HostGator"
+msgstr ""
+
+#: inc/partners.php:84
+msgid ""
+"Ecomdash and Bluehost. Ecomdash brings all your data together so you can "
+"sell everywhere, and manage it all from one easy place. Sell using "
+"WooCommerce, Etsy, Amazon and More. Click to start selling!"
+msgstr ""
+
+#: inc/partners.php:86 inc/partners.php:134
+msgid "Start selling"
+msgstr ""
+
+#: inc/partners.php:132
+msgid ""
+"Ecomdash and HostGator. Ecomdash brings all your data together so you can "
+"sell everywhere, and manage it all from one easy place. Sell using "
+"WooCommerce, Etsy, Amazon and More. Click to start selling!"
 msgstr ""
 
 #: inc/performance.php:11
@@ -245,7 +307,7 @@ msgstr ""
 msgid "Add to Cart"
 msgstr ""
 
-#: inc/themes-widget.php:19
+#: inc/themes-widget.php:19 pages/mojo-purchases.php:129
 msgid "Mojo Marketplace"
 msgstr ""
 
@@ -287,18 +349,19 @@ msgstr ""
 
 #: inc/themes-widget.php:44 inc/updates.php:77
 #: pages/header/marketplace-fallback.php:40 pages/header/nav-sub.php:22
-#: pages/navigation.php:7
+#: pages/mojo-search.php:38 pages/navigation.php:7
 msgid "Themes"
 msgstr ""
 
 #: inc/themes-widget.php:45 inc/updates.php:87
 #: pages/header/marketplace-fallback.php:43 pages/header/nav-sub.php:23
-#: pages/navigation.php:30
+#: pages/mojo-search.php:39 pages/navigation.php:30
 msgid "Plugins"
 msgstr ""
 
-#: inc/themes-widget.php:50 pages/mojo-graphics.php:94 pages/mojo-themes.php:65
-#: pages/navigation.php:10 pages/navigation.php:39
+#: inc/themes-widget.php:50 pages/mojo-graphics.php:94
+#: pages/mojo-plugins.php:81 pages/mojo-services.php:77
+#: pages/mojo-themes.php:65 pages/navigation.php:10 pages/navigation.php:39
 msgid "Popular"
 msgstr ""
 
@@ -338,7 +401,7 @@ msgstr ""
 msgid "On"
 msgstr ""
 
-#: inc/updates.php:24
+#: inc/updates.php:24 pages/mojo-performance.php:58
 msgid "Off"
 msgstr ""
 
@@ -491,7 +554,7 @@ msgstr ""
 msgid "Blog WordPress Themes"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:191
+#: pages/coming-soon/mojo.php:191 pages/mojo-services.php:62
 msgid "WordPress Services"
 msgstr ""
 
@@ -565,16 +628,12 @@ msgid "Site Performance"
 msgstr ""
 
 #: pages/header/marketplace-fallback.php:46 pages/header/nav-sub.php:25
-#: pages/navigation.php:36
+#: pages/mojo-search.php:41 pages/navigation.php:36
 msgid "Graphics"
 msgstr ""
 
 #: pages/header/marketplace-fallback.php:49 pages/navigation.php:46
 msgid "Business Tools"
-msgstr ""
-
-#: pages/header/nav-primary.php:11
-msgid "Performance"
 msgstr ""
 
 #: pages/header/nav-primary.php:29
@@ -597,15 +656,15 @@ msgstr ""
 msgid "Hosting"
 msgstr ""
 
-#: pages/header/nav-sub.php:24 pages/navigation.php:33
+#: pages/header/nav-sub.php:24 pages/mojo-search.php:40 pages/navigation.php:33
 msgid "Services"
 msgstr ""
 
-#: pages/header/nav-sub.php:28
+#: pages/header/nav-sub.php:28 pages/mojo-purchases.php:29
 msgid "My Purchases"
 msgstr ""
 
-#: pages/header/nav-sub.php:37
+#: pages/header/nav-sub.php:37 pages/mojo-search.php:37
 msgid "All"
 msgstr ""
 
@@ -715,42 +774,118 @@ msgstr ""
 msgid "Yes, I am finished"
 msgstr ""
 
-#: pages/mojo-graphics.php:91 pages/mojo-themes.php:62
+#: pages/mojo-graphics.php:91 pages/mojo-plugins.php:78
+#: pages/mojo-services.php:74 pages/mojo-themes.php:62
 msgid "Sort By"
 msgstr ""
 
-#: pages/mojo-graphics.php:95 pages/mojo-themes.php:66
+#: pages/mojo-graphics.php:95 pages/mojo-plugins.php:82
+#: pages/mojo-services.php:78 pages/mojo-themes.php:66
 msgid "Price"
 msgstr ""
 
-#: pages/mojo-graphics.php:96 pages/mojo-themes.php:67
+#: pages/mojo-graphics.php:96 pages/mojo-plugins.php:83
+#: pages/mojo-services.php:79 pages/mojo-themes.php:67
 msgid "Date Added"
 msgstr ""
 
-#: pages/mojo-graphics.php:97 pages/mojo-themes.php:68
+#: pages/mojo-graphics.php:97 pages/mojo-plugins.php:84
+#: pages/mojo-services.php:80 pages/mojo-themes.php:68
 msgid "Random"
 msgstr ""
 
-#: pages/mojo-graphics.php:141 pages/mojo-themes.php:113
-#: pages/theme-preview.php:73
+#: pages/mojo-graphics.php:139 pages/mojo-plugins.php:126
+#: pages/mojo-purchases.php:68 pages/mojo-services.php:122
+#: pages/mojo-themes.php:111
+#. translators: %s: plugin tags
+#. translators: %s: list of theme tags.
+msgid "<strong>Tags: </strong> %s&hellip;"
+msgstr ""
+
+#: pages/mojo-graphics.php:151 pages/mojo-plugins.php:138
+#: pages/mojo-search.php:94 pages/mojo-services.php:134
+#: pages/mojo-themes.php:123 pages/theme-preview.php:73
+#. translators: %s: category
 msgid "USD"
 msgstr ""
 
-#: pages/mojo-graphics.php:142 pages/mojo-themes.php:114
+#: pages/mojo-graphics.php:152 pages/mojo-plugins.php:139
+#: pages/mojo-services.php:135 pages/mojo-themes.php:124
 #: pages/theme-preview.php:71
 msgid "$"
 msgstr ""
 
-#: pages/mojo-graphics.php:145 pages/theme-preview.php:66
+#: pages/mojo-graphics.php:155 pages/mojo-plugins.php:142
+#: pages/mojo-search.php:98 pages/mojo-services.php:138
+#: pages/theme-preview.php:66
 msgid "Details"
 msgstr ""
 
-#: pages/mojo-graphics.php:146 pages/mojo-themes.php:119
-#: pages/theme-preview.php:67
+#: pages/mojo-graphics.php:156 pages/mojo-plugins.php:143
+#: pages/mojo-search.php:99 pages/mojo-services.php:139
+#: pages/mojo-themes.php:129 pages/theme-preview.php:67
 msgid "Buy Now"
 msgstr ""
 
-#: pages/mojo-themes.php:118
+#: pages/mojo-performance.php:48
+msgid "Caching"
+msgstr ""
+
+#: pages/mojo-performance.php:51
+msgid ""
+"When a page or asset is eligible for caching, a copy of the file is stored "
+"where it can be easily and quickly retreived. This allows most of the "
+"things that cause a site to load slow to be skipped, giving your site "
+"visitors a faster and better experience while browsing your site."
+msgstr ""
+
+#: pages/mojo-performance.php:59
+msgid "Assets Only"
+msgstr ""
+
+#: pages/mojo-performance.php:60
+msgid "Normal"
+msgstr ""
+
+#: pages/mojo-performance.php:61
+msgid "Advanced"
+msgstr ""
+
+#: pages/mojo-purchases.php:36
+msgid "Thank You for your recent purchase!"
+msgstr ""
+
+#: pages/mojo-purchases.php:41
+#. translators: %s: MOJO Marketplace contact URL
+msgid ""
+"Success! Your most recent transaction went through without a hitch. If you "
+"do not see your item, please give it at least five minutes to appear. As "
+"always, if you have any issues we can help with, please don not hesitate to "
+"<a href=\"%s\" target=\"_blank\">contact our friendly support crew</a>."
+msgstr ""
+
+#: pages/mojo-purchases.php:99
+msgid "Service Provider"
+msgstr ""
+
+#: pages/mojo-purchases.php:115
+msgid "Start Service"
+msgstr ""
+
+#: pages/mojo-search.php:28
+msgid "Search Results for:"
+msgstr ""
+
+#: pages/mojo-search.php:34
+msgid "Filter By"
+msgstr ""
+
+#: pages/mojo-search.php:114
+#. translators: %s: search query
+msgid "No results for: %s"
+msgstr ""
+
+#: pages/mojo-themes.php:128
 msgid "Demo"
 msgstr ""
 
@@ -979,6 +1114,11 @@ msgstr ""
 
 #: pages/theme-preview.php:84
 msgid "Other People Also Viewed"
+msgstr ""
+
+#: pages/theme-preview.php:127
+#. translators: %s: Theme name
+msgid "Demo : %s"
 msgstr ""
 
 #: updater.php:55

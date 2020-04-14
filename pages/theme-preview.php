@@ -122,5 +122,9 @@ add_action( 'admin_init', 'need_admin_init' );
 	</script>
 </div>
 	<?php
-	$title = 'Demo : ' . $theme->name;
+	$title = sprintf(
+		/* translators: %s: Theme name */
+		esc_html__( 'Demo : %s', 'mojo-marketplace-wp-plugin' ),
+		$theme->name
+	);
 }

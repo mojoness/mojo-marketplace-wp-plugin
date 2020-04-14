@@ -103,7 +103,17 @@ $response = mm_api_cache( $api_url );
 									<div class="description-box">
 										<h2><a href="<?php echo add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ); ?>"><?php echo apply_filters( 'mm_item_name', $item->name ); ?></a></h2>
 										<?php if ( isset( $item->short_description ) ) { echo $item->short_description; } ?>
-										<p><?php if ( isset( $item->tags ) ) { echo '<strong>Tags: </strong>' . substr( $item->tags, 0, 120 ) . '&hellip;'; } ?></p>
+										<?php if ( isset( $item->tags ) ) : ?>
+											<p>
+												<?php
+													printf(
+														/* translators: %s: list of theme tags. */
+														__( '<strong>Tags: </strong> %s&hellip;', 'mojo-marketplace-wp-plugin' ),
+														substr( $item->tags, 0, 120 )
+													);
+												?>
+											</p>
+										<?php endif; ?>
 										<?php mm_stars( $item->rating, $item->sales_count ); ?>
 									</div>
 								</div>
