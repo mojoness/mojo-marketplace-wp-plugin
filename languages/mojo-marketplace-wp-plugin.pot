@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MOJO Marketplace 1.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mojo-plugin\n"
-"POT-Creation-Date: 2020-04-14 20:08:33+00:00\n"
+"POT-Creation-Date: 2020-04-15 18:54:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Theme Preview"
 msgstr ""
 
-#: inc/menu.php:63
+#: inc/menu.php:63 pages/staging-staging.php:15
 msgid "Staging Environment"
 msgstr ""
 
@@ -152,11 +152,11 @@ msgstr ""
 msgid "Redirecting"
 msgstr ""
 
-#: inc/menu.php:121 inc/mojo-themes.php:22
+#: inc/menu.php:121 inc/mojo-themes.php:22 pages/mojo-mixed-themes.php:84
 msgid "Premium"
 msgstr ""
 
-#: inc/menu.php:133 pages/header/nav-primary.php:11
+#: inc/menu.php:133 pages/header/nav-primary.php:11 pages/mojo-home.php:201
 #: pages/mojo-performance.php:40
 msgid "Performance"
 msgstr ""
@@ -189,7 +189,7 @@ msgstr ""
 msgid "WordPress.org Themes"
 msgstr ""
 
-#: inc/mojo-themes.php:9 inc/mojo-themes.php:30
+#: inc/mojo-themes.php:9 inc/mojo-themes.php:30 pages/mojo-home.php:125
 msgid "Premium Themes"
 msgstr ""
 
@@ -474,7 +474,7 @@ msgid ""
 "try again with a different email address."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:289
+#: pages/coming-soon/bluehost.php:289 pages/mojo-home.php:254
 msgid "Email"
 msgstr ""
 
@@ -534,7 +534,8 @@ msgid ""
 "scre   en."
 msgstr ""
 
-#: pages/coming-soon/mojo.php:182 pages/mojo-themes.php:50
+#: pages/coming-soon/mojo.php:182 pages/mojo-home.php:121
+#: pages/mojo-single-item.php:30 pages/mojo-themes.php:50
 msgid "WordPress Themes"
 msgstr ""
 
@@ -628,7 +629,8 @@ msgid "Site Performance"
 msgstr ""
 
 #: pages/header/marketplace-fallback.php:46 pages/header/nav-sub.php:25
-#: pages/mojo-search.php:41 pages/navigation.php:36
+#: pages/mojo-search.php:41 pages/mojo-single-item.php:45
+#: pages/navigation.php:36
 msgid "Graphics"
 msgstr ""
 
@@ -636,7 +638,7 @@ msgstr ""
 msgid "Business Tools"
 msgstr ""
 
-#: pages/header/nav-primary.php:29
+#: pages/header/nav-primary.php:29 pages/mojo-home.php:140
 msgid "Staging"
 msgstr ""
 
@@ -645,18 +647,22 @@ msgid "Site Content"
 msgstr ""
 
 #: pages/header/nav-sub.php:8 pages/header-small-w-nav.php:41
+#: pages/mojo-home.php:104
 msgid "Design &amp; Build"
 msgstr ""
 
 #: pages/header/nav-sub.php:12 pages/header-small-w-nav.php:44
+#: pages/mojo-home.php:153
 msgid "Traffic &amp; Engagement"
 msgstr ""
 
 #: pages/header/nav-sub.php:16 pages/header-small-w-nav.php:50
+#: pages/mojo-home.php:237
 msgid "Hosting"
 msgstr ""
 
-#: pages/header/nav-sub.php:24 pages/mojo-search.php:40 pages/navigation.php:33
+#: pages/header/nav-sub.php:24 pages/mojo-search.php:40
+#: pages/mojo-single-item.php:40 pages/navigation.php:33
 msgid "Services"
 msgstr ""
 
@@ -664,7 +670,8 @@ msgstr ""
 msgid "My Purchases"
 msgstr ""
 
-#: pages/header/nav-sub.php:37 pages/mojo-search.php:37
+#: pages/header/nav-sub.php:37 pages/mojo-mixed-themes.php:83
+#: pages/mojo-search.php:37
 msgid "All"
 msgstr ""
 
@@ -672,7 +679,7 @@ msgstr ""
 msgid "CDN"
 msgstr ""
 
-#: pages/header/nav-sub.php:43
+#: pages/header/nav-sub.php:43 pages/mojo-home.php:218
 msgid "Photon"
 msgstr ""
 
@@ -752,7 +759,7 @@ msgstr ""
 msgid "Are you sure you want to deploy all the files to production?"
 msgstr ""
 
-#: pages/modal-destroy-confirm.php:7
+#: pages/modal-destroy-confirm.php:7 pages/staging-production.php:127
 msgid "Destroy Staging"
 msgstr ""
 
@@ -804,27 +811,259 @@ msgstr ""
 
 #: pages/mojo-graphics.php:151 pages/mojo-plugins.php:138
 #: pages/mojo-search.php:94 pages/mojo-services.php:134
+#: pages/mojo-single-item.php:84 pages/mojo-single-item.php:99
 #: pages/mojo-themes.php:123 pages/theme-preview.php:73
 #. translators: %s: category
 msgid "USD"
 msgstr ""
 
 #: pages/mojo-graphics.php:152 pages/mojo-plugins.php:139
-#: pages/mojo-services.php:135 pages/mojo-themes.php:124
-#: pages/theme-preview.php:71
+#: pages/mojo-services.php:135 pages/mojo-single-item.php:83
+#: pages/mojo-themes.php:124 pages/theme-preview.php:71
 msgid "$"
 msgstr ""
 
-#: pages/mojo-graphics.php:155 pages/mojo-plugins.php:142
+#: pages/mojo-graphics.php:155 pages/mojo-mixed-themes.php:100
+#: pages/mojo-mixed-themes.php:122 pages/mojo-plugins.php:142
 #: pages/mojo-search.php:98 pages/mojo-services.php:138
 #: pages/theme-preview.php:66
 msgid "Details"
 msgstr ""
 
-#: pages/mojo-graphics.php:156 pages/mojo-plugins.php:143
-#: pages/mojo-search.php:99 pages/mojo-services.php:139
-#: pages/mojo-themes.php:129 pages/theme-preview.php:67
+#: pages/mojo-graphics.php:156 pages/mojo-mixed-themes.php:108
+#: pages/mojo-plugins.php:143 pages/mojo-search.php:99
+#: pages/mojo-services.php:139 pages/mojo-single-item.php:87
+#: pages/mojo-single-item.php:102 pages/mojo-themes.php:129
+#: pages/theme-preview.php:67
 msgid "Buy Now"
+msgstr ""
+
+#: pages/mojo-home.php:38
+msgid "Content"
+msgstr ""
+
+#: pages/mojo-home.php:43
+msgid "Blog Posts"
+msgstr ""
+
+#: pages/mojo-home.php:44
+msgid "Add blog posts to your site. You can also organize them into categories."
+msgstr ""
+
+#: pages/mojo-home.php:46
+msgid "Manage Categories"
+msgstr ""
+
+#: pages/mojo-home.php:47
+msgid "Add New Post"
+msgstr ""
+
+#: pages/mojo-home.php:56
+msgid "Pages"
+msgstr ""
+
+#: pages/mojo-home.php:57
+msgid "Add pages to your website easily by clicking add new page."
+msgstr ""
+
+#: pages/mojo-home.php:59
+msgid "Add New Page"
+msgstr ""
+
+#: pages/mojo-home.php:70
+msgid "Navigation Menus"
+msgstr ""
+
+#: pages/mojo-home.php:71
+msgid ""
+"If you are looking to adjust or control your navigation of your website "
+"simply click manage below and rearrange your menus."
+msgstr ""
+
+#: pages/mojo-home.php:73 pages/mojo-home.php:162 pages/mojo-home.php:245
+#: pages/mojo-home.php:257
+msgid "Manage"
+msgstr ""
+
+#: pages/mojo-home.php:83
+msgid "Sell Products"
+msgstr ""
+
+#: pages/mojo-home.php:86
+msgid ""
+"Are you are looking to sell products on your WordPress website? If so, we "
+"recommend that you install and setup WooCommerce."
+msgstr ""
+
+#: pages/mojo-home.php:90
+msgid "Manage Products"
+msgstr ""
+
+#: pages/mojo-home.php:92
+msgid "Activate WooCommerce"
+msgstr ""
+
+#: pages/mojo-home.php:94
+msgid "Install WooCommerce"
+msgstr ""
+
+#: pages/mojo-home.php:109
+msgid "Customizer"
+msgstr ""
+
+#: pages/mojo-home.php:110
+msgid ""
+"Customize your theme from the front end and view your changes before "
+"updating them."
+msgstr ""
+
+#: pages/mojo-home.php:112
+msgid "Customize Theme"
+msgstr ""
+
+#: pages/mojo-home.php:122
+msgid "Easily browse and find a theme that inspires you!"
+msgstr ""
+
+#: pages/mojo-home.php:126
+msgid "Free Themes"
+msgstr ""
+
+#: pages/mojo-home.php:141
+msgid ""
+"Staging allows you to create a seperate copy of your site that only you can "
+"see. You can test new ideas there before going live."
+msgstr ""
+
+#: pages/mojo-home.php:143
+msgid "Get Started"
+msgstr ""
+
+#: pages/mojo-home.php:159
+msgid "Social"
+msgstr ""
+
+#: pages/mojo-home.php:160
+msgid ""
+"Add social sharing buttons to your site for Facebook, Twitter, and others, "
+"so your visitors can share your content with their friends."
+msgstr ""
+
+#: pages/mojo-home.php:173
+msgid "Publicize"
+msgstr ""
+
+#: pages/mojo-home.php:174
+msgid ""
+"Share your content with your social networks automatically when you publish "
+"content on your site."
+msgstr ""
+
+#: pages/mojo-home.php:176
+msgid "Configure"
+msgstr ""
+
+#: pages/mojo-home.php:188
+msgid "Stats"
+msgstr ""
+
+#: pages/mojo-home.php:189
+msgid ""
+"Stats show you which posts are most popular. You can even stay informed of "
+"when you get surges in traffic."
+msgstr ""
+
+#: pages/mojo-home.php:191
+msgid "View Stats"
+msgstr ""
+
+#: pages/mojo-home.php:206
+msgid "Page Cache"
+msgstr ""
+
+#: pages/mojo-home.php:207
+msgid ""
+"Page caching allows your server to keep a copy of a page for a short time "
+"to dramatically improve speed."
+msgstr ""
+
+#: pages/mojo-home.php:219
+msgid ""
+"Photon is an image acceleration service that will resize your images and "
+"serve them from a CDN."
+msgstr ""
+
+#: pages/mojo-home.php:223
+msgid "Learn More"
+msgstr ""
+
+#: pages/mojo-home.php:225
+msgid "Activate Jetpack"
+msgstr ""
+
+#: pages/mojo-home.php:227
+msgid "Install Jetpack"
+msgstr ""
+
+#: pages/mojo-home.php:242
+msgid "Manage My Sites"
+msgstr ""
+
+#: pages/mojo-home.php:243
+msgid ""
+"Manage your site from Bluehost's control panel. You can take backups, keep "
+"things secure, and improve performance."
+msgstr ""
+
+#: pages/mojo-home.php:255
+msgid ""
+"Create accounts, compose, send, and recieve all your email in your Bluehost "
+"control panel."
+msgstr ""
+
+#: pages/mojo-home.php:268
+msgid "Domains"
+msgstr ""
+
+#: pages/mojo-home.php:269
+msgid ""
+"Find a new domain and assign it to your site, or start a new site with a "
+"new domain."
+msgstr ""
+
+#: pages/mojo-home.php:271
+msgid "Find a Domain"
+msgstr ""
+
+#: pages/mojo-home.php:280
+msgid "Help"
+msgstr ""
+
+#: pages/mojo-home.php:281
+msgid ""
+"Need help from the folks at Bluehost? We have 24/7 US-based phone and chat "
+"support waiting to help."
+msgstr ""
+
+#: pages/mojo-home.php:283
+msgid "Help Me"
+msgstr ""
+
+#: pages/mojo-mixed-themes.php:85
+msgid "Free"
+msgstr ""
+
+#: pages/mojo-mixed-themes.php:98 pages/mojo-mixed-themes.php:120
+#: pages/mojo-themes.php:128
+msgid "Demo"
+msgstr ""
+
+#: pages/mojo-mixed-themes.php:130
+msgid "Install"
+msgstr ""
+
+#: pages/mojo-mixed-themes.php:199
+msgid "Unable to Install Theme"
 msgstr ""
 
 #: pages/mojo-performance.php:48
@@ -885,8 +1124,49 @@ msgstr ""
 msgid "No results for: %s"
 msgstr ""
 
-#: pages/mojo-themes.php:128
-msgid "Demo"
+#: pages/mojo-single-item.php:35
+msgid "WordPress Plugins"
+msgstr ""
+
+#: pages/mojo-single-item.php:50
+msgid "WordPress Items"
+msgstr ""
+
+#: pages/mojo-single-item.php:89 pages/mojo-single-item.php:104
+msgid "One Time Fee"
+msgstr ""
+
+#: pages/mojo-single-item.php:107
+msgid "Item Information"
+msgstr ""
+
+#: pages/mojo-single-item.php:109
+msgid "Created:"
+msgstr ""
+
+#: pages/mojo-single-item.php:111
+msgid "Updated:"
+msgstr ""
+
+#: pages/mojo-single-item.php:114
+msgid "Sales:"
+msgstr ""
+
+#: pages/mojo-single-item.php:118
+msgid "New Item!"
+msgstr ""
+
+#: pages/mojo-single-item.php:122
+#. translators: %s: number of sales
+msgid "Popular New Item! (%s)"
+msgstr ""
+
+#: pages/mojo-single-item.php:135
+msgid "Providers"
+msgstr ""
+
+#: pages/mojo-single-item.php:140
+msgid "Providers are all prescreened and approved."
 msgstr ""
 
 #: pages/navigation.php:11
@@ -957,6 +1237,10 @@ msgstr ""
 msgid "Business Cards"
 msgstr ""
 
+#: pages/staging-create.php:30
+msgid "What&#8217;s a staging site?"
+msgstr ""
+
 #: pages/staging-create.php:32
 msgid ""
 "A staging site allows you to make and save changes without your public site "
@@ -993,48 +1277,66 @@ msgstr ""
 msgid "Below are the details of your staging environment."
 msgstr ""
 
-#: pages/staging-production.php:59
+#: pages/staging-production.php:58
 msgid "Staging URL"
 msgstr ""
 
-#: pages/staging-production.php:66
+#: pages/staging-production.php:69
 msgid "Staging Directory"
 msgstr ""
 
-#: pages/staging-production.php:73
+#: pages/staging-production.php:80
 msgid "Creation Date"
 msgstr ""
 
-#: pages/staging-production.php:82
+#: pages/staging-production.php:90
 msgid "Go To Staging Site"
 msgstr ""
 
-#: pages/staging-production.php:87
+#: pages/staging-production.php:95
 msgid ""
 "Ready to deploy your changes? Go to your staging site and deploy from the "
 "administration panel."
 msgstr ""
 
-#: pages/staging-production.php:98
+#: pages/staging-production.php:106
 msgid "Staging Options"
 msgstr ""
 
-#: pages/staging-production.php:106
+#: pages/staging-production.php:114
 msgid "Clone Production To Staging"
 msgstr ""
 
-#: pages/staging-production.php:110
+#: pages/staging-production.php:118
 msgid ""
 "Copy your current production site and your settings to your staging "
 "environment."
 msgstr ""
 
-#: pages/staging-production.php:111
+#: pages/staging-production.php:119
 msgid "Clone"
 msgstr ""
 
-#: pages/staging-production.php:114
+#: pages/staging-production.php:122
 msgid "Destroy Staging Environment"
+msgstr ""
+
+#: pages/staging-production.php:126
+msgid ""
+"Need to start fresh? This will completely remove your current staging "
+"environment."
+msgstr ""
+
+#: pages/staging-staging.php:35
+msgid "Staging URL:"
+msgstr ""
+
+#: pages/staging-staging.php:38
+msgid "Staging Directory:"
+msgstr ""
+
+#: pages/staging-staging.php:41
+msgid "Creation Date:"
 msgstr ""
 
 #: pages/staging-staging.php:48

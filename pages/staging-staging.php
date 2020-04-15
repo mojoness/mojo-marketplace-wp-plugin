@@ -12,7 +12,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li>Staging Environment</li>
+								<li><?php esc_html_e( 'Staging Environment', 'mojo-marketplace-wp-plugin' ); ?></li>
 							</ol>
 						</div>
 					</div>
@@ -32,13 +32,13 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 
 								<?php
 								if ( isset( $config['staging_url'] ) ) {
-									echo '<tr><td>Staging URL:</td><td><a href="' . esc_url( $config['staging_url'] ) . '" target="_blank">' . $config['staging_url'] . '</a></td></tr>';
+									echo '<tr><td>' . esc_html__( 'Staging URL:', 'mojo-marketplace-wp-plugin' ) . '</td><td><a href="' . esc_url( $config['staging_url'] ) . '" target="_blank">' . $config['staging_url'] . '</a></td></tr>';
 								}
 								if ( isset( $config['staging_dir'] ) ) {
-									echo '<tr><td>Staging Directory:</td><td>' . $config['staging_dir'] . '</td></tr>';
+									echo '<tr><td>' . esc_html__( 'Staging Directory:', 'mojo-marketplace-wp-plugin' ) . '</td><td>' . $config['staging_dir'] . '</td></tr>';
 								}
 								if ( isset( $config['creation_date'] ) ) {
-									echo '<tr><td>Creation Date:</td><td>' . $config['creation_date'] . '</td></tr>';
+									echo '<tr><td>' . esc_html__( 'Creation Date:', 'mojo-marketplace-wp-plugin' ) . '</td><td>' . $config['creation_date'] . '</td></tr>';
 								}
 								?>
 

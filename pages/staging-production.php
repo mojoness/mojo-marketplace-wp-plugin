@@ -52,30 +52,38 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 							?>
 							<table class="table table-bordered">
 
-								<?php
-								if ( isset( $config['staging_url'] ) ) {
-									printf(
-										'<tr><td>%1$s:</td><td><a href="%2$s" target="_blank">%2$s</a></td></tr>',
-										esc_html__( 'Staging URL', 'mojo-marketplace-wp-plugin' ),
-										esc_url( $config['staging_url'] )
-									);
-								}
-								if ( isset( $config['staging_dir'] ) ) {
-									printf(
-										'<tr><td>%s:</td><td>%s</td></tr>',
-										esc_html__( 'Staging Directory', 'mojo-marketplace-wp-plugin' ),
-										esc_html( $config['staging_dir'] )
-									);
-								}
-								if ( isset( $config['creation_date'] ) ) {
-									printf(
-										'<tr><td>%s:</td><td>%s</td></tr>',
-										esc_html__( 'Creation Date', 'mojo-marketplace-wp-plugin' ),
-										$config['creation_date']
-									)
-								}
-								?>
+								<?php if ( isset( $config['staging_url'] ) ) : ?>
+									<tr>
+										<td>
+											<?php esc_html_e( 'Staging URL', 'mojo-marketplace-wp-plugin' ); ?>
+										</td>
+										<td>
+											<a href="<?php echo esc_url( $config['staging_url'] ); ?>" target="_blank"><?php echo esc_url( $config['staging_url'] ); ?></a>
+										</td>
+									</tr>
+								<?php endif; ?>
 
+								<?php if ( isset( $config['staging_dir'] ) ) : ?>
+									<tr>
+										<td>
+											<?php esc_html_e( 'Staging Directory', 'mojo-marketplace-wp-plugin' ); ?>
+										</td>
+										<td>
+											<?php esc_html( $config['staging_dir'] ); ?>
+										</td>
+									</tr>
+								<?php endif; ?>
+
+								<?php if ( isset( $config['creation_date'] ) ) : ?>
+									<tr>
+										<td>
+											<?php esc_html_e( 'Creation Date', 'mojo-marketplace-wp-plugin' ); ?>
+										</td>
+										<td>
+											<?php echo esc_html( $config['creation_date'] ); ?>
+										</td>
+									</tr>
+								<?php endif; ?>
 							</table>
 						</div>
 						<div class="col-xs-12 col-sm-4">
@@ -115,8 +123,8 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 							<div style="height: 150px;">
 								<img src="<?php echo esc_url( MM_ASSETS_URL . 'img/destroy-staging.png' ); ?>" />
 							</div>
-							<p>Need to start fresh? This will completely remove your current staging environment.' ); ?></p>
-							<button class="btn btn-primary btn-lg mm-modal" data-mm-modal="destroy-confirm">Destroy Staging</button>
+							<p><?php esc_html_e( 'Need to start fresh? This will completely remove your current staging environment.', 'mojo-marketplace-wp-plugin' ); ?></p>
+							<button class="btn btn-primary btn-lg mm-modal" data-mm-modal="destroy-confirm"><?php esc_html_e( 'Destroy Staging', 'mojo-marketplace-wp-plugin' ); ?></button>
 						</div>
 					</div>
 				</div>

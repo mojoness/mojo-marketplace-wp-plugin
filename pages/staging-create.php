@@ -27,7 +27,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12 col-sm-5">
-							<h1>What&#8217;s a staging site?</h1>
+							<h1><?php esc_html_e( 'What&#8217;s a staging site?', 'mojo-marketplace-wp-plugin' ); ?></h1>
 							<br/>
 							<p style="font-size: 18px;"><?php esc_html_e( 'A staging site allows you to make and save changes without your public site being affected.', 'mojo-marketplace-wp-plugin' ); ?></p>
 							<p style="font-size: 18px;"><?php esc_html_e( 'Once you have perfected your site in the staging environment you can deploy it to production so everyone can see your changes.', 'mojo-marketplace-wp-plugin' ); ?></p>
