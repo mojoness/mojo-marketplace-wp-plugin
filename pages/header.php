@@ -6,21 +6,21 @@
 				<div class="inner-holder">
 					<?php if ( get_transient( '_mm_session_token' ) ) { ?>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
+						<span class="sr-only"><?php esc_html_e( 'Toggle navigation', 'mojo-marketplace-wp-plugin' ); ?></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<div class="menu-holder dropdown pull-right">
 						<button type="button" class="dropdown-toggle visible navbar-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="visible-xs-inline-block visible-sm-inline-block">Account</span>
-							<span class="sr-only">Toggle menu</span>
+							<span class="visible-xs-inline-block visible-sm-inline-block"><?php esc_html_e( 'Account', 'mojo-marketplace-wp-plugin' ); ?></span>
+							<span class="sr-only"><?php esc_html_e( 'Toggle menu', 'mojo-marketplace-wp-plugin' ); ?></span>
 							<span class="icon-bar hidden-sm hidden-xs"></span>
 							<span class="icon-bar hidden-sm hidden-xs"></span>
 							<span class="icon-bar hidden-sm hidden-xs"></span>
 						</button>
 						<?php if ( 'default' != mm_brand() ) { ?>
-						<span class="powered">Powered By <a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com', array( 'utm_content' => 'powered_by_link' ) ); ?>" target="_blank"><img height="16" width="156" alt="Mojo Marketplace" src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo.svg' ); ?>"></a></span>
+						<span class="powered"><?php esc_html_e( 'Powered By', 'mojo-marketplace-wp-plugin' ); ?> <a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com', array( 'utm_content' => 'powered_by_link' ) ); ?>" target="_blank"><img height="16" width="156" alt="Mojo Marketplace" src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo.svg' ); ?>"></a></span>
 						<?php } ?>
 						<div class="dropdown-menu">
 							<div class="avatar-block">
@@ -29,21 +29,21 @@
 								<div class="name"><a href="#"><?php echo $user->data->display_name; ?></a></div>
 							</div>
 							<ul class="projects-nav list-unstyled">
-								<li><a href="<?php echo add_query_arg( array( 'page' => 'mojo-purchases' ), admin_url( 'admin.php' ) ); ?>">Purchases</a></li>
+								<li><a href="<?php echo add_query_arg( array( 'page' => 'mojo-purchases' ), admin_url( 'admin.php' ) ); ?>"><?php esc_html_e( 'Purchases', 'mojo-marketplace-wp-plugin' ); ?></a></li>
 							</ul>
 						</div>
 					</div>
 					<?php } ?>
 					<div class="header-holder clearfix">
 						<a class="navbar-brand" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-themes' ), admin_url( 'admin.php' ) ) ); ?>">
-							<img src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-icon-%s.svg' ); ?>" alt="Marketplace">
+							<img src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-icon-%s.svg' ); ?>" alt="<?php esc_attr_e( 'Marketplace', 'mojo-marketplace-wp-plugin' ); ?>">
 						</a>
 						<form class="navbar-form form-inline navbar-right text-right" role="search" action="admin.php" method="GET">
 							<div class="form-group">
 								<input type="hidden" name="page" value="mojo-search" />
-								<input name="search" type="text" class="form-control input-lg" placeholder="Search Themes, Plugins, &amp; Services">
+								<input name="search" type="text" class="form-control input-lg" placeholder="<?php esc_attr_e( 'Search Themes, Plugins, &amp; Services', 'mojo-marketplace-wp-plugin' ); ?>">
 							</div>
-							<button type="submit" class="btn btn-info btn-lg">Search</button>
+							<button type="submit" class="btn btn-info btn-lg"><?php esc_html_e( 'Search', 'mojo-marketplace-wp-plugin' ); ?></button>
 						</form>
 					</div>
 				</div>

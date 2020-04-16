@@ -3,12 +3,12 @@ $page = sanitize_key( $_GET['page'] );
 $nav = array(
 	'mojo-marketplace' => array(
 		'href' => add_query_arg( array( 'page' => 'mojo-marketplace' ),admin_url( 'admin.php' ) ),
-		'content' => 'Marketplace',
+		'content' => esc_html__( 'Marketplace', 'mojo-marketplace-wp-plugin' ),
 	),
 
 	'mojo-performance' => array(
 		'href' => add_query_arg( array( 'page' => 'mojo-performance' ),admin_url( 'admin.php' ) ),
-		'content' => 'Performance',
+		'content' => esc_html__( 'Performance', 'mojo-marketplace-wp-plugin' ),
 	),
 
 );
@@ -17,7 +17,7 @@ if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
 	$home = array(
 		'mojo-home' => array(
 			'href' => add_query_arg( array( 'page' => 'mojo-home' ), admin_url( 'admin.php' ) ),
-			'content' => 'Home',
+			'content' => esc_html__( 'Home', 'mojo-marketplace-wp-plugin' ),
 		),
 	);
 	$nav = $home + $nav;
@@ -26,7 +26,7 @@ if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
 if ( 'bluehost' == mm_brand() || 'bluehost-india' == mm_brand() ) {
 	$nav['mojo-staging'] = array(
 		'href' => add_query_arg( array( 'page' => 'mojo-staging' ),admin_url( 'admin.php' ) ),
-		'content' => 'Staging',
+		'content' => esc_html__( 'Staging', 'mojo-marketplace-wp-plugin' ),
 	);
 }
 

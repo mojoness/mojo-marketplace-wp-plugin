@@ -20,8 +20,8 @@ function mm_auto_update_callback( $args ) {
 			'auto_update_translation'       => 'true',
 		);
 		$value = get_option( $args['field'], $defaults[ $args['field'] ] );
-		echo "On <input type='radio' name='" . $args['field'] . "' value='true'" . checked( $value, 'true', false ) . " />";
-		echo "Off <input type='radio' name='" . $args['field'] . "' value='false'" . checked( $value, 'false', false ) . " />";
+		echo __( 'On', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . $args['field'] . "' value='true'" . checked( $value, 'true', false ) . " />";
+		echo __( 'Off', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . $args['field'] . "' value='false'" . checked( $value, 'false', false ) . " />";
 	}
 }
 
@@ -30,19 +30,19 @@ function mm_auto_update_register_settings() {
 	$section_hook = 'general';
 
 	if ( 'bluehost' == mm_brand() ) {
-		$brand = 'Bluehost';
+		$brand = __( 'Bluehost', 'mojo-marketplace-wp-plugin' );
 	} else {
-		$brand = 'Host';
+		$brand = __( 'Host', 'mojo-marketplace-wp-plugin' );
 	}
 
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) ) {
 		$brand = get_option( 'mm_brand', 'MOJO' );
 		if ( 'BlueHost' == $brand ) {
-			$brand = 'Bluehost';
+			$brand = __( 'Bluehost', 'mojo-marketplace-wp-plugin' );
 		}
 		add_settings_section(
 			$section_name,
-			$brand . ' Auto Update Manager',
+			$brand . ' ' . __( 'Auto Update Manager', 'mojo-marketplace-wp-plugin' ),
 			'__return_false',
 			$section_hook
 		);
@@ -51,7 +51,7 @@ function mm_auto_update_register_settings() {
 	if ( ! defined( 'WP_AUTO_UPDATE_CORE' ) ) {
 		add_settings_field(
 			'allow_major_auto_core_updates',
-			'Core Major',
+			__( 'Core Major', 'mojo-marketplace-wp-plugin' ),
 			'mm_auto_update_callback',
 			$section_hook,
 			$section_name,
@@ -63,7 +63,7 @@ function mm_auto_update_register_settings() {
 	if ( ! defined( 'WP_AUTO_UPDATE_CORE' ) ) {
 		add_settings_field(
 			'allow_minor_auto_core_updates',
-			'Core Minor',
+			__( 'Core Minor', 'mojo-marketplace-wp-plugin' ),
 			'mm_auto_update_callback',
 			$section_hook,
 			$section_name,
@@ -74,7 +74,7 @@ function mm_auto_update_register_settings() {
 
 	add_settings_field(
 		'auto_update_theme',
-		'Themes',
+		__( 'Themes', 'mojo-marketplace-wp-plugin' ),
 		'mm_auto_update_callback',
 		$section_hook,
 		$section_name,
@@ -84,7 +84,7 @@ function mm_auto_update_register_settings() {
 
 	add_settings_field(
 		'auto_update_plugin',
-		'Plugins',
+		__( 'Plugins', 'mojo-marketplace-wp-plugin' ),
 		'mm_auto_update_callback',
 		$section_hook,
 		$section_name,
@@ -94,7 +94,7 @@ function mm_auto_update_register_settings() {
 
 	add_settings_field(
 		'auto_update_translation',
-		'Translations',
+		__( 'Translations', 'mojo-marketplace-wp-plugin' ),
 		'mm_auto_update_callback',
 		$section_hook,
 		$section_name,

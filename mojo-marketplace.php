@@ -5,6 +5,8 @@
  * Version: 1.5.2
  * Author: Mike Hansen
  * Author URI: http://mikehansen.me?utm_campaign=plugin&utm_source=mojo_wp_plugin
+ * Text Domain: mojo-marketplace-wp-plugin
+ * Domain Path: /languages
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -20,6 +22,14 @@ define( 'MM_VERSION', '1.5.2' );
 define( 'MM_BASE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MM_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MM_ASSETS_URL', 'https://www.mojomarketplace.com/mojo-plugin-assets/' );
+
+/**
+ * Load the plugin translations.
+ */
+function mojo_marketplace_load_plugin_textdomain() {
+	load_plugin_textdomain( 'mojo-marketplace-wp-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'mojo_marketplace_load_plugin_textdomain' );
 
 // Composer autoloader
 if ( version_compare( phpversion(), 5.3, '<' ) ) {

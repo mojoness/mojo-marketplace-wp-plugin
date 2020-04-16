@@ -8,12 +8,12 @@ function mm_cache_toggle() {
 		if ( isset( $response['status'] ) && 'success' == $response['status'] ) {
 			$update = update_option( 'endurance_cache_level', $cache_level );
 			if ( true == $update ) {
-				$response = array( 'status' => 'success', 'message' => 'Cache level updated successfully.' );
+				$response = array( 'status' => 'success', 'message' => esc_html__( 'Cache level updated successfully.', 'mojo-marketplace-wp-plugin' ) );
 			} else {
-				$response = array( 'status' => 'error', 'message' => 'Unable to update cache level.' );
+				$response = array( 'status' => 'error', 'message' => esc_html__( 'Unable to update cache level.', 'mojo-marketplace-wp-plugin' ) );
 			}
 		} else {
-			$response = array( 'status' => 'error', 'message' => 'Unable to add cache plugin.' );
+			$response = array( 'status' => 'error', 'message' => esc_html__( 'Unable to add cache plugin.', 'mojo-marketplace-wp-plugin' ) );
 		}
 
 		echo json_encode( $response );
@@ -35,9 +35,9 @@ function mm_cache_add( $type = null ) {
 
 		case 'object':
 			if ( class_exists( 'memcached' ) || class_exists( 'memcache' ) ) {
-				$response = array( 'status' => 'error', 'message' => 'Object cache coming soon.' );
+				$response = array( 'status' => 'error', 'message' => esc_html__( 'Object cache coming soon.', 'mojo-marketplace-wp-plugin' ) );
 			} else {
-				$response = array( 'status' => 'error', 'message' => 'Object cache not available on your hosting plan.' );
+				$response = array( 'status' => 'error', 'message' => esc_html__( 'Object cache not available on your hosting plan.', 'mojo-marketplace-wp-plugin' ) );
 			}
 			break;
 	}
@@ -46,13 +46,27 @@ function mm_cache_add( $type = null ) {
 		if ( ! is_wp_error( $request ) ) {
 			file_put_contents( $cache['location'], $request['body'] );
 			if ( file_exists( $cache['location'] ) ) {
-				$response = array( 'status' => 'success', 'message' => ucfirst( $type ) . ' cache added successfully.' );
+				$response = array(
+					'status' => 'success',
+					'message' => sprintf(
+						/* translators: %s: type of cache */
+						esc_html__( '%s cache added successfully.', 'mojo-marketplace-wp-plugin' ),
+						ucfirst( $type )
+					)
+				);
 			}
 		}
 	}
 
 	if ( ! isset( $response ) ) {
-		$response = array( 'status' => 'error', 'message' => 'Unable to add ' . ucfirst( $type ) . ' cache.' );
+		$response = array(
+			'status' => 'error',
+			'message' => sprintf(
+				/* translators: %s: type of cache */
+				esc_html__( 'Unable to add %s cache.', 'mojo-marketplace-wp-plugin' ),
+				ucfirst( $type )
+			)
+		);
 	}
 	return $response;
 
@@ -72,12 +86,19 @@ function mm_cache_remove( $type = null ) {
 	}
 	if ( file_exists( $file ) ) {
 		if ( unlink( $file ) ) {
-			$response = array( 'status' => 'success', 'message' => ucfirst( $type ) . ' cache removed successfully.' );
+			$response = array(
+				'status' => 'success',
+				'message' => sprintf(
+					/* translators: %s: type of cache */
+					esc_html__('%s cache removed successfully.', 'mojo-marketplace-wp-plugin' ),
+					ucfirst( $type )
+				)
+			);
 		} else {
-			$response = array( 'status' => 'error', 'message' => 'Could not remove cache file.' );
+			$response = array( 'status' => 'error', 'message' => esc_html__( 'Could not remove cache file.', 'mojo-marketplace-wp-plugin' ) );
 		}
 	} else {
-		$response = array( 'status' => 'error', 'message' => 'Cache file does not exist.' );
+		$response = array( 'status' => 'error', 'message' => esc_html__('Cache file does not exist.', 'mojo-marketplace-wp-plugin' ) );
 	}
 	return $response;
 }
@@ -134,15 +155,22 @@ function mm_php_edge_add( $new_php_setting, $type = null ) {
 			}
 
 			if ( ! is_wp_error( $php_check ) && wp_remote_retrieve_response_code( $php_check ) == '200' ) {
-				$response = array( 'status' => 'success', 'message' => 'PHP is updated to  ' . $updated_php_version );
+				$response = array(
+					'status' => 'success',
+					'message' => sprintf(
+						/* translators: %s: PHP version */
+						esc_html__('PHP is updated to %s', 'mojo-marketplace-wp-plugin' ),
+						$updated_php_version
+					)
+				);
 			} else {
-				$response = array( 'status' => 'error', 'message' => 'Site is incompatible with PHP Edge. Edge removed.' );
+				$response = array( 'status' => 'error', 'message' => esc_html__('Site is incompatible with PHP Edge. Edge removed.', 'mojo-marketplace-wp-plugin' ) );
 				mm_php_edge_remove();
 				save_mod_rewrite_rules();
 			}
 		}
 	} else {
-		$response = array( 'status' => 'error', 'message' => 'Unable to enable PHP Edge.' );
+		$response = array( 'status' => 'error', 'message' => esc_html__('Unable to enable PHP Edge.', 'mojo-marketplace-wp-plugin' ) );
 	}
 	return $response;
 }
@@ -152,12 +180,12 @@ function mm_php_edge_remove( $type = null ) {
 	$file = WP_CONTENT_DIR . '/mu-plugins/endurance-php-edge.php';
 	if ( file_exists( $file ) ) {
 		if ( unlink( $file ) ) {
-			$response = array( 'status' => 'success', 'message' => 'PHP Edge successfully disabled.' );
+			$response = array( 'status' => 'success', 'message' => esc_html__('PHP Edge successfully disabled.', 'mojo-marketplace-wp-plugin' ) );
 		} else {
-			$response = array( 'status' => 'error', 'message' => 'Unable to remove PHP Edge.' );
+			$response = array( 'status' => 'error', 'message' => esc_html__('Unable to remove PHP Edge.', 'mojo-marketplace-wp-plugin' ) );
 		}
 	} else {
-		$response = array( 'status' => 'error', 'message' => 'PHP Edge file does not exist.' );
+		$response = array( 'status' => 'error', 'message' => esc_html__('PHP Edge file does not exist.', 'mojo-marketplace-wp-plugin' ) );
 	}
 	return $response;
 }

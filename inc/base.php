@@ -10,7 +10,11 @@ function mm_setup() {
 			't'    => 'event',
 			'ec'   => 'plugin_status',
 			'ea'   => 'installed',
-			'el'   => 'Install date: ' . get_option( 'mm_install_date', date( 'M d, Y' ) ),
+			'el'   => sprintf(
+				/* translators: %s: installation date */
+				esc_html__( 'Install date: %s', 'mojo-marketplace-wp-plugin' ),
+				get_option( 'mm_install_date', date( 'M d, Y' ) )
+			),
 			'keep' => false,
 		);
 		$events = get_option( 'mm_cron', array() );
@@ -65,7 +69,7 @@ function mm_build_link( $url, $args = array() ) {
 	);
 	$args = wp_parse_args( array_filter( $args ), array_filter( $defaults ) );
 
-	$test = get_transient( 'mm_test', '' );
+	$test = get_transient( 'mm_test' );
 
 	if ( isset( $test['key'] ) && isset( $test['name'] ) ) {
 		$args['utm_medium'] = $args['utm_medium'] . '_' . $test['name'] . '_' . $test['key'];
@@ -114,11 +118,11 @@ add_action( 'admin_init', 'mm_cron' );
 function mm_cron_schedules( $schedules ) {
 	$schedules['weekly'] = array(
 		'interval' => WEEK_IN_SECONDS,
-		'display'  => __( 'Once Weekly' ),
+		'display'  => __( 'Once Weekly', 'mojo-marketplace-wp-plugin' ),
 	);
 	$schedules['monthly'] = array(
 		'interval' => 4 * WEEK_IN_SECONDS,
-		'display'  => __( 'Once a month' ),
+		'display'  => __( 'Once a month', 'mojo-marketplace-wp-plugin' ),
 	);
 
 	return $schedules;
@@ -248,11 +252,12 @@ function mm_stars( $rating = 4.5, $sales = 0 ) {
 			}
 			?>
         </ul>
-        <span class="rating-label"><span class="count"><?php echo $rating_half; ?></span> Stars
+        <span class="rating-label">
+			<span class="count"><?php echo $rating_half; ?></span> <?php esc_html_e( 'Stars', 'mojo-marketplace-wp-plugin' ); ?>
 			<?php
 			if ( 0 !== $sales ) {
 				?>
-                <span class="sales-count">(<?php echo number_format( $sales ); ?> Sales)</span>
+                <span class="sales-count">(<?php echo number_format( $sales ); ?> <?php esc_html_e( 'Sales', 'mojo-marketplace-wp-plugin' ); ?>)</span>
 				<?php
 			}
 			?>

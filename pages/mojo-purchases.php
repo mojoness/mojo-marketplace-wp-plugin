@@ -26,15 +26,23 @@ $response = wp_remote_get( $api_url, $args );
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<ol class="breadcrumb">
-								<li>My Purchases</li>
+								<li><?php esc_html_e( 'My Purchases', 'mojo-marketplace-wp-plugin' ); ?></li>
 							</ol>
 						</div>
 					</div>
 				</div>
 				<?php if ( isset( $_GET['thank-you'] ) ) { ?>
 				<div class="panel-body">
-					<h1>Thank You for your recent purchase!</h1>
-					<p>Success! Your most recent transaction went through without a hitch. If you do not see your item, please give it at least five minutes to appear. As always, if you have any issues we can help with, please don't hesitate to <a href="https://www.mojomarketplace.com/contact" target="_blank">contact our friendly support crew</a>.</p>
+					<h1><?php esc_html_e( 'Thank You for your recent purchase!', 'mojo-marketplace-wp-plugin' ); ?></h1>
+					<p>
+						<?php
+							printf(
+								/* translators: %s: MOJO Marketplace contact URL */
+								__( 'Success! Your most recent transaction went through without a hitch. If you do not see your item, please give it at least five minutes to appear. As always, if you have any issues we can help with, please don not hesitate to <a href="%s" target="_blank">contact our friendly support crew</a>.', 'mojo-marketplace-wp-plugin' ),
+								'https://www.mojomarketplace.com/contact',
+							);
+						?>
+					</p>
 				</div>
 				<?php } ?>
 				<div class="panel-body">
@@ -52,7 +60,17 @@ $response = wp_remote_get( $api_url, $args );
 									<div class="description-box">
 										<h2><?php echo $item->name; ?></h2>
 										<?php if ( isset( $item->short_description ) ) { echo $item->short_description; } ?>
-										<p><?php if ( isset( $item->tags ) ) { echo '<strong>Tags: </strong>' . substr( $item->tags, 0, 120 ) . '&hellip;'; } ?></p>
+										<?php if ( isset( $item->tags ) ) : ?>
+											<p>
+												<?php
+												printf(
+												/* translators: %s: plugin tags */
+													__( '<strong>Tags: </strong> %s&hellip;', 'mojo-marketplace-wp-plugin' ),
+													substr( $item->tags, 0, 120 )
+												);
+												?>
+											</p>
+										<?php endif; ?>
 										<?php mm_stars( $item->rating, $item->sales_count ); ?>
 									</div>
 								</div>
@@ -78,7 +96,7 @@ $response = wp_remote_get( $api_url, $args );
 											</div>
 										</div>
 										<?php } else { ?>
-											<h4>Service Provider</h4>
+											<h4><?php esc_html_e( 'Service Provider', 'mojo-marketplace-wp-plugin' ); ?></h4>
 											<?php
 											echo '<div>' . get_avatar( $item->service_provider->email, 60 ) . '</div>';
 											echo '<p>' . $item->service_provider->first_name . '</p>';
@@ -94,7 +112,7 @@ $response = wp_remote_get( $api_url, $args );
 											}
 
 											?>
-											<a href="<?php echo esc_url( $start_service_link ); ?>" class="btn btn-success btn-lg" target="_blank" style="display:inline-block;">Start Service</a>
+											<a href="<?php echo esc_url( $start_service_link ); ?>" class="btn btn-success btn-lg" target="_blank" style="display:inline-block;"><?php esc_html_e( 'Start Service', 'mojo-marketplace-wp-plugin' ); ?></a>
 										<?php } ?>
 
 									</div>
@@ -108,7 +126,7 @@ $response = wp_remote_get( $api_url, $args );
 				</div>
 			</div>
 			<?php mm_partner_offers( 'purchases-banner-bottom' ); ?>
-			<br style="clear: both"/><span class="alignright powered"><a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com' ); ?>"><img height="16" width="156" alt="Mojo Marketplace" src="<?php echo MM_ASSETS_URL . 'img/logo-dark.svg'; ?>"></a></span>
+			<br style="clear: both"/><span class="alignright powered"><a href="<?php echo mm_build_link( 'https://www.mojomarketplace.com' ); ?>"><img height="16" width="156" alt="<?php esc_attr_e( 'Mojo Marketplace', 'mojo-marketplace-wp-plugin' ); ?>" src="<?php echo MM_ASSETS_URL . 'img/logo-dark.svg'; ?>"></a></span>
 		</div>
 	</main>
 

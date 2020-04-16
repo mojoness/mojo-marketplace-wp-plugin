@@ -1,0 +1,11 @@
+{
+  "name": "mojo-marketplace-wp-plugin",
+  "version": "1.5.1",
+  "description": "mojo-marketplace-wp-plugin ==========================",
+  "devDependencies": {
+    "node-wp-i18n": "^1.2.3"
+  },
+  "scripts": {
+    "translate": "wpi18n addtextdomain && wpi18n makepot"
+  }
+}

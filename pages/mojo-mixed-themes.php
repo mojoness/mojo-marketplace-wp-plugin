@@ -80,9 +80,9 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="row mm-filter-actions text-right">
-						<a href="#" class="btn btn-success btn-sm" data-view="all">All</a>
-						<a href="#" class="btn btn-primary btn-sm" data-view="premium">Premium</a>
-						<a href="#" class="btn btn-primary btn-sm" data-view="free">Free</a>
+						<a href="#" class="btn btn-success btn-sm" data-view="all"><?php esc_html_e( 'All', 'mojo-marketplace-wp-plugin' ); ?></a>
+						<a href="#" class="btn btn-primary btn-sm" data-view="premium"><?php esc_html_e( 'Premium', 'mojo-marketplace-wp-plugin' ); ?></a>
+						<a href="#" class="btn btn-primary btn-sm" data-view="free"><?php esc_html_e( 'Free', 'mojo-marketplace-wp-plugin' ); ?></a>
 					</div>
 					<div class="row">
 						<?php
@@ -95,9 +95,9 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 										<div class="mm-img-wrap">
 											<img src="' . $theme['images']['preview_url'] . '" />
 											<div class="item-actions-hover">
-												<a href="' . $demo . '" class="btn btn-primary btn-md">Demo</a>
+												<a href="' . $demo . '" class="btn btn-primary btn-md">' . esc_html__( 'Demo', 'mojo-marketplace-wp-plugin' ) . '</a>
 												<br/>
-												<a href="' . add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'single-item', 'item_id' => $theme['id'] ), admin_url( 'admin.php' ) ) . '" class="btn btn-primary btn-md">Details</a>
+												<a href="' . add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'single-item', 'item_id' => $theme['id'] ), admin_url( 'admin.php' ) ) . '" class="btn btn-primary btn-md">' . esc_html__( 'Details', 'mojo-marketplace-wp-plugin' ) . '</a>
 											</div>
 										</div>
 										<div class="mm-action-wrap">
@@ -105,7 +105,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 												<h4>' . mm_truncate_name( $theme['name'] ) . '</h4>
 											</div>
 											<div class="col-xs-12 col-sm-7 mm-action-btns">
-												<a href="' . mm_build_link( add_query_arg( array( 'item_id' => $theme['id'] ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_mixed_grid' ) ) . '" class="btn btn-success btn-sm mm_buy_now" data-id="' . $theme['id'] . '" data-price="' . number_format( $theme['prices']['single_domain_license'] ) . '" data-view="themes_mixed">Buy Now</a>
+												<a href="' . mm_build_link( add_query_arg( array( 'item_id' => $theme['id'] ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_mixed_grid' ) ) . '" class="btn btn-success btn-sm mm_buy_now" data-id="' . $theme['id'] . '" data-price="' . number_format( $theme['prices']['single_domain_license'] ) . '" data-view="themes_mixed">' . esc_html__( 'Buy Now', 'mojo-marketplace-wp-plugin' ) . '</a>
 											</div>
 										</div>
 									</div>
@@ -117,9 +117,9 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 										<div class="mm-img-wrap">
 											<img src="' . $theme['screenshot_url'] . '" />
 											<div class="item-actions-hover">
-												<a href="' . $theme['preview_url'] . '" target="_blank" class="btn btn-primary btn-md">Demo</a>
+												<a href="' . $theme['preview_url'] . '" target="_blank" class="btn btn-primary btn-md">' . esc_html__( 'Demo', 'mojo-marketplace-wp-plugin' ) . '</a>
 												<br/>
-												<a href="' . add_query_arg( array( 'theme' => $theme['slug'] ), admin_url( 'theme-install.php' ) ) . '" class="btn btn-primary btn-md">Details</a>
+												<a href="' . add_query_arg( array( 'theme' => $theme['slug'] ), admin_url( 'theme-install.php' ) ) . '" class="btn btn-primary btn-md">' . esc_html__( 'Details', 'mojo-marketplace-wp-plugin' ) . '</a>
 											</div>
 										</div>
 										<div class="mm-action-wrap">
@@ -127,7 +127,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 												<h4>' . mm_truncate_name( $theme['name'] ) . '</h4>
 											</div>
 											<div class="col-xs-12 col-sm-7 mm-action-btns">
-												<a href="#" class="btn btn-success btn-sm free-theme-install" data-slug="' . $theme['slug'] . '">Install</a>
+												<a href="#" class="btn btn-success btn-sm free-theme-install" data-slug="' . $theme['slug'] . '">' . esc_html__( 'Install', 'mojo-marketplace-wp-plugin' ) . '</a>
 											</div>
 										</div>
 									</div>
@@ -196,7 +196,7 @@ jQuery( document ).ready( function ( $ ) {
 			if( theme.success == true ) {
 				window.location = theme.data.customizeUrl;
 			} else {
-				$( '#mojo-wrapper' ).append( '<div id="mm-message" class="mm-error" style="display:none;">Unable to Install Theme</div>' );
+				$( '#mojo-wrapper' ).append( '<div id="mm-message" class="mm-error" style="display:none;"><?php esc_html_e( 'Unable to Install Theme', 'mojo-marketplace-wp-plugin' ); ?></div>' );
 				$( '#mm-message' ).fadeIn( 'slow', function() {
 					setTimeout( function() {
 						$( '#mm-message' ).fadeOut( 'fast', function() {

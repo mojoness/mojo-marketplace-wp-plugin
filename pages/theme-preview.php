@@ -10,7 +10,36 @@ $theme = mm_api_cache( $api_url );
 $other_viewed = mm_api_cache( add_query_arg( array( 'category' => 'wordpress', 'type' => 'themes', 'order' => 'random', 'count' => 4 ), 'https://api.mojomarketplace.com/api/v2/items' ) );
 
 if ( is_wp_error( $theme ) ) {
-	echo "<div class='error'><p>Unable to load theme preview. <a href='admin.php?page=mojo-themes&items=" . esc_attr( $_GET['items'] ) . "'>Return to themes</a></p></div>";
+	?>
+	<div class="error">
+		<p>
+			<?php
+				printf(
+					/* translators: %s:Theme marketplace URL */
+					__( 'Unable to load theme preview. <a href="%s">Return to themes</a>', 'mojo-marketplace-wp-plugin' ),
+					esc_url(
+						add_query_arg(
+							array(
+								'page' => 'mojo-themes',
+								'items' => $items,
+							),
+							admin_url( 'admin.php' )
+						)
+					)
+				);
+			?>
+		</p>
+	</div>
+	<?php
+
+
+function need_admin_init() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_safe_redirect( esc_url( trailingslashit( site_url() ) ) );
+	}
+}
+add_action( 'admin_init', 'need_admin_init' );
+
 } else {
 	$theme = json_decode( $theme['body'] );
 	$theme = $theme->items[0];
@@ -29,19 +58,19 @@ if ( is_wp_error( $theme ) ) {
 			<div class="wp-full-overlay-sidebar-content">
 				<img class="theme-preview-logo" src="<?php echo mm_brand( MM_ASSETS_URL . 'img/logo-preview-%s.svg' ); ?>" />
 				<div class="install-theme-info">
-					<h3 class="theme-name"><?php esc_html_e( $theme->name ); ?></h3>
+					<h3 class="theme-name"><?php echo esc_html( $theme->name ); ?></h3>
 					<br/>
 					<?php mm_stars( $theme->rating, $theme->sales_count ); ?>
 					<div class="theme-details text-center">
 						<div role="group" class="btn-group-horizontal">
-							<a class="btn btn-default" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item_id ), admin_url( 'admin.php' ) ) ); ?>">Details</a>
-							<a class="btn btn-success mm_buy_now" href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item_id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_preview' ) ); ?>">Buy Now</a>
+							<a class="btn btn-default" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item_id ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Details', 'mojo-marketplace-wp-plugin' ); ?></a>
+							<a class="btn btn-success mm_buy_now" href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item_id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_preview' ) ); ?>"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
 						</div>
 						<br/>
 						<div class="price">
-							<span class="price-number">$<span><?php echo number_format( $theme->prices->single_domain_license ); ?></span></span>
+							<span class="price-number"><?php esc_html_e( '$', 'mojo-marketplace-wp-plugin' ); ?><span><?php echo number_format( $theme->prices->single_domain_license ); ?></span></span>
 							<br/>
-							<span class="currency">USD</span>
+							<span class="currency"><?php esc_html_e( 'USD', 'mojo-marketplace-wp-plugin' ); ?></span>
 						</div>
 						<div>
 						<?php echo esc_html( $theme->short_description ); ?>
@@ -52,7 +81,7 @@ if ( is_wp_error( $theme ) ) {
 						<?php
 						if ( ! is_wp_error( $other_viewed ) ) {
 							?>
-							<h5>Other People Also Viewed</h5>
+							<h5><?php esc_html_e( 'Other People Also Viewed', 'mojo-marketplace-wp-plugin' ); ?></h5>
 							<?php
 							$other_items = json_decode( $other_viewed['body'] );
 							$other_items = $other_items->items;
@@ -93,5 +122,9 @@ if ( is_wp_error( $theme ) ) {
 	</script>
 </div>
 	<?php
-	$title = 'Demo : ' . $theme->name;
+	$title = sprintf(
+		/* translators: %s: Theme name */
+		esc_html__( 'Demo : %s', 'mojo-marketplace-wp-plugin' ),
+		$theme->name
+	);
 }
