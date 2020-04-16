@@ -3,19 +3,19 @@
  * @package MOJO Marketplace WP Plugin
  */
 
-$id = sanitize_title_for_query( $_GET['item_id'] );
+$id       = sanitize_title_for_query( $_GET['item_id'] );
 $response = mm_api_cache( 'https://api.mojomarketplace.com/api/v2/items/' . $id );
 ?>
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 	<?php
 
-	require_once( MM_BASE_DIR . 'pages/header/header.php' );
+	require_once MM_BASE_DIR . 'pages/header/header.php';
 
 	if ( ! is_wp_error( $response ) ) {
 		$body = json_decode( $response['body'] );
 		$item = $body->items[0];
 		$type = $item->type;
-	?>
+		?>
 	<main id="main">
 		<div class="container">
 			<div class="panel panel-default">
@@ -84,7 +84,17 @@ $response = mm_api_cache( 'https://api.mojomarketplace.com/api/v2/items/' . $id 
 											<span class="currency"><?php esc_html_e( 'USD', 'mojo-marketplace-wp-plugin' ); ?></span>
 										</div>
 										<div class="btn-box">
-											<a class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_single_bottom' ) ); ?>"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
+											<a class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" href="
+																											 <?php
+																												echo mm_build_link(
+																													add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ),
+																													array(
+																														'utm_medium'  => 'plugin_admin',
+																														'utm_content' => 'buy_now_single_bottom',
+																													)
+																												);
+																												?>
+																																	"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
 										</div>
 										<span class="price-option"><?php esc_html_e( 'One Time Fee', 'mojo-marketplace-wp-plugin' ); ?></span>
 									</div>
@@ -99,7 +109,17 @@ $response = mm_api_cache( 'https://api.mojomarketplace.com/api/v2/items/' . $id 
 										<span class="currency"><?php esc_html_e( 'USD', 'mojo-marketplace-wp-plugin' ); ?></span>
 									</div>
 									<div class="btn-box">
-										<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_single_sidebar' ) ); ?>" class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="single_item"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
+										<a href="
+										<?php
+										echo mm_build_link(
+											add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ),
+											array(
+												'utm_medium'  => 'plugin_admin',
+												'utm_content' => 'buy_now_single_sidebar',
+											)
+										);
+										?>
+													" class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="single_item"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
 									</div>
 									<span class="price-option"><?php esc_html_e( 'One Time Fee', 'mojo-marketplace-wp-plugin' ); ?></span>
 								</div>
@@ -107,24 +127,24 @@ $response = mm_api_cache( 'https://api.mojomarketplace.com/api/v2/items/' . $id 
 									<h3><?php esc_html_e( 'Item Information', 'mojo-marketplace-wp-plugin' ); ?></h3>
 									<dl class="dl-horizontal">
 										<dt><?php esc_html_e( 'Created:', 'mojo-marketplace-wp-plugin' ); ?></dt>
-											<dd> <?php echo date( 'F j, Y', $item->created_timestamp );?></dd>
+											<dd> <?php echo date( 'F j, Y', $item->created_timestamp ); ?></dd>
 										<dt><?php esc_html_e( 'Updated:', 'mojo-marketplace-wp-plugin' ); ?></dt>
-											<dd> <?php echo date( 'F j, Y', $item->modified_timestamp );?></dd>
+											<dd> <?php echo date( 'F j, Y', $item->modified_timestamp ); ?></dd>
 										<?php if ( 'Professional Services' != $item->type ) { ?>
 										<dt><?php esc_html_e( 'Sales:', 'mojo-marketplace-wp-plugin' ); ?></dt>
 											<dd>
 											<?php
-												if ( ( $item->created_timestamp > time() - WEEK_IN_SECONDS * 4 ) && $item->sales_count < 10 ) {
-													esc_html_e( 'New Item!', 'mojo-marketplace-wp-plugin' );
-												} else if ( ( $item->created_timestamp > time() - WEEK_IN_SECONDS * 4 ) && $item->sales_count > 10) {
-													printf(
-														/* translators: %s: number of sales */
-														esc_html__( 'Popular New Item! (%s)', 'mojo-marketplace-wp-plugin' ),
-														$item->sales_count
-													);
-												} else {
-													echo number_format( $item->sales_count );
-												}
+											if ( ( $item->created_timestamp > time() - WEEK_IN_SECONDS * 4 ) && $item->sales_count < 10 ) {
+												esc_html_e( 'New Item!', 'mojo-marketplace-wp-plugin' );
+											} elseif ( ( $item->created_timestamp > time() - WEEK_IN_SECONDS * 4 ) && $item->sales_count > 10 ) {
+												printf(
+													/* translators: %s: number of sales */
+													esc_html__( 'Popular New Item! (%s)', 'mojo-marketplace-wp-plugin' ),
+													$item->sales_count
+												);
+											} else {
+												echo number_format( $item->sales_count );
+											}
 											?>
 											</dd>
 										<?php } ?>
@@ -160,7 +180,7 @@ $response = mm_api_cache( 'https://api.mojomarketplace.com/api/v2/items/' . $id 
 
 		</div>
 	</main>
-	<?php
+		<?php
 	} else {
 		mm_require( MM_BASE_DIR . 'pages/api-unavailable.php' );
 	}

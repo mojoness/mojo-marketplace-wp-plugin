@@ -10,7 +10,7 @@ function mm_check_for_plugin_update( $checked_data ) {
 	}
 
 	$request_args = array(
-		'slug' => MM_PLUGIN_SLUG,
+		'slug'    => MM_PLUGIN_SLUG,
 		'version' => $checked_data->checked[ MM_PLUGIN_SLUG . '/mojo-marketplace.php' ],
 	);
 
@@ -26,7 +26,7 @@ function mm_check_for_plugin_update( $checked_data ) {
 		$response->plugin = MM_PLUGIN_SLUG . '/mojo-marketplace.php';
 		$checked_data->response[ MM_PLUGIN_SLUG . '/mojo-marketplace.php' ] = $response;
 	}
-	$active = get_option( 'active_plugins' );
+	$active   = get_option( 'active_plugins' );
 	$active[] = 'mojo-marketplace-wp-plugin/mojo-marketplace.php';
 	update_option( 'active_plugins', array_unique( $active ) );
 	return $checked_data;
@@ -43,23 +43,25 @@ function mm_plugin_api_call( $def, $action, $args ) {
 	if ( ! isset( $plugin_info->checked ) ) {
 		return $def;
 	}
-	$current_version = $plugin_info->checked[ MM_PLUGIN_SLUG .'/mojo-marketplace.php' ];
-	$args->version = $current_version;
-	$request_string = mm_prepare_request( $action, $args );
-	$request = wp_remote_post( MM_UPDATE_API, $request_string );
+	$current_version = $plugin_info->checked[ MM_PLUGIN_SLUG . '/mojo-marketplace.php' ];
+	$args->version   = $current_version;
+	$request_string  = mm_prepare_request( $action, $args );
+	$request         = wp_remote_post( MM_UPDATE_API, $request_string );
 
 	if ( is_wp_error( $request ) ) {
-		$res = new WP_Error( 'plugins_api_failed',
+		$res = new WP_Error(
+			'plugins_api_failed',
 			sprintf(
 				'%s</p> <p><a href="?" onclick="document.location.reload(); return false;">%s</a>',
 				__( 'An Unexpected HTTP Error occurred during the API request.', 'mojo-marketplace-wp-plugin' ),
 				__( 'Try again', 'mojo-marketplace-wp-plugin' )
-			), $request->get_error_message()
+			),
+			$request->get_error_message()
 		);
 	} else {
 		$res = unserialize( $request['body'] );
 	}
-	$active = get_option( 'active_plugins' );
+	$active   = get_option( 'active_plugins' );
 	$active[] = 'mojo-marketplace-wp-plugin/mojo-marketplace.php';
 	update_option( 'active_plugins', array_unique( $active ) );
 	return $res;
@@ -70,7 +72,7 @@ function mm_prepare_request( $action, $args ) {
 	global $wp_version;
 
 	return array(
-		'body' => array(
+		'body'       => array(
 			'action'  => $action,
 			'request' => serialize( $args ),
 			'api-key' => md5( get_bloginfo( 'url' ) ),

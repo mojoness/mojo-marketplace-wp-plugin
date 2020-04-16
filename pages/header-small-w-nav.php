@@ -1,6 +1,6 @@
 <header id="header" class="navbar navbar-default">
 	<div class="header-block bg-cover" style="background-image: url('<?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s.jpg' ); ?>');">
-		<span data-srcset="<?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s.jpg' ); ?>, <?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s-2x.jpg' );?> 2x"></span>
+		<span data-srcset="<?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s.jpg' ); ?>, <?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s-2x.jpg' ); ?> 2x"></span>
 		<nav>
 			<div class="container">
 				<div class="inner-holder">
@@ -15,13 +15,25 @@
 						<div class="nav-holder clearfix">
 							<ul class="nav navbar-nav justified-nav">
 								<li class="active">
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Home', 'mojo-marketplace-wp-plugin' ); ?></a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-home' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Home', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'themes' ),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Marketplace', 'mojo-marketplace-wp-plugin' ); ?></a>
+									<a class="scroll" href="
+									<?php
+									echo esc_url(
+										add_query_arg(
+											array(
+												'page'    => 'mojo-marketplace',
+												'section' => 'themes',
+											),
+											admin_url( 'admin.php' )
+										)
+									);
+									?>
+									"><?php esc_html_e( 'Marketplace', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 								<li>
-									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance'),         admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Site Performance', 'mojo-marketplace-wp-plugin' ); ?></a>
+									<a class="scroll" href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-performance' ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Site Performance', 'mojo-marketplace-wp-plugin' ); ?></a>
 								</li>
 							</ul>
 						</div>

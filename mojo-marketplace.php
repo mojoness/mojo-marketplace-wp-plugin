@@ -27,7 +27,7 @@ define( 'MM_ASSETS_URL', 'https://www.mojomarketplace.com/mojo-plugin-assets/' )
  * Load the plugin translations.
  */
 function mojo_marketplace_load_plugin_textdomain() {
-	load_plugin_textdomain( 'mojo-marketplace-wp-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'mojo-marketplace-wp-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'mojo_marketplace_load_plugin_textdomain' );
 

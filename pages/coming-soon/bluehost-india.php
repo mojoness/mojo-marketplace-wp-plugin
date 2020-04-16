@@ -5,7 +5,9 @@
 	<?php
 	printf(
 	/* translators: %s: Blog name */
-		__( '%s &mdash; Coming Soon', 'mojo-marketplace-wp-plugin' ), get_option( 'blogname' ) );
+		__( '%s &mdash; Coming Soon', 'mojo-marketplace-wp-plugin' ),
+		get_option( 'blogname' )
+	);
 	?>
 </title>
 <?php echo mm_cs_meta(); ?>
@@ -130,7 +132,7 @@ footer p a:hover{
 						__( 'a <a href="%s" class="bluehost">bluehost india</a> powered website', 'mojo-marketplace-wp-plugin' ),
 						esc_url( 'https://www.bluehost.in/optimized-wordpress-hosting.php' ),
 					);
-				?>
+					?>
 			</p>
 	</footer>
 </body>

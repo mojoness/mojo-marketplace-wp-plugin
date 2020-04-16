@@ -1,8 +1,15 @@
 <?php
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'WPINC' ) ) {
+	die; }
 $current_compat = get_transient( 'mm_compat_check', false );
 if ( false === $current_compat ) {
-	$json = wp_remote_get( add_query_arg( array( 'action' => 'mm_compat_check' ), admin_url( 'admin-ajax.php' ) ), array( 'timeout' => 10, 'cookies' => $_COOKIE ) );
+	$json = wp_remote_get(
+		add_query_arg( array( 'action' => 'mm_compat_check' ), admin_url( 'admin-ajax.php' ) ),
+		array(
+			'timeout' => 10,
+			'cookies' => $_COOKIE,
+		)
+	);
 
 	if ( ! is_wp_error( $json ) ) {
 		$json = json_decode( $json['body'] );
@@ -17,9 +24,9 @@ if ( false === $current_compat ) {
 	}
 }
 ?>
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 <?php
-require_once( MM_BASE_DIR . 'pages/header/header.php' );
+require_once MM_BASE_DIR . 'pages/header/header.php';
 ?>
 	<main id="main">
 		<div class="container">
@@ -39,7 +46,19 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 								<?php
 							} else {
 								?>
-								<a class="btn btn-primary btn-lg" href="<?php echo mm_build_link( 'https://helpchat.bluehost.com/', array( 'utm_campaign' => mm_brand( '%s_wp_plugin' ), 'utm_medium' => 'plugin_staging', 'utm_content' => 'help', 'r' => '' ) ); ?>" target="_blank"><?php esc_html_e( 'Chat with Support', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a class="btn btn-primary btn-lg" href="
+								<?php
+								echo mm_build_link(
+									'https://helpchat.bluehost.com/',
+									array(
+										'utm_campaign' => mm_brand( '%s_wp_plugin' ),
+										'utm_medium'   => 'plugin_staging',
+										'utm_content'  => 'help',
+										'r'            => '',
+									)
+								);
+								?>
+																		" target="_blank"><?php esc_html_e( 'Chat with Support', 'mojo-marketplace-wp-plugin' ); ?></a>
 								<p class='small text-danger'><?php esc_html_e( 'Please contact support to find out how to enable staging.', 'mojo-marketplace-wp-plugin' ); ?></p>
 								<?php
 							}
