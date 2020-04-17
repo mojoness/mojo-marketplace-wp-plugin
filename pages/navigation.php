@@ -4,7 +4,8 @@
 			<div class="nav-holder clearfix">
 				<ul class="nav navbar-nav justified-nav">
 					<li <?php if ( 'themes' == $_GET['section'] ) {
-						echo 'class="active"'; } ?>>
+						echo 'class="active"';
+						} ?>>
 						<a href="
 						<?php
 						echo esc_url(
@@ -247,10 +248,11 @@
 							</ul>
 						</div>
 					</li>
-					<li 
+					<li
 					<?php
 					if ( 'plugins' == $_GET['section'] ) {
-						echo 'class="active"'; }
+						echo 'class="active"';
+					}
 					?>
 					>
 						<a href="
@@ -267,10 +269,11 @@
 						?>
 						"><?php esc_html_e( 'Plugins', 'mojo-marketplace-wp-plugin' ); ?></a>
 					</li>
-					<li 
+					<li
 					<?php
 					if ( 'services' == $_GET['section'] ) {
-						echo 'class="active"'; }
+						echo 'class="active"';
+					}
 					?>
 					>
 						<a href="
@@ -287,10 +290,11 @@
 						?>
 						"><?php esc_html_e( 'Services', 'mojo-marketplace-wp-plugin' ); ?></a>
 					</li>
-					<li 
+					<li
 					<?php
 					if ( 'graphics' == $_GET['section'] ) {
-						echo 'class="active"'; }
+						echo 'class="active"';
+					}
 					?>
 					>
 						<a href="
@@ -353,10 +357,11 @@
 							</ul>
 						</div>
 					</li>
-					<li 
+					<li
 					<?php
 					if ( 'business-tools' == $_GET['section'] ) {
-						echo 'class="active"'; }
+						echo 'class="active"';
+					}
 					?>
 					>
 						<a href="

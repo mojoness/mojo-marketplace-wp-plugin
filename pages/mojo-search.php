@@ -52,10 +52,12 @@ $response = mm_api_cache( $api_url );
 					$results = 0;
 					foreach ( $items as $item ) {
 						if ( '0' == $item->prices->single_domain_license ) {
-							continue; }
+							continue;
+						}
 						$whitelist = array( 'Logo', 'All', 'Business Cards', 'WordPress' );
 						if ( ! in_array( $item->category, $whitelist ) ) {
-							continue; }
+							continue;
+						}
 						$results++;
 						?>
 						<div class="list-group-item theme-item">
@@ -94,7 +96,8 @@ $response = mm_api_cache( $api_url );
 														"><?php echo apply_filters( 'mm_item_name', $item->name ); ?></a></h2>
 										<?php
 										if ( isset( $item->short_description ) ) {
-											echo $item->short_description; }
+											echo $item->short_description;
+										}
 										?>
 										<p>
 											<?php

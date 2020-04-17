@@ -1,6 +1,7 @@
 <?php
 if ( ! defined( 'WPINC' ) ) {
-	die; }
+	die;
+}
 ?>
 
 <div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">

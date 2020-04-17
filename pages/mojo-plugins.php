@@ -98,7 +98,8 @@ $response = mm_api_cache( $api_url );
 					<?php
 					foreach ( $items as $item ) {
 						if ( '0' == $item->prices->single_domain_license ) {
-							continue; }
+							continue;
+						}
 						?>
 						<div class="list-group-item theme-item">
 							<div class="row">
@@ -137,7 +138,8 @@ $response = mm_api_cache( $api_url );
 										<h2><a href="<?php echo $link; ?>"><?php echo apply_filters( 'mm_item_name', $item->name ); ?></a></h2>
 										<?php
 										if ( isset( $item->short_description ) ) {
-											echo $item->short_description; }
+											echo $item->short_description;
+										}
 										?>
 										<?php if ( isset( $item->tags ) ) : ?>
 											<p>

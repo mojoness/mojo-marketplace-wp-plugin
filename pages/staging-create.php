@@ -1,6 +1,7 @@
 <?php
 if ( ! defined( 'WPINC' ) ) {
-	die; }
+	die;
+}
 $current_compat = get_transient( 'mm_compat_check', false );
 if ( false === $current_compat ) {
 	$json = wp_remote_get(

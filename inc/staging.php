@@ -1,6 +1,7 @@
 <?php
 if ( ! defined( 'WPINC' ) ) {
-	die; }
+	die;
+}
 
 function mm_is_staging() {
 	return ( get_option( 'staging_environment' ) == 'staging' ) ? true : false;

@@ -61,7 +61,8 @@ $response = wp_remote_get( $api_url, $args );
 										<h2><?php echo $item->name; ?></h2>
 									<?php
 									if ( isset( $item->short_description ) ) {
-										echo $item->short_description; }
+										echo $item->short_description;
+									}
 									?>
 									<?php if ( isset( $item->tags ) ) : ?>
 											<p>

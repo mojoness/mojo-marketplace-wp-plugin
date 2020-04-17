@@ -1,6 +1,7 @@
 <?php
 if ( ! defined( 'WPINC' ) ) {
-	die; }
+	die;
+}
 
 $free_themes = mm_api_cache( 'https://api.wordpress.org/themes/info/1.1/?action=query_themes&request[author]=automattic&request[browse]=popular' );
 $free_themes = wp_remote_retrieve_body( $free_themes );

@@ -5,7 +5,8 @@ function mm_ab_test_inclusion( $test_name, $key, $audience = 10, $duration = WEE
 		$previous_tests = get_option( 'mm_previous_tests', array() );
 
 		if ( in_array( $test_name, $previous_tests ) ) {
-			return false; }
+			return false;
+		}
 
 		$score = mt_rand( 0, 99 );
 

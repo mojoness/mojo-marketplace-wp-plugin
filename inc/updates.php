@@ -5,11 +5,14 @@
 
 function mm_auto_update_make_bool( $value, $default = true ) {
 	if ( 'false' === $value ) {
-		$value = false; }
+		$value = false;
+	}
 	if ( 'true' === $value ) {
-		$value = true; }
+		$value = true;
+	}
 	if ( true !== $value && false !== $value ) {
-		$value = $default; }
+		$value = $default;
+	}
 	return $value;
 }
 
