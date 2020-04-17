@@ -172,7 +172,7 @@ function mm_staging_page() {
 			break;
 	}
 
-	echo "<a target='_blank' href='https://goo.gl/forms/HNmqYgRkpzu9KQfM2' style='z-index: 10;position: fixed; padding: 4px 10px; color: #fff;background-color: #000;right:0px;bottom:0px;'>" . esc_html_e( 'Staging Feedback', 'mojo-marketplace-wp-plugin' ) . '</a>';
+	echo "<a target='_blank' href='https://goo.gl/forms/HNmqYgRkpzu9KQfM2' style='z-index: 10;position: fixed; padding: 4px 10px; color: #fff;background-color: #000;right:0px;bottom:0px;'>" . esc_html__( 'Staging Feedback', 'mojo-marketplace-wp-plugin' ) . '</a>';
 }
 
 function mm_my_purchases_page() {
