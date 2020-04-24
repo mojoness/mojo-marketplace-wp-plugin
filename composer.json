@@ -42,8 +42,12 @@
     "optimize-autoloader": true
   },
   "scripts": {
-    "fix": "vendor/bin/phpcbf --ignore=*/vendor/* .",
-    "lint": "vendor/bin/phpcs --ignore=*/vendor/* ."
+    "fix": [
+      "vendor/bin/phpcbf . --standard=Bluehost"
+    ],
+    "lint": [
+      "vendor/bin/phpcs . --standard=Bluehost -s"
+    ]
   },
   "scripts-descriptions": {
     "fix": "Automatically fix coding standards issues where possible.",
