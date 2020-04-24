@@ -13,6 +13,8 @@
  * @package Mojo Marketplace
  */
 
+use Endurance_WP_Plugin_Updater\Updater;
+
 // Do not access file directly!
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -27,16 +29,13 @@ define( 'MM_ASSETS_URL', 'https://www.mojomarketplace.com/mojo-plugin-assets/' )
  * Load the plugin translations.
  */
 function mojo_marketplace_load_plugin_textdomain() {
-	load_plugin_textdomain( 'mojo-marketplace-wp-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'mojo-marketplace-wp-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
+
 add_action( 'plugins_loaded', 'mojo_marketplace_load_plugin_textdomain' );
 
 // Composer autoloader
-if ( version_compare( phpversion(), 5.3, '<' ) ) {
-	require dirname( __FILE__ ) . '/vendor/autoload_52.php';
-} else {
-	require dirname( __FILE__ ) . '/vendor/autoload.php';
-}
+require dirname( __FILE__ ) . '/vendor/autoload.php';
 
 require_once MM_BASE_DIR . 'inc/base.php';
 require_once MM_BASE_DIR . 'inc/checkout.php';
@@ -57,7 +56,6 @@ require_once MM_BASE_DIR . 'inc/performance.php';
 require_once MM_BASE_DIR . 'inc/partners.php';
 
 mm_require( MM_BASE_DIR . 'inc/branding.php' );
-mm_require( MM_BASE_DIR . 'updater.php' );
 
 // Check proper PHP and bring CLI loader online
 if ( version_compare( PHP_VERSION, '5.3.29' ) >= 0 ) {
@@ -65,3 +63,5 @@ if ( version_compare( PHP_VERSION, '5.3.29' ) >= 0 ) {
 }
 
 mm_require( MM_BASE_DIR . 'inc/admin-page-notifications-blocker.php' );
+
+new Updater( 'mojoness', 'mojo-marketplace-wp-plugin', 'mojo-marketplace-wp-plugin/mojo-marketplace.php' );
