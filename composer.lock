@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d60334a0728771c92426f99f0138f48",
+    "content-hash": "4564d9e51b5429bf135940b940599ddb",
     "packages": [
         {
             "name": "bluehost/endurance-wp-module-business-reviews",
