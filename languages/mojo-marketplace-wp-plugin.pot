@@ -3,8 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MOJO Marketplace 1.5.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mojo-plugin\n"
-"POT-Creation-Date: 2020-04-15 18:54:32+00:00\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/mojo-marketplace-wp-plugin\n"
+"POT-Creation-Date: 2020-04-24 14:55:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1423,15 +1424,7 @@ msgstr ""
 msgid "Demo : %s"
 msgstr ""
 
-#: updater.php:55
-msgid "An Unexpected HTTP Error occurred during the API request."
-msgstr ""
-
-#: updater.php:56
-msgid "Try again"
-msgstr ""
-
-#: vendor/bluehost/endurance-wp-module-business-reviews/bootstrap.php:14
+#: vendor/bluehost/endurance-wp-module-business-reviews/bootstrap.php:13
 msgid "Business Reviews"
 msgstr ""
 
@@ -1445,11 +1438,11 @@ msgstr ""
 msgid "Gutenframe"
 msgstr ""
 
-#: vendor/bluehost/endurance-wp-module-spam-prevention/bootstrap.php:14
+#: vendor/bluehost/endurance-wp-module-spam-prevention/bootstrap.php:13
 msgid "Spam Prevention"
 msgstr ""
 
-#: vendor/bluehost/endurance-wp-module-sso/bootstrap.php:14
+#: vendor/bluehost/endurance-wp-module-sso/bootstrap.php:13
 msgid "Single Sign-on"
 msgstr ""
 
