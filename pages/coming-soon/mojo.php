@@ -5,7 +5,9 @@
 	<?php
 	printf(
 	/* translators: %s: Blog name */
-		__( '%s &mdash; Coming Soon', 'mojo-marketplace-wp-plugin' ), get_option( 'blogname' ) );
+		__( '%s &mdash; Coming Soon', 'mojo-marketplace-wp-plugin' ),
+		get_option( 'blogname' )
+	);
 	?>
 </title>
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -144,7 +146,7 @@ footer li{
 					esc_html__( 'This page is used to test the proper operation of your recent <a class="highlight" href="%s">MOJO Marketplace</a> installation of WordPress! If you can read this page it means your installation was successful!', 'mojo-marketplace-wp-plugin' ),
 					esc_url( 'https://www.mojomarketplace.com/explore?utm_source=mojo_wp_plugin&utm_campaign=mojo_wp_plugin&utm_medium=plugin_landing&utm_content=description_link' )
 				);
-			?>
+				?>
 		</p>
 		<a class='btn green' href='<?php echo site_url( 'wp-login.php' ); ?>'><?php esc_html_e( 'Admin Login', 'mojo-marketplace-wp-plugin' ); ?></a>
 		<div class='split-content'>

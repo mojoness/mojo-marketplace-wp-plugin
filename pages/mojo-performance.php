@@ -1,23 +1,25 @@
 <?php
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 ?>
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 <?php
-require_once( MM_BASE_DIR . 'pages/header/header.php' );
-$defaults = array(
+require_once MM_BASE_DIR . 'pages/header/header.php';
+$defaults       = array(
 	'page'    => 'disabled',
 	'browser' => 'disabled',
 	'object'  => 'disabled',
 );
 $cache_settings = get_option( 'mm_cache_settings' );
 $cache_settings = wp_parse_args( $cache_settings, $defaults );
-$cache_level = get_option( 'endurance_cache_level' );
+$cache_level    = get_option( 'endurance_cache_level' );
 
 if ( file_exists( WP_CONTENT_DIR . '/mu-plugins/endurance-page-cache.php' ) ) {
 	$cache_file_exists = true;
 } else {
 	$cache_file_exists = false;
-	$cache_level = 0;
+	$cache_level       = 0;
 }
 
 if ( false === $cache_level && true == $cache_file_exists ) {
@@ -63,7 +65,7 @@ $php_edge_settings = get_option( 'mm_php_edge_settings', '56' );
 								foreach ( $levels as $level => $label ) {
 									echo '<label class="top-4 radio-inline"><input type="radio" name="cache_level" value="' . esc_attr( $level ) . '" ' . checked( $level, $cache_level, false ) . '/> ' . esc_html( $label ) . '</label><br/>';
 								}
-							?>
+								?>
 							</p>
 						</div>
 					</div>
@@ -71,7 +73,9 @@ $php_edge_settings = get_option( 'mm_php_edge_settings', '56' );
 			</div>
 		</div>
 
-		<?php /* if ( get_option( 'mm_brand' ) == 'BlueHost' ) { ?>
+		<?php
+		/*
+		if ( get_option( 'mm_brand' ) == 'BlueHost' ) { ?>
 		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -126,7 +130,8 @@ $php_edge_settings = get_option( 'mm_php_edge_settings', '56' );
 				</div>
 			</div>
 		</div>
-		<?php }  this feature is unusable due to ea4. Leaving the code until we are able to use it. */?>
+		<?php }  this feature is unusable due to ea4. Leaving the code until we are able to use it. */
+		?>
 
 	</main>
 </div>

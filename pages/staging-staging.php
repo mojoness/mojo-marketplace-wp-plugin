@@ -1,9 +1,11 @@
 <?php
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 ?>
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 <?php
-require_once( MM_BASE_DIR . 'pages/header/header.php' );
+require_once MM_BASE_DIR . 'pages/header/header.php';
 ?>
 	<main id="main">
 		<div class="container">
@@ -104,7 +106,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 			$revisions = mm_cl( 'revisions' );
 			$revisions = explode( ';', $revisions );
 			if ( is_array( $revisions ) ) {
-			?>
+				?>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
@@ -128,13 +130,13 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 						<div class="col-xs-12 col-sm-12">
 							<table class="table">
 								<tr><th><?php esc_html_e( 'Message', 'mojo-marketplace-wp-plugin' ); ?></th><th><?php esc_html_e( 'Date', 'mojo-marketplace-wp-plugin' ); ?></th><th>&nbsp;</th></tr>
-								<tr id="staging-revisions-loader"><td colspan="3" class="text-center"><img src="<?php echo MM_ASSETS_URL . 'img/loader-balls.svg';?>"/></td></tr>
+								<tr id="staging-revisions-loader"><td colspan="3" class="text-center"><img src="<?php echo MM_ASSETS_URL . 'img/loader-balls.svg'; ?>"/></td></tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php
+				<?php
 			}
 			?>
 		</div>

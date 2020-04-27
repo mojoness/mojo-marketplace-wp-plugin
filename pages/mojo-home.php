@@ -1,12 +1,14 @@
 <?php
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 ?>
 
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 <?php
-require_once( MM_BASE_DIR . 'pages/header/header.php' );
+require_once MM_BASE_DIR . 'pages/header/header.php';
 $is_bluerock = file_exists( '/opt/cpanel/ea-php70/root/usr/bin/php-cgi' );
-$links = array(
+$links       = array(
 	'bluerock' => array(
 		'sites'       => 'https://my.bluehost.com/cgi/app/#/sites/' . mm_site_bin2hex(),
 		'performance' => 'https://my.bluehost.com/cgi/app/#/sites/' . mm_site_bin2hex() . '/performance',
@@ -109,7 +111,17 @@ if ( $is_bluerock ) {
 							<h2><?php esc_html_e( 'Customizer', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<p><?php esc_html_e( 'Customize your theme from the front end and view your changes before updating them.', 'mojo-marketplace-wp-plugin' ); ?></p>
 							<div class="col-xs-12 col-sm-8 col-sm-offset-4 text-right">
-								<a class="btn btn-primary btn-md" href="<?php echo add_query_arg( array( 'return' => add_query_arg( array( 'page' => 'mojo-home' ) ), admin_url( 'admin.php' ) ), admin_url( 'customize.php' ) ); ?>"><?php esc_html_e( 'Customize Theme', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a class="btn btn-primary btn-md" href="
+								<?php
+								echo add_query_arg(
+									array(
+										'return' => add_query_arg( array( 'page' => 'mojo-home' ) ),
+										admin_url( 'admin.php' ),
+									),
+									admin_url( 'customize.php' )
+								);
+								?>
+								"><?php esc_html_e( 'Customize Theme', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 						</div>
 					</div>
@@ -122,8 +134,30 @@ if ( $is_bluerock ) {
 							<p><?php esc_html_e( 'Easily browse and find a theme that inspires you!', 'mojo-marketplace-wp-plugin' ); ?></p>
 
 							<div class="btn-group home-btn-group clearfix panel-body col-sm-12">
-								<a href="<?php echo add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'mixed-themes', 'type' => 'premium' ), admin_url( 'admin.php' ) ); ?>" class="btn btn-default btn-md"><?php esc_html_e( 'Premium Themes', 'mojo-marketplace-wp-plugin' ); ?></a>
-								<a href="<?php echo add_query_arg( array( 'page' => 'mojo-marketplace', 'section' => 'mixed-themes', 'type' => 'free' ), admin_url( 'admin.php' ) ); ?>" class="btn btn-primary btn-md"><?php esc_html_e( 'Free Themes', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a href="
+								<?php
+								echo add_query_arg(
+									array(
+										'page'    => 'mojo-marketplace',
+										'section' => 'mixed-themes',
+										'type'    => 'premium',
+									),
+									admin_url( 'admin.php' )
+								);
+								?>
+								" class="btn btn-default btn-md"><?php esc_html_e( 'Premium Themes', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a href="
+								<?php
+								echo add_query_arg(
+									array(
+										'page'    => 'mojo-marketplace',
+										'section' => 'mixed-themes',
+										'type'    => 'free',
+									),
+									admin_url( 'admin.php' )
+								);
+								?>
+								" class="btn btn-primary btn-md"><?php esc_html_e( 'Free Themes', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 
 						</div>
@@ -180,7 +214,7 @@ if ( $is_bluerock ) {
 				</div>
 				<?php
 				if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'stats' ) ) {
-				?>
+					?>
 				<div class="col-xs-12 col-sm-6">
 					<div class="panel panel-default panel-body">
 						<div>
@@ -242,7 +276,19 @@ if ( $is_bluerock ) {
 							<h2><?php esc_html_e( 'Manage My Sites', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<p><?php esc_html_e( "Manage your site from Bluehost's control panel. You can take backups, keep things secure, and improve performance.", 'mojo-marketplace-wp-plugin' ); ?></p>
 							<div class="col-xs-12 col-sm-8 col-sm-offset-4 text-right">
-								<a class="btn btn-primary btn-md" href="<?php echo mm_build_link( $links['sites'], array( 'utm_campaign' => mm_brand( '%s_wp_plugin' ), 'utm_medium' => 'plugin_home', 'utm_content' => 'manage_sites', 'r' => '' ) ); ?>" target="_blank"><?php esc_html_e( 'Manage', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a class="btn btn-primary btn-md" href="
+								<?php
+								echo mm_build_link(
+									$links['sites'],
+									array(
+										'utm_campaign' => mm_brand( '%s_wp_plugin' ),
+										'utm_medium'   => 'plugin_home',
+										'utm_content'  => 'manage_sites',
+										'r'            => '',
+									)
+								);
+								?>
+																		" target="_blank"><?php esc_html_e( 'Manage', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 						</div>
 					</div>
@@ -254,7 +300,19 @@ if ( $is_bluerock ) {
 							<h2><?php esc_html_e( 'Email', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<p><?php esc_html_e( 'Create accounts, compose, send, and recieve all your email in your Bluehost control panel.', 'mojo-marketplace-wp-plugin' ); ?></p>
 							<div class="col-xs-12 col-sm-8 col-sm-offset-4 text-right">
-								<a class="btn btn-primary btn-md" href="<?php echo mm_build_link( $links['email'], array( 'utm_campaign' => mm_brand( '%s_wp_plugin' ), 'utm_medium' => 'plugin_home', 'utm_content' => 'manage_email', 'r' => '' ) ); ?>" target="_blank"><?php esc_html_e( 'Manage', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a class="btn btn-primary btn-md" href="
+								<?php
+								echo mm_build_link(
+									$links['email'],
+									array(
+										'utm_campaign' => mm_brand( '%s_wp_plugin' ),
+										'utm_medium'   => 'plugin_home',
+										'utm_content'  => 'manage_email',
+										'r'            => '',
+									)
+								);
+								?>
+																		" target="_blank"><?php esc_html_e( 'Manage', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 						</div>
 					</div>
@@ -268,7 +326,19 @@ if ( $is_bluerock ) {
 							<h2><?php esc_html_e( 'Domains', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<p><?php esc_html_e( 'Find a new domain and assign it to your site, or start a new site with a new domain.', 'mojo-marketplace-wp-plugin' ); ?></p>
 							<div class="col-xs-12 col-sm-8 col-sm-offset-4 text-right">
-								<a class="btn btn-primary btn-md" href="<?php echo mm_build_link( $links['domains'], array( 'utm_campaign' => mm_brand( '%s_wp_plugin' ), 'utm_medium' => 'plugin_home', 'utm_content' => 'find_domain', 'r' => '' ) ); ?>" target="_blank"><?php esc_html_e( 'Find a Domain', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a class="btn btn-primary btn-md" href="
+								<?php
+								echo mm_build_link(
+									$links['domains'],
+									array(
+										'utm_campaign' => mm_brand( '%s_wp_plugin' ),
+										'utm_medium'   => 'plugin_home',
+										'utm_content'  => 'find_domain',
+										'r'            => '',
+									)
+								);
+								?>
+																		" target="_blank"><?php esc_html_e( 'Find a Domain', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 						</div>
 					</div>
@@ -280,7 +350,19 @@ if ( $is_bluerock ) {
 							<h2><?php esc_html_e( 'Help', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<p><?php esc_html_e( 'Need help from the folks at Bluehost? We have 24/7 US-based phone and chat support waiting to help.', 'mojo-marketplace-wp-plugin' ); ?></p>
 							<div class="col-xs-12 col-sm-8 col-sm-offset-4 text-right">
-								<a class="btn btn-primary btn-md" href="<?php echo mm_build_link( $links['support'], array( 'utm_campaign' => mm_brand( '%s_wp_plugin' ), 'utm_medium' => 'plugin_home', 'utm_content' => 'help', 'r' => '' ) ); ?>" target="_blank"><?php esc_html_e( 'Help Me', 'mojo-marketplace-wp-plugin' ); ?></a>
+								<a class="btn btn-primary btn-md" href="
+								<?php
+								echo mm_build_link(
+									$links['support'],
+									array(
+										'utm_campaign' => mm_brand( '%s_wp_plugin' ),
+										'utm_medium'   => 'plugin_home',
+										'utm_content'  => 'help',
+										'r'            => '',
+									)
+								);
+								?>
+																		" target="_blank"><?php esc_html_e( 'Help Me', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 						</div>
 					</div>
