@@ -5,6 +5,8 @@
  * Version: 1.5.2
  * Author: Mike Hansen
  * Author URI: http://mikehansen.me?utm_campaign=plugin&utm_source=mojo_wp_plugin
+ * Requires at least: 4.7
+ * Requires PHP: 5.3
  * Text Domain: mojo-marketplace-wp-plugin
  * Domain Path: /languages
  * License: GPLv2 or later
