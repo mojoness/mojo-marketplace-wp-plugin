@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: MOJO Marketplace 1.5.2\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/mojo-marketplace-wp-plugin\n"
-"POT-Creation-Date: 2020-04-24 14:55:26+00:00\n"
+"POT-Creation-Date: 2020-04-27 16:08:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -290,6 +290,36 @@ msgstr ""
 
 #: inc/performance.php:188
 msgid "PHP Edge file does not exist."
+msgstr ""
+
+#: inc/plugin-php-compat-check.php:121
+#. translators: 1: plugin name 2: minimum required PHP version, current PHP
+#. version
+msgid ""
+"%1$s requires PHP version %2$s or later. You are currently running version "
+"%3$s."
+msgstr ""
+
+#: inc/plugin-php-compat-check.php:122
+msgid " Please contact your web host about upgrading PHP."
+msgstr ""
+
+#: inc/plugin-php-compat-check.php:137
+#. translators: 1: plugin name 2: required PHP extension
+msgid "%1$s requires the %2$s PHP extension."
+msgstr ""
+
+#: inc/plugin-php-compat-check.php:153
+#. translators: 1: plugin name 2: minimum required WordPress version 3: current
+#. WordPress version
+msgid ""
+"%1$s requires WordPress version %2$s or later. You are currently running "
+"version %3$s."
+msgstr ""
+
+#: inc/plugin-php-compat-check.php:191
+#. translators: plugin name
+msgid "The \"%s\" plugin has been deactivated."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

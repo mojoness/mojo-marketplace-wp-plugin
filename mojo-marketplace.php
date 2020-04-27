@@ -15,8 +15,6 @@
  * @package Mojo Marketplace
  */
 
-use Endurance_WP_Plugin_Updater\Updater;
-
 // Do not access file directly!
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -27,43 +25,20 @@ define( 'MM_BASE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MM_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MM_ASSETS_URL', 'https://www.mojomarketplace.com/mojo-plugin-assets/' );
 
-/**
- * Load the plugin translations.
- */
-function mojo_marketplace_load_plugin_textdomain() {
-	load_plugin_textdomain( 'mojo-marketplace-wp-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+global $pagenow;
+if ( 'plugins.php' === $pagenow ) {
+
+	require dirname( __FILE__ ) . '/inc/plugin-php-compat-check.php';
+
+	$plugin_check = new Mojo_Plugin_PHP_Compat_Check( __FILE__ );
+
+	$plugin_check->min_php_version = '5.3';
+	$plugin_check->min_wp_version  = '4.7';
+
+	$plugin_check->check_plugin_requirements();
 }
 
-add_action( 'plugins_loaded', 'mojo_marketplace_load_plugin_textdomain' );
-
-// Composer autoloader
-require dirname( __FILE__ ) . '/vendor/autoload.php';
-
-require_once MM_BASE_DIR . 'inc/base.php';
-require_once MM_BASE_DIR . 'inc/checkout.php';
-require_once MM_BASE_DIR . 'inc/menu.php';
-require_once MM_BASE_DIR . 'inc/shortcode-generator.php';
-require_once MM_BASE_DIR . 'inc/mojo-themes.php';
-require_once MM_BASE_DIR . 'inc/styles.php';
-require_once MM_BASE_DIR . 'inc/plugin-search.php';
-require_once MM_BASE_DIR . 'inc/jetpack.php';
-require_once MM_BASE_DIR . 'inc/user-experience-tracking.php';
-require_once MM_BASE_DIR . 'inc/notifications.php';
-require_once MM_BASE_DIR . 'inc/staging.php';
-require_once MM_BASE_DIR . 'inc/updates.php';
-require_once MM_BASE_DIR . 'inc/coming-soon.php';
-require_once MM_BASE_DIR . 'inc/tests.php';
-require_once MM_BASE_DIR . 'inc/track-last-login.php';
-require_once MM_BASE_DIR . 'inc/performance.php';
-require_once MM_BASE_DIR . 'inc/partners.php';
-
-mm_require( MM_BASE_DIR . 'inc/branding.php' );
-
-// Check proper PHP and bring CLI loader online
-if ( version_compare( PHP_VERSION, '5.3.29' ) >= 0 ) {
-	mm_require( MM_BASE_DIR . 'inc/cli-init.php' );
+// Check PHP version before initializing to prevent errors if plugin is incompatible.
+if ( version_compare( PHP_VERSION, '5.3', '>=' ) ) {
+	require dirname( __FILE__ ) . '/bootstrap.php';
 }
-
-mm_require( MM_BASE_DIR . 'inc/admin-page-notifications-blocker.php' );
-
-new Updater( 'mojoness', 'mojo-marketplace-wp-plugin', 'mojo-marketplace-wp-plugin/mojo-marketplace.php' );
