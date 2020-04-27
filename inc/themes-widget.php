@@ -5,15 +5,15 @@ This file creates the widget for themes
 
 class MOJO_Widget extends WP_Widget {
 	var $defaults = array(
-		'mojo-title' => 'Mojo Marketplace',
-		'mojo-platform' => 'wordpress',
-		'mojo-type' => 'themes',
-		'mojo-items' => 'recent',
+		'mojo-title'      => 'Mojo Marketplace',
+		'mojo-platform'   => 'wordpress',
+		'mojo-type'       => 'themes',
+		'mojo-items'      => 'recent',
 		'mojo-image-size' => 'thumbnail',
-		'mojo-quantity' => '3',
-		'mojo-preview' => 'off',
-		'mojo-seller' => '',
-		'mojo-aff-id' => ''
+		'mojo-quantity'   => '3',
+		'mojo-preview'    => 'off',
+		'mojo-seller'     => '',
+		'mojo-aff-id'     => '',
 	);
 	public function __construct() {
 		$this->defaults['mojo-title'] = __( 'Mojo Marketplace', 'mojo-marketplace-wp-plugin' );
@@ -32,7 +32,7 @@ class MOJO_Widget extends WP_Widget {
 
 		<label for="<?php echo $this->get_field_name( 'mojo-platform' ); ?>"><?php esc_html_e( 'Platform', 'mojo-marketplace-wp-plugin' ); ?>:</label>
 		<select  class="widefat mojo-wid-type" id="<?php echo $this->get_field_id( 'mojo-platform' ); ?>" name="<?php echo $this->get_field_name( 'mojo-platform' ); ?>">
-			<option value='wordpress' <?php selected( $instance['mojo-platform'], 'wordpress', true ); ?>><?php esc_html_e( 'WordPress', 'mojo-marketplace-wp-plugin' ); ?></option>
+			<option value='wordpress' <?php selected( $instance['mojo-platform'], 'WordPress', true ); ?>><?php esc_html_e( 'WordPress', 'mojo-marketplace-wp-plugin' ); ?></option>
 			<option value='joomla' <?php selected( $instance['mojo-platform'], 'joomla', true ); ?>><?php esc_html_e( 'Joomla', 'mojo-marketplace-wp-plugin' ); ?></option>
 			<option value='drupal' <?php selected( $instance['mojo-platform'], 'drupal', true ); ?>><?php esc_html_e( 'Drupal', 'mojo-marketplace-wp-plugin' ); ?></option>
 			<option value='magento' <?php selected( $instance['mojo-platform'], 'magento', true ); ?>><?php esc_html_e( 'Magento', 'mojo-marketplace-wp-plugin' ); ?></option>
@@ -77,8 +77,8 @@ class MOJO_Widget extends WP_Widget {
 		<br/>
 
 		<?php
-		if( defined( 'MMAFF' ) && $instance['mojo-aff-id'] == MMAFF ) {
-			$instance['mojo-aff-id'] = "";
+		if ( defined( 'MMAFF' ) && $instance['mojo-aff-id'] == MMAFF ) {
+			$instance['mojo-aff-id'] = '';
 		}
 		?>
 
@@ -91,40 +91,54 @@ class MOJO_Widget extends WP_Widget {
 
 	public function widget( $args, $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
-		$query = array();
-		if( $instance['mojo-platform'] == "wordpress" &&  $instance['mojo-type'] == "plugins" ) {
-			$instance['mojo-type'] = "themes"; //Because MOJO Cannot sell WP plugins...
+		$query    = array();
+		if ( $instance['mojo-platform'] == 'WordPress' && $instance['mojo-type'] == 'plugins' ) {
+			$instance['mojo-type'] = 'themes'; // Because MOJO Cannot sell WP plugins...
 		}
-		if( $instance['mojo-quantity'] != 10 ) {
+		if ( $instance['mojo-quantity'] != 10 ) {
 			$query['count'] = $instance['mojo-quantity'];
 		}
-		if( 2 < strlen( $instance['mojo-seller'] ) ) {
+		if ( 2 < strlen( $instance['mojo-seller'] ) ) {
 			$query['seller'] = $instance['mojo-seller'];
 		}
 
-		if( 'on' == $instance['mojo-preview'] ) {
+		if ( 'on' == $instance['mojo-preview'] ) {
 			global $use_mm_styles;
 			$use_mm_styles = true;
 		}
 
 		$items = mm_api( $instance, $query );
 		/*if there are no popular items show default*/
-		if( strlen( $items['body'] ) < $instance['mojo-quantity'] AND $instance['mojo-items'] == 'popular' ) {
+		if ( strlen( $items['body'] ) < $instance['mojo-quantity'] and $instance['mojo-items'] == 'popular' ) {
 			$items = mm_api();
 		}
 
-		if( ! is_wp_error( $items ) ) {
+		if ( ! is_wp_error( $items ) ) {
 
-			$items = json_decode( $items['body'] );
-			$aff_id = ( isset( $instance['mojo-aff-id'] ) AND strlen( $instance['mojo-aff-id'] ) > 0 ) ? $instance['mojo-aff-id'] : '';
-			$content = "";
-			$count = 0;
+			$items   = json_decode( $items['body'] );
+			$aff_id  = ( isset( $instance['mojo-aff-id'] ) and strlen( $instance['mojo-aff-id'] ) > 0 ) ? $instance['mojo-aff-id'] : '';
+			$content = '';
+			$count   = 0;
 			foreach ( $items as $item ) {
 				$item->name = apply_filters( 'mm_item_name', $item->name );
-				$content .= '<div class="mojo-widget-item wp-caption" style="margin:15px 0px;">';
-				$content .= '<a target="_blank" href="' . mm_build_link( $item->page_url, array( 'r' => $aff_id, 'utm_medium'=>'plugin_widget', 'utm_content' => 'item_thumbnail' ) ) . '"><img style="display:block;margin: 0 auto;max-width: 100%;" src="'. $item->images->{$instance['mojo-image-size']} . '"  /></a>';
-				if( 'on' == $instance['mojo-preview'] ) {
-					$content .= '<a target="_blank" class="mojo-widget-preview" href="' . mm_build_link( $item->page_url, array( 'r' => $aff_id, 'utm_medium'=>'plugin_widget', 'utm' => 'item_thumbnail_hover_preview' ) ) . '"><img src="' . $item->images->preview_url . '" /></a>';
+				$content   .= '<div class="mojo-widget-item wp-caption" style="margin:15px 0px;">';
+				$content   .= '<a target="_blank" href="' . mm_build_link(
+					$item->page_url,
+					array(
+						'r'           => $aff_id,
+						'utm_medium'  => 'plugin_widget',
+						'utm_content' => 'item_thumbnail',
+					)
+				) . '"><img style="display:block;margin: 0 auto;max-width: 100%;" src="' . $item->images->{$instance['mojo-image-size']} . '"  /></a>';
+				if ( 'on' == $instance['mojo-preview'] ) {
+					$content .= '<a target="_blank" class="mojo-widget-preview" href="' . mm_build_link(
+						$item->page_url,
+						array(
+							'r'          => $aff_id,
+							'utm_medium' => 'plugin_widget',
+							'utm'        => 'item_thumbnail_hover_preview',
+						)
+					) . '"><img src="' . $item->images->preview_url . '" /></a>';
 				}
 				$content .= '<p class="wp-caption-text">' . $item->name . '</p>';
 				$content .= '</div>';
@@ -132,7 +146,7 @@ class MOJO_Widget extends WP_Widget {
 			}
 			$title = apply_filters( 'widget_title', $instance['mojo-title'] );
 			echo $args['before_widget'];
-			if( ! empty( $title ) ) {
+			if ( ! empty( $title ) ) {
 				echo $args['before_title'] . $title . $args['after_title'];
 			}
 			echo $content;

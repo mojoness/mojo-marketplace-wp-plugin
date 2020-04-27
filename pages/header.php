@@ -1,6 +1,6 @@
 <header id="header" class="navbar navbar-default">
 	<div class="header-block bg-cover" style="background-image: url('<?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s.jpg' ); ?>');">
-		<span data-srcset="<?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s.jpg' ); ?>, <?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s-2x.jpg' );?> 2x"></span>
+		<span data-srcset="<?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s.jpg' ); ?>, <?php echo mm_brand( MM_ASSETS_URL . 'img/header-bg-%s-2x.jpg' ); ?> 2x"></span>
 		<nav>
 			<div class="container">
 				<div class="inner-holder">
@@ -25,7 +25,7 @@
 						<div class="dropdown-menu">
 							<div class="avatar-block">
 								<?php $user = wp_get_current_user(); ?>
-								<div class="avatar"><a href="#" style="border-radius: 24px;overflow:hidden;"><?php echo get_avatar( $user->data->ID, 48 );?></a></div>
+								<div class="avatar"><a href="#" style="border-radius: 24px;overflow:hidden;"><?php echo get_avatar( $user->data->ID, 48 ); ?></a></div>
 								<div class="name"><a href="#"><?php echo $user->data->display_name; ?></a></div>
 							</div>
 							<ul class="projects-nav list-unstyled">

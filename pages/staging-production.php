@@ -1,9 +1,11 @@
 <?php
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 ?>
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 <?php
-require_once( MM_BASE_DIR . 'pages/header/header.php' );
+require_once MM_BASE_DIR . 'pages/header/header.php';
 ?>
 	<main id="main">
 		<div class="container">
@@ -12,7 +14,7 @@ require_once( MM_BASE_DIR . 'pages/header/header.php' );
 					<?php
 					if ( isset( $_GET['staging-created'] ) || get_transient( 'mm_fresh_staging' ) ) {
 						delete_transient( 'mm_fresh_staging' );
-					?>
+						?>
 					<div class="row">
 						<div id="staging-success" class="col-xs-12 col-sm-12 text-center">
 							<div class="checkmark">

@@ -1,5 +1,7 @@
 <?php
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 function mm_is_staging() {
 	return ( get_option( 'staging_environment' ) == 'staging' ) ? true : false;
@@ -22,7 +24,12 @@ function mm_cl( $command, $args = null ) {
 	);
 
 	if ( ! array_key_exists( $command, $whitelist_commands ) ) {
-		echo json_encode( array( 'status' => 'error', 'message' => 'Command not found in whitelist.' ) );
+		echo json_encode(
+			array(
+				'status'  => 'error',
+				'message' => 'Command not found in whitelist.',
+			)
+		);
 	} else {
 		if ( ! class_exists( 'WP_CLI_Command' ) ) {
 			mm_check_env( $whitelist_commands[ $command ] );
@@ -34,13 +41,13 @@ function mm_cl( $command, $args = null ) {
 	}
 
 	$command = array( $command );
-	$token = wp_generate_password( 32, false );
+	$token   = wp_generate_password( 32, false );
 	set_transient( 'staging_auth_token', $token, 60 );
 	$command[] = $token;
-	$config = get_option( 'staging_config' );
+	$config    = get_option( 'staging_config' );
 	if ( false == $config || ! isset( $config['production_dir'] ) || ! isset( $config['staging_dir'] ) ) {
 		$staging_rel = 'staging/' . mt_rand( 1000, 9999 );
-		$config = array(
+		$config      = array(
 			'production_dir' => ABSPATH,
 			'staging_dir'    => ABSPATH . $staging_rel . '/',
 			'production_url' => get_option( 'siteurl' ),
@@ -57,7 +64,7 @@ function mm_cl( $command, $args = null ) {
 	$command[] = get_current_user_id();
 
 	if ( ! is_null( $args ) && is_array( $args ) ) {
-		$args = array_values( $args );
+		$args    = array_values( $args );
 		$command = array_merge( $command, $args );
 	}
 
@@ -65,17 +72,32 @@ function mm_cl( $command, $args = null ) {
 	$command = implode( ' ', $command );
 
 	if ( false !== strpos( $command, ';' ) ) {
-		echo json_encode( array( 'status' => 'error', 'message' => 'Invalid character in command (;).' ) );
+		echo json_encode(
+			array(
+				'status'  => 'error',
+				'message' => 'Invalid character in command (;).',
+			)
+		);
 		die;
 	}
 
 	if ( false !== strpos( $command, '&' ) ) {
-		echo json_encode( array( 'status' => 'error', 'message' => 'Invalid character in command (&).' ) );
+		echo json_encode(
+			array(
+				'status'  => 'error',
+				'message' => 'Invalid character in command (&).',
+			)
+		);
 		die;
 	}
 
 	if ( false !== strpos( $command, '|' ) ) {
-		echo json_encode( array( 'status' => 'error', 'message' => 'Invalid character in command (|).' ) );
+		echo json_encode(
+			array(
+				'status'  => 'error',
+				'message' => 'Invalid character in command (|).',
+			)
+		);
 		die;
 	}
 
@@ -193,7 +215,7 @@ function mm_revisions() {
 	mm_check_env( 'staging' );
 	$revisions = mm_cl( 'revisions' );
 	$revisions = explode( ';', $revisions );
-	$output = '';
+	$output    = '';
 	foreach ( $revisions as $revision ) {
 		$revision = explode( ',', $revision );
 		if ( array_search( '', $revision ) === false ) {

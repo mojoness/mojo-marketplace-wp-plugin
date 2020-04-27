@@ -1,23 +1,23 @@
 <?php
-$search = ( isset( $_GET['search'] ) ) ? sanitize_title_for_query( $_GET['search'] ) : '';
-$query = array(
+$search   = ( isset( $_GET['search'] ) ) ? sanitize_title_for_query( $_GET['search'] ) : '';
+$query    = array(
 	'item_type' => ( isset( $_GET['sort'] ) ) ? sanitize_title_for_query( $_GET['sort'] ) : 'themes',
 	'query'     => $search,
 	'category'  => 'wordpress',
 	'size'      => 150,
 	'order'     => 'score',
 );
-$api_url = add_query_arg( $query, 'https://api.mojomarketplace.com/api/v2/search' );
+$api_url  = add_query_arg( $query, 'https://api.mojomarketplace.com/api/v2/search' );
 $response = mm_api_cache( $api_url );
 ?>
-<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' );?>">
+<div id="mojo-wrapper" class="<?php echo mm_brand( 'mojo-%s-branding' ); ?>">
 	<?php
 	mm_require( MM_BASE_DIR . 'pages/header.php' );
 	if ( ! is_wp_error( $response ) ) {
-		$body = json_decode( $response['body'] );
+		$body  = json_decode( $response['body'] );
 		$items = $body->items;
-		$type = 'search';
-	?>
+		$type  = 'search';
+		?>
 	<main id="main">
 		<div class="container">
 			<div class="panel panel-default">
@@ -51,22 +51,54 @@ $response = mm_api_cache( $api_url );
 
 					$results = 0;
 					foreach ( $items as $item ) {
-						if ( '0' == $item->prices->single_domain_license ) { continue; }
-						$whitelist = array( 'Logo','All','Business Cards', 'WordPress' );
-						if ( ! in_array( $item->category, $whitelist ) ) { continue; }
+						if ( '0' == $item->prices->single_domain_license ) {
+							continue;
+						}
+						$whitelist = array( 'Logo', 'All', 'Business Cards', 'WordPress' );
+						if ( ! in_array( $item->category, $whitelist ) ) {
+							continue;
+						}
 						$results++;
 						?>
 						<div class="list-group-item theme-item">
 							<div class="row">
 								<div class="col-xs-12 col-sm-4 col-md-5">
-									<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>">
+									<a href="
+									<?php
+									echo esc_url(
+										add_query_arg(
+											array(
+												'page'    => 'mojo-single-item',
+												'item_id' => $item->id,
+											),
+											admin_url( 'admin.php' )
+										)
+									);
+									?>
+												">
 										<img class="img-responsive" src="<?php echo $item->images->preview_url; ?>" alt="image description" width="367" height="205">
 									</a>
 								</div>
 								<div class="col-xs-12 col-sm-5 col-md-5">
 									<div class="description-box">
-										<h2><a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>"><?php echo apply_filters( 'mm_item_name', $item->name ); ?></a></h2>
-										<?php if ( isset( $item->short_description ) ) { echo $item->short_description; } ?>
+										<h2><a href="
+										<?php
+										echo esc_url(
+											add_query_arg(
+												array(
+													'page' => 'mojo-single-item',
+													'item_id' => $item->id,
+												),
+												admin_url( 'admin.php' )
+											)
+										);
+										?>
+														"><?php echo apply_filters( 'mm_item_name', $item->name ); ?></a></h2>
+										<?php
+										if ( isset( $item->short_description ) ) {
+											echo $item->short_description;
+										}
+										?>
 										<p>
 											<?php
 												printf(
@@ -95,8 +127,30 @@ $response = mm_api_cache( $api_url );
 											<span class="price-number">$' ); ?><span><?php echo number_format( $item->prices->single_domain_license ); ?></span></span>
 										</div>
 										<div class="btn-group-vertical" role="group">
-											<a href="<?php echo esc_url( add_query_arg( array( 'page' => 'mojo-single-item', 'item_id' => $item->id ), admin_url( 'admin.php' ) ) ); ?>" class="btn btn-primary btn-lg"><?php esc_html_e( 'Details', 'mojo-marketplace-wp-plugin' ); ?></a>
-											<a href="<?php echo mm_build_link( add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ), array( 'utm_medium' => 'plugin_admin', 'utm_content' => 'buy_now_search' ) ); ?>" class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="search_list"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
+											<a href="
+											<?php
+											echo esc_url(
+												add_query_arg(
+													array(
+														'page' => 'mojo-single-item',
+														'item_id' => $item->id,
+													),
+													admin_url( 'admin.php' )
+												)
+											);
+											?>
+														" class="btn btn-primary btn-lg"><?php esc_html_e( 'Details', 'mojo-marketplace-wp-plugin' ); ?></a>
+											<a href="
+											<?php
+											echo mm_build_link(
+												add_query_arg( array( 'item_id' => $item->id ), 'https://www.mojomarketplace.com/cart' ),
+												array(
+													'utm_medium'  => 'plugin_admin',
+													'utm_content' => 'buy_now_search',
+												)
+											);
+											?>
+														" class="btn btn-success btn-lg mm_buy_now" data-id="<?php echo $item->id; ?>" data-price="<?php echo number_format( $item->prices->single_domain_license ); ?>" data-view="search_list"><?php esc_html_e( 'Buy Now', 'mojo-marketplace-wp-plugin' ); ?></a>
 										</div>
 									</div>
 								</div>
@@ -127,9 +181,9 @@ $response = mm_api_cache( $api_url );
 		</div>
 	</main>
 
-	<?php
+		<?php
 	} else {
 		mm_require( MM_BASE_DIR . 'pages/api-unavailable.php' );
 	}
-?>
+	?>
 </div>
