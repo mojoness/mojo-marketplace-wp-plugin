@@ -10,6 +10,7 @@
  * @param array  $properties Event properties
  */
 function mm_clm_log( $name, $properties = array() ) {
+	return;
 	global $mm_clm_events;
 
 	$refresh_token = get_option( '_mm_refresh_token' );
