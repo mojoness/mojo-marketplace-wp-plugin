@@ -19,12 +19,12 @@
     "yaml-lint": "^1.2.4"
   },
   "scripts": {
-    "i18n": "wpi18n addtextdomain && vendor/bin/composer run i18n",
+    "i18n": "wpi18n addtextdomain && composer run i18n",
     "lint": "npx yamllint **/*.yml --ignore=node_modules/**"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npx wpi18n addtextdomain && vendor/bin/composer run i18n"
+      "pre-commit": "lint-staged && npx wpi18n addtextdomain && composer run i18n"
     }
   },
   "lint-staged": {
