@@ -29,10 +29,10 @@
   },
   "lint-staged": {
     "**/*.yml": [
-      "npm run lint"
+      "npx yamllint --ignore=node_modules/**"
     ],
     "**/*.php": [
-      "composer run-script lint"
+      "vendor/bin/phpcs --standard=Bluehost -s"
     ]
   }
 }
