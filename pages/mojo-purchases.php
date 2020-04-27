@@ -68,7 +68,7 @@ $response = wp_remote_get( $api_url, $args );
 											<p>
 												<?php
 												printf(
-												/* translators: %s: plugin tags */
+													/* translators: %s: list of tags */
 													__( '<strong>Tags: </strong> %s&hellip;', 'mojo-marketplace-wp-plugin' ),
 													substr( $item->tags, 0, 120 )
 												);

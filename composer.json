@@ -10,7 +10,6 @@
     },
     {
       "name": "Micah Wood",
-      "email": "micah@wpscholar.com",
       "homepage": "https://wpscholar.com"
     }
   ],
@@ -21,42 +20,43 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "https://satis.wpteamhub.com"
+      "url": "https://bluehost.github.io/satis/",
+      "only": [
+        "bluehost/*",
+        "mojoness/*"
+      ]
     }
   ],
-  "scripts": {
-    "lint": [
-      "vendor/bin/phpcs --ignore=*/vendor/* ."
-    ],
-    "post-install-cmd": [
-      "xrstf\\Composer52\\Generator::onPostInstallCmd"
-    ],
-    "post-update-cmd": [
-      "xrstf\\Composer52\\Generator::onPostInstallCmd"
-    ],
-    "post-autoload-dump": [
-      "xrstf\\Composer52\\Generator::onPostInstallCmd"
-    ]
-  },
   "require": {
     "bluehost/endurance-wp-module-business-reviews": "^1.0",
     "bluehost/endurance-wp-module-gutenframe": "^0.1",
     "bluehost/endurance-wp-module-loader": "^1.0",
     "bluehost/endurance-wp-module-spam-prevention": "^1.0",
     "bluehost/endurance-wp-module-sso": "^1.0",
-    "xrstf/composer-php52": "^1.0"
+    "bluehost/endurance-wp-plugin-updater": "^1.0"
   },
   "require-dev": {
-    "bluehost/wp-php-standards": "^1.0"
+    "bluehost/wp-php-standards": "^1.0",
+    "wp-cli/wp-cli": "^2.4",
+    "wp-cli/i18n-command": "^2.2"
   },
   "config": {
     "optimize-autoloader": true
   },
-  "extra": {
-    "phpcs-config": {
-      "colors": 1,
-      "default_standard": "Bluehost",
-      "testVersion": "5.2-"
-    }
+  "scripts": {
+    "fix": [
+      "vendor/bin/phpcbf . --standard=Bluehost"
+    ],
+    "i18n": [
+      "vendor/bin/wp i18n make-pot . ./languages/mojo-marketplace-wp-plugin.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/mojoness/mojo-marketplace-wp-plugin/issues\",\"POT-Creation-Date\":null}'"
+    ],
+    "lint": [
+      "vendor/bin/phpcs . --standard=Bluehost -s"
+    ]
+  },
+  "scripts-descriptions": {
+    "fix": "Automatically fix coding standards issues where possible.",
+    "i18n": "Generate a .pot file for translation.",
+    "lint": "Check files against coding standards."
   }
 }

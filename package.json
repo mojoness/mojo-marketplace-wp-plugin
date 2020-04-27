@@ -1,11 +1,38 @@
 {
   "name": "mojo-marketplace-wp-plugin",
-  "version": "1.5.1",
-  "description": "mojo-marketplace-wp-plugin ==========================",
+  "description": "WordPress plugin that has shortcodes, widgets and themes.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mojoness/mojo-marketplace-wp-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mojoness/mojo-marketplace-wp-plugin/issues"
+  },
+  "homepage": "https://github.com/mojoness/mojo-marketplace-wp-plugin#readme",
+  "author": "Micah Wood <micah@wpscholar.com>",
+  "license": "GPL-2.0+",
   "devDependencies": {
-    "node-wp-i18n": "^1.2.3"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "node-wp-i18n": "^1.2.3",
+    "yaml-lint": "^1.2.4"
   },
   "scripts": {
-    "translate": "wpi18n addtextdomain && wpi18n makepot"
+    "i18n": "wpi18n addtextdomain && vendor/bin/composer run i18n",
+    "lint": "npx yamllint **/*.yml --ignore=node_modules/**"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npx wpi18n addtextdomain && vendor/bin/composer run i18n"
+    }
+  },
+  "lint-staged": {
+    "**/*.yml": [
+      "npx yamllint --ignore=node_modules/**"
+    ],
+    "**/*.php": [
+      "vendor/bin/phpcs --standard=Bluehost -s"
+    ]
   }
 }
