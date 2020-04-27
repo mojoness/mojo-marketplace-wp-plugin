@@ -53,9 +53,6 @@ jobs:
       - name: Run build
         run: npx webpack && npx webpack -p
 
-      - name: Generate .pot file
-        run: npm run i18n
-
       - name: Validate composer.json and composer.lock
         run: composer validate
 

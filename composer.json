@@ -36,7 +36,9 @@
     "bluehost/endurance-wp-plugin-updater": "^1.0"
   },
   "require-dev": {
-    "bluehost/wp-php-standards": "^1.0"
+    "bluehost/wp-php-standards": "^1.0",
+    "wp-cli/wp-cli": "^2.4",
+    "wp-cli/i18n-command": "^2.2"
   },
   "config": {
     "optimize-autoloader": true
@@ -45,12 +47,16 @@
     "fix": [
       "vendor/bin/phpcbf . --standard=Bluehost"
     ],
+    "i18n": [
+      "vendor/bin/wp i18n make-pot . ./languages/mojo-marketplace-wp-plugin.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/mojoness/mojo-marketplace-wp-plugin/issues\",\"POT-Creation-Date\":null}'"
+    ],
     "lint": [
       "vendor/bin/phpcs . --standard=Bluehost -s"
     ]
   },
   "scripts-descriptions": {
     "fix": "Automatically fix coding standards issues where possible.",
+    "i18n": "Generate a .pot file for translation.",
     "lint": "Check files against coding standards."
   }
 }
