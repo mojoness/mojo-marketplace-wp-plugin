@@ -155,9 +155,10 @@ footer li{
 				<p>
 					<?php
 					printf(
-						/* translators: %s: Bookmark URL */
-						esc_html__( 'The owner of this website is working on making this site awesome. Why not <a class="highlight" href="%s" onclick="bookmark();">bookmark it</a> and come back again later. We are sure you will not be disappointed.', 'mojo-marketplace-wp-plugin' ),
-						'#'
+						/* translators: %1$s is replaced with opening link tag for bookmarking website, %2$s is replaced with closing link tag */
+						esc_html__( 'The owner of this website is working on making this site awesome. Why not %1$sbookmark it%2$s and come back again later. We are sure you will not be disappointed.', 'mojo-marketplace-wp-plugin' ),
+						'<a class="highlight" href="#" onclick="bookmark();">',
+						'</a>'
 					);
 					?>
 				</p>
@@ -167,9 +168,10 @@ footer li{
 				<p>
 					<?php
 					printf(
-						/* translators: %s: WordPress login URL */
-						esc_html__( 'You should <a class="highlight" href="%s">login</a> to your WordPress installation and prepare your site for launch.', 'mojo-marketplace-wp-plugin' ),
-						esc_url( site_url( 'wp-login.php' ) )
+						/* translators: %1$s is replaced with opening link tag pointing to the WordPress login screen, %2$s is replaced with closing link tag */
+						esc_html__( 'You should %1$slogin%2$s to your WordPress installation and prepare your site for launch.', 'mojo-marketplace-wp-plugin' ),
+						'<a class="highlight" href="' . esc_url( wp_login_url() ) . '">',
+						'</a>'
 					);
 					?>
 				</p>
