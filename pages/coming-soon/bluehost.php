@@ -325,14 +325,20 @@ footer p a:hover {
 	<footer>
 		<p class="text-center">
 			<?php
-				printf(
-					/* translators: 1: Bluehost WordPress page link, 2: Login URL, 3: My Bluehost URL */
-					esc_html__( 'A <a target="_blank" href="%1$s" class="bluehost" rel="nofollow">Bluehost</a> powered website. Is this your website? Log in to <a href="%2$s">WordPress</a> or <a target="_blank" href="%3$s" class="bluehost" rel="nofollow">Bluehost</a>', 'mojo-marketplace-wp-plugin' ),
-					esc_url( 'https://bluehost.com/wordpress' ),
-					esc_url( wp_login_url() ),
-					esc_url( 'https://my.bluehost.com/' )
-				);
-				?>
+			printf(
+				/* translators: %1$s is replaced with opening link tag, %2$s is replaced with closing link tag */
+				esc_html__( 'A %1$sBluehost%2$s powered website.', 'mojo-marketplace-wp-plugin' ) . '&nbsp;',
+				'<a href="https://bluehost.com/wordpress" class="bluehost" target="_blank" rel="noopener noreferrer nofollow">',
+				'</a>'
+			);
+			printf(
+				/* translators: %1$s is replaced with opening login link tag, %2$s is replaced with opening Bluehost link tag, %3$s is replaced with closing link tag */
+				esc_html__( 'Is this your website? Log in to %1$sWordPress%3$s or %2$sBluehost%3$s.', 'mojo-marketplace-wp-plugin' ),
+				'<a href="' . esc_url( wp_login_url() ) . '">',
+				'<a href="https://my.bluehost.com/" class="bluehost" target="_blank" rel="noopener noreferrer nofollow">',
+				'</a>'
+			);
+			?>
 		</p>
 	</footer>
 <script>
