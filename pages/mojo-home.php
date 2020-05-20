@@ -240,7 +240,7 @@ if ( $is_bluerock ) {
 							<h2><?php esc_html_e( 'Page Cache', 'mojo-marketplace-wp-plugin' ); ?></h2>
 							<p><?php esc_html_e( 'Page caching allows your server to keep a copy of a page for a short time to dramatically improve speed.', 'mojo-marketplace-wp-plugin' ); ?></p>
 							<div class="col-xs-12 col-sm-12">
-								<a class="btn btn-primary btn-md" href="<?php echo add_query_arg( array( 'page' => 'mojo-performance' ), admin_url( 'admin.php' ) ); ?>">Configure' ); ?></a>
+								<a class="btn btn-primary btn-md" href="<?php echo add_query_arg( array( 'page' => 'mojo-performance' ), admin_url( 'admin.php' ) ); ?>"><?php esc_html_e('Configure', 'mojo-marketplace-wp-plugin' ); ?></a>
 							</div>
 						</div>
 					</div>
