@@ -326,13 +326,13 @@ footer p a:hover {
 		<p class="text-center">
 			<?php
 			printf(
-				/* translators: %1$s is replaced with opening link tag, %2$s is replaced with closing link tag */
+				/* translators: %1$s is replaced with opening link tag taking you to bluehost.com/wordpress, %2$s is replaced with closing link tag */
 				esc_html__( 'A %1$sBluehost%2$s powered website.', 'mojo-marketplace-wp-plugin' ) . '&nbsp;',
 				'<a href="https://bluehost.com/wordpress" class="bluehost" target="_blank" rel="noopener noreferrer nofollow">',
 				'</a>'
 			);
 			printf(
-				/* translators: %1$s is replaced with opening login link tag, %2$s is replaced with opening Bluehost link tag, %3$s is replaced with closing link tag */
+				/* translators: %1$s is replaced with opening link tag taking you to login page, %2$s is replaced with opening link tag taking you to my.bluehost.com, %3$s is replaced with closing link tag */
 				esc_html__( 'Is this your website? Log in to %1$sWordPress%3$s or %2$sBluehost%3$s.', 'mojo-marketplace-wp-plugin' ),
 				'<a href="' . esc_url( wp_login_url() ) . '">',
 				'<a href="https://my.bluehost.com/" class="bluehost" target="_blank" rel="noopener noreferrer nofollow">',
