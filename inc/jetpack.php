@@ -23,7 +23,7 @@ add_filter( 'jetpack_get_default_modules', 'mm_customize_jetpack_default_modules
  *
  * @return array
  */
-function mm_jetpack_unregister_mailchimp_block( $blocks ) {
+function mm_jetpack_unregister_blocks( $blocks ) {
 	$blocks_to_deregister = array(
 		'mailchimp',
 		'revue',
@@ -37,4 +37,4 @@ function mm_jetpack_unregister_mailchimp_block( $blocks ) {
 	return $blocks;
 }
 
-add_filter( 'jetpack_set_available_blocks', 'mm_jetpack_unregister_mailchimp_block' );
+add_filter( 'jetpack_set_available_blocks', 'mm_jetpack_unregister_block' );
