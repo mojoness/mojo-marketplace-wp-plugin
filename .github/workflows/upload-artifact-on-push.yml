@@ -14,11 +14,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set Package Name
-        id: package
+      - name: Setup Workflow Context
+        id: workflow
+        working-directory: ${{ runner.temp }}
         env:
           REPO: ${{ github.repository }}
-        run: echo ::set-output name=PACKAGE::${REPO##*/}
+        run: |
+          mkdir dist
+          echo ::set-output name=DIST::${PWD}/dist
+          echo ::set-output name=PACKAGE::${REPO##*/}
 
       - name: PHP version
         run: php --version
@@ -39,15 +43,16 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install PHP Dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --no-dev --optimize-autoloader
+        run: composer install --no-progress --no-dev --optimize-autoloader
 
-      - name: Remove development files
-        run: .github/scripts/cleanup.sh
+      - name: Prepare files
+        run: rsync -r --exclude-from=.distignore . ${{ steps.workflow.outputs.DIST }}
 
       - name: List Files
-        run: ls -lah
+        working-directory: ${{ steps.workflow.outputs.DIST }}
+        run: find .
 
       - uses: actions/upload-artifact@v1
         with:
-          name: ${{ steps.package.outputs.PACKAGE }}
-          path: ./
+          name: ${{ steps.workflow.outputs.PACKAGE }}
+          path: ${{ steps.workflow.outputs.DIST }}
