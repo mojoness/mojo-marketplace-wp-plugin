@@ -128,9 +128,10 @@ footer p a:hover{
 			<p class='text-center'>
 				<?php
 					printf(
-						/* translators: %s: Bluehost India WordPress URL */
-						__( 'a <a href="%s" class="bluehost">bluehost india</a> powered website', 'mojo-marketplace-wp-plugin' ),
-						esc_url( 'https://www.bluehost.in/optimized-wordpress-hosting.php' ),
+						/* translators: %1$s is replaced with opening link tag, %2$s is replaced with closing link tag */
+						esc_html__( 'a %1$sbluehost india%2$s powered website', 'mojo-marketplace-wp-plugin' ),
+						'<a href="https://www.bluehost.in/optimized-wordpress-hosting.php" class="bluehost">',
+						'</a>'
 					);
 					?>
 			</p>

@@ -521,9 +521,9 @@ msgstr ""
 msgid "Admin Login"
 msgstr ""
 
-#. translators: %s: Bluehost India WordPress URL
+#. translators: %1$s is replaced with opening link tag, %2$s is replaced with closing link tag
 #: pages/coming-soon/bluehost-india.php:132
-msgid "a <a href=\"%s\" class=\"bluehost\">bluehost india</a> powered website"
+msgid "a %1$sbluehost india%2$s powered website"
 msgstr ""
 
 #: pages/coming-soon/bluehost.php:283
@@ -547,9 +547,14 @@ msgstr ""
 msgid "Enter your email address"
 msgstr ""
 
-#. translators: 1: Bluehost WordPress page link, 2: Login URL, 3: My Bluehost URL
+#. translators: %1$s is replaced with opening link tag taking you to bluehost.com/wordpress, %2$s is replaced with closing link tag
 #: pages/coming-soon/bluehost.php:330
-msgid "A <a target=\"_blank\" href=\"%1$s\" class=\"bluehost\" rel=\"nofollow\">Bluehost</a> powered website. Is this your website? Log in to <a href=\"%2$s\">WordPress</a> or <a target=\"_blank\" href=\"%3$s\" class=\"bluehost\" rel=\"nofollow\">Bluehost</a>"
+msgid "A %1$sBluehost%2$s powered website."
+msgstr ""
+
+#. translators: %1$s is replaced with opening link tag taking you to login page, %2$s is replaced with opening link tag taking you to my.bluehost.com, %3$s is replaced with closing link tag
+#: pages/coming-soon/bluehost.php:336
+msgid "Is this your website? Log in to %1$sWordPress%3$s or %2$sBluehost%3$s."
 msgstr ""
 
 #: pages/coming-soon/mojo.php:141
@@ -565,109 +570,109 @@ msgstr ""
 msgid "Just visiting?"
 msgstr ""
 
-#. translators: %s: Bookmark URL
+#. translators: %1$s is replaced with opening link tag for bookmarking website, %2$s is replaced with closing link tag
 #: pages/coming-soon/mojo.php:159
-msgid "The owner of this website is working on making this site awesome. Why not <a class=\"highlight\" href=\"%s\" onclick=\"bookmark();\">bookmark it</a> and come back again later. We are sure you will not be disappointed."
+msgid "The owner of this website is working on making this site awesome. Why not %1$sbookmark it%2$s and come back again later. We are sure you will not be disappointed."
 msgstr ""
 
-#: pages/coming-soon/mojo.php:166
+#: pages/coming-soon/mojo.php:167
 msgid "Are you the Site Owner?"
 msgstr ""
 
-#. translators: %s: WordPress login URL
-#: pages/coming-soon/mojo.php:171
-msgid "You should <a class=\"highlight\" href=\"%s\">login</a> to your WordPress installation and prepare your site for launch."
+#. translators: %1$s is replaced with opening link tag pointing to the WordPress login screen, %2$s is replaced with closing link tag
+#: pages/coming-soon/mojo.php:172
+msgid "You should %1$slogin%2$s to your WordPress installation and prepare your site for launch."
 msgstr ""
 
-#: pages/coming-soon/mojo.php:177
+#: pages/coming-soon/mojo.php:179
 msgid "To launch your site just click the link in the banner at the top of the scre   en."
 msgstr ""
 
-#: pages/coming-soon/mojo.php:184
+#: pages/coming-soon/mojo.php:186
 #: pages/mojo-home.php:133
 #: pages/mojo-single-item.php:30
 #: pages/mojo-themes.php:50
 msgid "WordPress Themes"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:186
+#: pages/coming-soon/mojo.php:188
 msgid "WooCommerce Themes"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:187
+#: pages/coming-soon/mojo.php:189
 msgid "Responsive WordPress Themes"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:188
+#: pages/coming-soon/mojo.php:190
 msgid "Business WordPress Themes"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:189
+#: pages/coming-soon/mojo.php:191
 msgid "Blog WordPress Themes"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:193
+#: pages/coming-soon/mojo.php:195
 #: pages/mojo-services.php:62
 msgid "WordPress Services"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:195
+#: pages/coming-soon/mojo.php:197
 msgid "Install WordPress Theme"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:196
+#: pages/coming-soon/mojo.php:198
 msgid "Make My Site Look Like the Demo"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:197
+#: pages/coming-soon/mojo.php:199
 msgid "Backup Your WordPress Website"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:198
+#: pages/coming-soon/mojo.php:200
 msgid "WordPress Theme Training"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:202
+#: pages/coming-soon/mojo.php:204
 msgid "About MOJO"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:204
+#: pages/coming-soon/mojo.php:206
 msgid "Explore MOJO"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:205
+#: pages/coming-soon/mojo.php:207
 msgid "Sell with MOJO"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:206
+#: pages/coming-soon/mojo.php:208
 msgid "MOJO Affiliates"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:207
+#: pages/coming-soon/mojo.php:209
 msgid "FAQs"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:211
+#: pages/coming-soon/mojo.php:213
 msgid "Login"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:212
+#: pages/coming-soon/mojo.php:214
 msgid "What is this?"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:217
+#: pages/coming-soon/mojo.php:219
 msgid "This is the default coming soon page for this site because it was installed via MOJO Marketplace."
 msgstr ""
 
-#: pages/coming-soon/mojo.php:218
+#: pages/coming-soon/mojo.php:220
 msgid "If you are the site owner and are finished building the site you can click the link in the banner of the administration panel to disable it."
 msgstr ""
 
-#: pages/coming-soon/mojo.php:220
+#: pages/coming-soon/mojo.php:222
 msgid "close"
 msgstr ""
 
-#: pages/coming-soon/mojo.php:221
+#: pages/coming-soon/mojo.php:223
 msgid "login"
 msgstr ""
 
@@ -1034,6 +1039,7 @@ msgid "Share your content with your social networks automatically when you publi
 msgstr ""
 
 #: pages/mojo-home.php:210
+#: pages/mojo-home.php:243
 msgid "Configure"
 msgstr ""
 
