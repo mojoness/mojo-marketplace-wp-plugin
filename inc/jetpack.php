@@ -36,7 +36,7 @@ function mm_jetpack_unregister_blocks( $blocks ) {
 	}
 	return $blocks;
 }
-add_filter( 'jetpack_set_available_blocks', 'mm_jetpack_unregister_block' );
+add_filter( 'jetpack_set_available_blocks', 'mm_jetpack_unregister_blocks' );
 
 add_filter( 'jetpack_show_setup_wizard', '__return_true' );
 add_filter( 'jetpack_pre_connection_prompt_helpers', '__return_true' );
