@@ -374,11 +374,11 @@ footer p a:hover {
 
 					} else if ( status == 'active' ) {
 
-						$( '#error' ).show().text( '<?php esch_html_e( 'Your email address is already subscribed to this website. Stay tuned to your inbox for our updates or try a different email address.' ); ?>' );
+						$( '#error' ).show().text( '<?php esc_html_e( 'Your email address is already subscribed to this website. Stay tuned to your inbox for our updates or try a different email address.' ); ?>' );
 
 					} else if ( status == 'invalid_email' ){
 
-						$( '#error' ).show().text( '<?php esch_html_e( 'There was an error with your submission and you were not subscribed. Please try again with a valid email address.' ); ?>' );
+						$( '#error' ).show().text( '<?php esc_html_e( 'There was an error with your submission and you were not subscribed. Please try again with a valid email address.' ); ?>' );
 
 					} else {
 
