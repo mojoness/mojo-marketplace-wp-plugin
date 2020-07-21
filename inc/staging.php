@@ -115,7 +115,17 @@ function mm_cl( $command, $args = null ) {
 	$script = MM_BASE_DIR . 'lib/.staging';
 
 	if ( 0755 != (int) substr( sprintf( '%o', fileperms( $script ) ), -4 ) ) {
-		chmod( $script, 0755 );
+		if ( is_writable() ) {
+			chmod( $script, 0755 );
+		} else {
+			echo json_encode(
+				array(
+					'status'  => 'error',
+					'message' => 'Unable to execute script (permission error).',
+				)
+			);
+			die;
+		}
 	}
 
 	putenv( 'PATH=' . getenv( 'PATH' ) . PATH_SEPARATOR . '/usr/local/bin' );
