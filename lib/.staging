@@ -24,7 +24,7 @@ function create {
 	cd $STAGING_DIR || error 'Unable to move to staging directory.'
 	move_files $PRODUCTION_DIR $STAGING_DIR
 	wp core download --version=$WP_VER --force || error 'Unable to install WordPress in staging directory.'
-	wp core config --dbname=$DB --dbuser=$DB_USER --dbpass=$DB_PASS --dbprefix=staging_$DB_PREFIX --skip-themes --skip-plugins || error 'Unable to configure WordPress.'
+	wp core config --dbhost=$DB_HOST --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --dbprefix=staging_$DB_PREFIX --skip-themes --skip-plugins || error 'Unable to configure WordPress.'
 	sed -i -e "s/$DB_PREFIX/staging_$DB_PREFIX/g" $STAGING_DIR/.export-sql || error 'Unable to update prefix.'
 	wp db import $STAGING_DIR/.export-sql --skip-themes --skip-plugins || error 'Unable to import database.'
 	rm $STAGING_DIR/.export-sql --force
@@ -204,7 +204,8 @@ STAGING_DIR=$4
 PRODUCTION_URL=$5
 STAGING_URL=$6
 USER_ID=$7
-DB=$(wp eval 'echo DB_NAME;' --path=$PRODUCTION_DIR)
+DB_HOST=$(wp eval 'echo DB_HOST;' --path=$PRODUCTION_DIR)
+DB_NAME=$(wp eval 'echo DB_NAME;' --path=$PRODUCTION_DIR)
 DB_USER=$(wp eval 'echo DB_USER;' --path=$PRODUCTION_DIR)
 DB_PASS=$(wp eval 'echo DB_PASSWORD;' --path=$PRODUCTION_DIR)
 DB_PREFIX=$(wp eval 'global $wpdb;echo $wpdb->prefix;' --path=$PRODUCTION_DIR)
