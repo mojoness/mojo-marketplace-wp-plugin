@@ -109,17 +109,6 @@ class EIG_WP_CLI_Staging extends EIG_WP_CLI_Command {
 			case 'deploy_files_db':
 				$json_response = mm_cl( 'deploy_files_db' );
 				break;
-
-			case 'save_state':
-				$json_response = mm_cl( 'save_state' );
-				break;
-
-			case 'restore_state':
-				if ( ! isset( $assoc_args['revision'] ) ) {
-					$this->error( 'Revision not provided.' );
-				}
-				$json_response = mm_cl( 'restore_state', array( esc_attr( $assoc_args['revision'] ) ) );
-				break;
 		}
 		$json_response = preg_replace( '/[^[:print:]]/', '', $json_response );
 		$json_response = str_replace( '[H[2J', '', $json_response );

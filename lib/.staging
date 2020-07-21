@@ -75,7 +75,7 @@ function deploy_files {
 	wp core download --version=$WP_VER --force --path=$PRODUCTION_DIR || error 'Unable to move WordPress files.'
 	move_files $STAGING_DIR $PRODUCTION_DIR
 	clear
-	echo \{\"status\" :\"success\",\"message\":\"Files deployed successfully.\",\"callback\":\"mm_load_revisions\"\}
+	echo \{\"status\" :\"success\",\"message\":\"Files deployed successfully.\"}
 }
 
 function deploy_db {
@@ -91,14 +91,14 @@ function deploy_db {
 	wp option delete mm_coming_soon --path=$PRODUCTION_DIR || error 'Unable to disable coming soon page.'
 	rewrite_htaccess $PRODUCTION_DIR
 	clear
-	echo \{\"status\" :\"success\",\"message\":\"Database deployed successfully.\",\"callback\":\"mm_load_revisions\"\}
+	echo \{\"status\" :\"success\",\"message\":\"Database deployed successfully.\"}
 }
 
 function deploy_files_db {
 	deploy_files
 	deploy_db
 	clear
-	echo \{\"status\" :\"success\",\"message\":\"Files and Database deployed successfully.\",\"callback\":\"mm_load_revisions\"\}
+	echo \{\"status\" :\"success\",\"message\":\"Files and Database deployed successfully.\"}
 }
 
 function deploy_files_dbmerge {
