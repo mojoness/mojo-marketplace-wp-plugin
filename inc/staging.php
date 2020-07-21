@@ -101,6 +101,17 @@ function mm_cl( $command, $args = null ) {
 		die;
 	}
 
+	$disabled_functions = explode( ',', ini_get( 'disable_functions' ) );
+	if ( is_array( $disabled_functions ) && in_array( 'exec', array_map( 'trim', $disabled_functions ) ) ) {
+		echo json_encode(
+			array(
+				'status'  => 'error',
+				'message' => 'Unable to execute script (disabled_function).',
+			)
+		);
+		die;
+	}
+
 	$script = MM_BASE_DIR . 'lib/.staging';
 
 	if ( 0755 != (int) substr( sprintf( '%o', fileperms( $script ) ), -4 ) ) {
