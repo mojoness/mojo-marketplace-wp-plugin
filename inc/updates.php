@@ -111,14 +111,25 @@ function mm_auto_update_register_settings() {
 add_action( 'admin_init', 'mm_auto_update_register_settings' );
 
 function mm_auto_update_configure() {
+	global $wp_version;
 
 	$settings = array(
 		'allow_major_auto_core_updates' => get_option( 'allow_major_auto_core_updates', true ),
 		'allow_minor_auto_core_updates' => get_option( 'allow_minor_auto_core_updates', true ),
-//		'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
-		'auto_update_theme'             => get_option( 'auto_update_theme', true ),
 		'auto_update_translation'       => get_option( 'auto_update_translation', true ),
 	);
+
+	/*
+	 * A native UI for managing plugin and theme auto-updates was added in WordPress 5.5.0.
+	 * If the site is not running 5.5.0 or higher, continue to manage auto-updates through
+	 * the plugin.
+	 */
+	if ( version_compare( $wp_version, '5.5.0', '<' ) ) {
+		$settings = array_merge( $settings, array(
+			'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
+			'auto_update_theme'             => get_option( 'auto_update_theme', true ),
+		) );
+	}
 
 	// only change setting if the updater is not disabled
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || AUTOMATIC_UPDATER_DISABLED === false ) {
@@ -158,6 +169,8 @@ add_action( 'plugins_loaded', 'mm_auto_update_configure', 5 );
  * This runs on the @see {'upgrader_process_complete'} action, which fires when an
  * update or installation happens.
  *
+ * @global $wp_version
+ *
  * @param object $wp_upgrader The upgrader instance for the current process. This could be a
  *                            WP_Upgrader, Theme_Upgrader, Plugin_Upgrader, Core_Upgrade, or
  *                            Language_Pack_Upgrader class instance.
@@ -172,6 +185,13 @@ add_action( 'plugins_loaded', 'mm_auto_update_configure', 5 );
  * }
  */
 function mm_plugin_theme_installed( $wp_upgrader, $hook_extra ) {
+	global $wp_version;
+
+	// A native UI for managing plugin and theme auto-updates was added in WordPress 5.5.0.
+	if ( version_compare( $wp_version, '5.5.0', '<' ) ) {
+		return;
+	}
+
 	// Only proceed if a plugin or theme is being installed.
 	if ( ! in_array( $hook_extra['type'], array( 'plugin', 'theme' ), true ) ) {
 		return;
