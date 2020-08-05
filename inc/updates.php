@@ -116,20 +116,10 @@ function mm_auto_update_configure() {
 	$settings = array(
 		'allow_major_auto_core_updates' => get_option( 'allow_major_auto_core_updates', true ),
 		'allow_minor_auto_core_updates' => get_option( 'allow_minor_auto_core_updates', true ),
+		'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
+		'auto_update_theme'             => get_option( 'auto_update_theme', true ),
 		'auto_update_translation'       => get_option( 'auto_update_translation', true ),
 	);
-
-	/*
-	 * A native UI for managing plugin and theme auto-updates was added in WordPress 5.5.0.
-	 * If the site is not running 5.5.0 or higher, continue to manage auto-updates through
-	 * the plugin.
-	 */
-	if ( version_compare( $wp_version, '5.5.0', '<' ) ) {
-		$settings = array_merge( $settings, array(
-			'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
-			'auto_update_theme'             => get_option( 'auto_update_theme', true ),
-		) );
-	}
 
 	// only change setting if the updater is not disabled
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || AUTOMATIC_UPDATER_DISABLED === false ) {
@@ -152,6 +142,15 @@ function mm_auto_update_configure() {
 
 		$settings = array_map( 'mm_auto_update_make_bool', $settings );
 
+		// If plugin or theme settings are disabled, allow the site admin to manage auto-updates in WordPress.
+		if ( false === $settings['auto_update_plugin'] && version_compare( $wp_version, '5.5.0', '>=' ) ) {
+			unset( $settings['auto_update_plugin'] );
+		}
+
+		if ( false === $settings['auto_update_theme'] && version_compare( $wp_version, '5.5.0', '>=' ) ) {
+			unset( $settings['auto_update_theme'] );
+		}
+
 		foreach ( $settings as $name => $value ) {
 			if ( $value ) {
 				add_filter( $name, '__return_true' );
@@ -164,121 +163,74 @@ function mm_auto_update_configure() {
 add_action( 'plugins_loaded', 'mm_auto_update_configure', 5 );
 
 /**
- * Automatically enables auto-updates for plugins and themes when the settings are enabled.
+ * Changes the text in the Automatic updates column of the plugin list table to inform the user
+ * that the plugin setting is enabling auto-updates site wide.
  *
- * This runs on the @see {'upgrader_process_complete'} action, which fires when an
- * update or installation happens.
- *
- * @global $wp_version
- *
- * @param object $wp_upgrader The upgrader instance for the current process. This could be a
- *                            WP_Upgrader, Theme_Upgrader, Plugin_Upgrader, Core_Upgrade, or
- *                            Language_Pack_Upgrader class instance.
- * @param array $hook_extra {
- *     Array of bulk item update data.
- *
- *     Below is the data used in the this function. More data is potentially available, but not
- *     for the context that's targeted in this function.
- *
- *     @type string $action       Type of action. Default 'update'.
- *     @type string $type         Type of update process. Accepts 'plugin', 'theme', 'translation', or 'core'.
- * }
+ * @param string $html The generated HTML for the automatic updates column.
+ * @return string The adjusted HTML for the automatic updates column.
  */
-function mm_plugin_theme_installed( $wp_upgrader, $hook_extra ) {
-	global $wp_version;
+function mm_plugin_auto_update_setting_html( $html ) {
+	$bulk_auto_update_enabled = mm_auto_update_make_bool( get_option( 'auto_update_plugin', true ) );
 
-	// A native UI for managing plugin and theme auto-updates was added in WordPress 5.5.0.
-	if ( version_compare( $wp_version, '5.5.0', '<' ) ) {
-		return;
+	if ( ! $bulk_auto_update_enabled ) {
+		return $html;
 	}
 
-	// Only proceed if a plugin or theme is being installed.
-	if ( ! in_array( $hook_extra['type'], array( 'plugin', 'theme' ), true ) ) {
-		return;
-	}
-
-	if ( 'install' !== $hook_extra['action'] ) {
-		return;
-	}
-
-	// Make sure hte correct Upgrader class is passed.
-	if ( ! is_a( $wp_upgrader, ucfirst( $hook_extra['type'] ) . '_Upgrader' ) ) {
-		return;
-	}
-
-	$auto_update_state = mm_auto_update_make_bool( get_option( "auto_update_{$hook_extra['type']}", true ) );
-
-	// If the setting is set to off, don't configure new plugins and themes to auto-update.
-	if ( ! $auto_update_state ) {
-		return;
-	}
-
-	$enabled_auto_updates = get_site_option( "auto_update_{$hook_extra['type']}s", array() );
-
-	if ( is_a( $wp_upgrader, 'Plugin_Upgrader' ) ) {
-		$plugins = get_plugins();
-		$plugin_file = '';
-		$installed_plugin = $wp_upgrader->new_plugin_data;
-
-		// Since the plugin file is not returned
-		foreach ( $plugins as $file => $plugin ) {
-			if ( $installed_plugin['Name'] !== $plugin['Name'] || $installed_plugin['PluginURI'] !== $plugin['PluginURI'] ) {
-				continue;
-			}
-
-			$plugin_file = $file;
-			break;
-		}
-
-		if ( empty( $plugin_file ) || ! file_exists( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
-			return;
-		}
-
-		if ( in_array( $plugin_file, $enabled_auto_updates, true ) ) {
-			return;
-		}
-
-		$enabled_auto_updates[] = $plugin_file;
-
-		update_site_option( "auto_update_{$hook_extra['type']}s", array_values( array_unique( $enabled_auto_updates ) ) );
-
-		return;
-	}
-
-	if ( is_a( $wp_upgrader, 'Theme_Upgrader' ) ) {
-		if ( ! file_exists( WP_CONTENT_DIR . '/themes/' . $wp_upgrader->result['destination_name'] . '/style.css' ) ) {
-			return;
-		}
-
-		$enabled_auto_updates[] = $wp_upgrader->result['destination_name'];
-
-		update_site_option( "auto_update_{$hook_extra['type']}s", array_values( array_unique( $enabled_auto_updates ) ) );
-
-		return;
-	}
+	return str_replace(
+		'<span class="label">Auto-updates enabled</span>',
+		sprintf(
+			__( 'Auto-updates enabled on the <a href="%s">Settings > General page</a>.', 'mojo-marketplace-wp-plugin' ),
+			admin_url( 'options-general.php' )
+		),
+		$html
+	);
 }
-add_action( 'upgrader_process_complete', 'mm_plugin_theme_installed', 10, 2 );
+add_filter( 'plugin_auto_update_setting_html', 'mm_plugin_auto_update_setting_html' );
 
 /**
- * Checks for manual changes by the user to the auto-update settings.
+ * Changes the text in the Automatic updates column of the theme list table to inform the user
+ * that the themes setting is enabling auto-updates site wide.
  *
- * If auto-updates for an individual plugin or theme are disabled, then the on/off
- * setting can't always adjust accordingly.
+ * This only adjusts the themes page in the network admin.
  *
- * @param string $type The type of auto-update to check. Defaults to 'plugin'.
- * @return bool If there are manual changes to auto-updates for the passed type.
- *              Returns true if there are user changes, false if there are not.
+ * @param string $html The generated HTML for the automatic updates column.
+ * @return string The adjusted HTML for the automatic updates column.
  */
-function mm_has_user_changes_auto_updates( $type = 'plugin' ) {
-	if ( 'theme' === $type ) {
-		$auto_updating_themes = sort( get_site_option( "auto_update_themes", array() ) );
-		$installed_themes = sort( array_keys( wp_get_themes() ) );
+function mm_theme_auto_update_setting_html( $html ) {
+	$bulk_auto_update_enabled = mm_auto_update_make_bool( get_option( 'auto_update_theme', true ) );
 
-		return $auto_updating_themes !== $installed_themes;
+	if ( ! $bulk_auto_update_enabled ) {
+		return $html;
 	}
 
-	$installed_plugins = sort( array_keys( get_plugins() ) );
-	$auto_updating_plugins = sort( get_site_option( "auto_update_plugins", array() ) );
-
-	return $auto_updating_plugins !== $installed_plugins;
+	return sprintf(
+		__( 'Auto-updates enabled on the <a href="%s">Settings > General page</a>.', 'mojo-marketplace-wp-plugin' ),
+		admin_url( 'options-general.php' )
+	);
 }
+add_filter( 'theme_auto_update_setting_html', 'mm_theme_auto_update_setting_html' );
+
+/**
+ * Changes the text in the theme details overlay to inform the user
+ * that the themes setting is enabling auto-updates site wide.
+ *
+ * @param string $template The JavaScript template for displaying the auto-update setting link.
+ * @return string The modified JavaScript template for displaying the auto-update setting link.
+ */
+function mm_theme_auto_update_setting_template( $template ) {
+	$bulk_auto_update_enabled = mm_auto_update_make_bool( get_option( 'auto_update_theme', true ) );
+
+	if ( ! $bulk_auto_update_enabled ) {
+		return $template;
+	}
+
+	$template_string = '<# } else if ( data.autoupdate.forced ) { #>
+					' . __( 'Auto-updates enabled' );
+	$replacement = '<# } else if ( data.autoupdate.forced ) { #>' . sprintf(
+		__( 'Auto-updates enabled on the <a href="%s">Settings > General page</a>.', 'mojo-marketplace-wp-plugin' ),
+		admin_url( 'options-general.php' )
+	);
+
+	return str_replace( $template_string, $replacement, $template );
+}
+add_filter( 'theme_auto_update_setting_template', 'mm_theme_auto_update_setting_template' );
