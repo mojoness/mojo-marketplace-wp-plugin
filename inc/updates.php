@@ -26,8 +26,8 @@ function mm_auto_update_callback( $args ) {
 			'auto_update_translation'       => 'true',
 		);
 		$value    = get_option( $args['field'], $defaults[ $args['field'] ] );
-		echo __( 'On', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . $args['field'] . "' value='true'" . checked( $value, 'true', false ) . ' />';
-		echo __( 'Off', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . $args['field'] . "' value='false'" . checked( $value, 'false', false ) . ' />';
+		echo __( 'On', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='true'" . checked( $value, 'true', false ) . ' />';
+		echo __( 'Off', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='false'" . checked( $value, 'false', false ) . ' />';
 	}
 }
 
