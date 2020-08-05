@@ -151,3 +151,90 @@ function mm_auto_update_configure() {
 	}
 }
 add_action( 'plugins_loaded', 'mm_auto_update_configure', 5 );
+
+/**
+ * Automatically enables auto-updates for plugins and themes when the settings are enabled.
+ *
+ * This runs on the @see {'upgrader_process_complete'} action, which fires when an
+ * update or installation happens.
+ *
+ * @param object $wp_upgrader The upgrader instance for the current process. This could be a
+ *                            WP_Upgrader, Theme_Upgrader, Plugin_Upgrader, Core_Upgrade, or
+ *                            Language_Pack_Upgrader class instance.
+ * @param array $hook_extra {
+ *     Array of bulk item update data.
+ *
+ *     Below is the data used in the this function. More data is potentially available, but not
+ *     for the context that's targeted in this function.
+ *
+ *     @type string $action       Type of action. Default 'update'.
+ *     @type string $type         Type of update process. Accepts 'plugin', 'theme', 'translation', or 'core'.
+ * }
+ */
+function mm_plugin_theme_installed( $wp_upgrader, $hook_extra ) {
+	// Only proceed if a plugin or theme is being installed.
+	if ( ! in_array( $hook_extra['type'], array( 'plugin', 'theme' ), true ) ) {
+		return;
+	}
+
+	if ( 'install' !== $hook_extra['action'] ) {
+		return;
+	}
+
+	// Make sure hte correct Upgrader class is passed.
+	if ( ! is_a( $wp_upgrader, ucfirst( $hook_extra['type'] ) . '_Upgrader' ) ) {
+		return;
+	}
+
+	$auto_update_state = mm_auto_update_make_bool( get_option( "auto_update_{$hook_extra['type']}", true ) );
+
+	// If the setting is set to off, don't configure new plugins and themes to auto-update.
+	if ( ! $auto_update_state ) {
+		return;
+	}
+
+	$enabled_auto_updates = get_site_option( "auto_update_{$hook_extra['type']}s", array() );
+
+	if ( is_a( $wp_upgrader, 'Plugin_Upgrader' ) ) {
+		$plugins = get_plugins();
+		$plugin_file = '';
+		$installed_plugin = $wp_upgrader->new_plugin_data;
+
+		// Since the plugin file is not returned
+		foreach ( $plugins as $file => $plugin ) {
+			if ( $installed_plugin['Name'] !== $plugin['Name'] || $installed_plugin['PluginURI'] !== $plugin['PluginURI'] ) {
+				continue;
+			}
+
+			$plugin_file = $file;
+			break;
+		}
+
+		if ( empty( $plugin_file ) || ! file_exists( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
+			return;
+		}
+
+		if ( in_array( $plugin_file, $enabled_auto_updates, true ) ) {
+			return;
+		}
+
+		$enabled_auto_updates[] = $plugin_file;
+
+		update_site_option( "auto_update_{$hook_extra['type']}s", array_values( array_unique( $enabled_auto_updates ) ) );
+
+		return;
+	}
+
+	if ( is_a( $wp_upgrader, 'Theme_Upgrader' ) ) {
+		if ( ! file_exists( WP_CONTENT_DIR . '/themes/' . $wp_upgrader->result['destination_name'] . '/style.css' ) ) {
+			return;
+		}
+
+		$enabled_auto_updates[] = $wp_upgrader->result['destination_name'];
+
+		update_site_option( "auto_update_{$hook_extra['type']}s", array_values( array_unique( $enabled_auto_updates ) ) );
+
+		return;
+	}
+}
+add_action( 'upgrader_process_complete', 'mm_plugin_theme_installed', 10, 2 );
