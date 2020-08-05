@@ -23,7 +23,6 @@ function mm_auto_update_callback( $args ) {
 			'allow_minor_auto_core_updates' => 'true',
 			'auto_update_plugin'            => 'true',
 			'auto_update_theme'             => 'true',
-			'auto_update_translation'       => 'true',
 		);
 		$value    = get_option( $args['field'], $defaults[ $args['field'] ] );
 		echo __( 'On', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='true'" . checked( $value, 'true', false ) . ' />';
@@ -97,16 +96,6 @@ function mm_auto_update_register_settings() {
 		array( 'field' => 'auto_update_plugin' )
 	);
 	register_setting( 'general', 'auto_update_plugin' );
-
-	add_settings_field(
-		'auto_update_translation',
-		__( 'Translations', 'mojo-marketplace-wp-plugin' ),
-		'mm_auto_update_callback',
-		$section_hook,
-		$section_name,
-		array( 'field' => 'auto_update_translation' )
-	);
-	register_setting( 'general', 'auto_update_translation' );
 }
 add_action( 'admin_init', 'mm_auto_update_register_settings' );
 
@@ -118,7 +107,6 @@ function mm_auto_update_configure() {
 		'allow_minor_auto_core_updates' => get_option( 'allow_minor_auto_core_updates', true ),
 		'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
 		'auto_update_theme'             => get_option( 'auto_update_theme', true ),
-		'auto_update_translation'       => get_option( 'auto_update_translation', true ),
 	);
 
 	// only change setting if the updater is not disabled
