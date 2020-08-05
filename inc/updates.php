@@ -1,8 +1,17 @@
 <?php
-/*
-	Auto Update Major on New Installs and default for all other with a setting section to customize.
-*/
+/**
+ * Auto-update related functionality.
+ *
+ * By default, all auto-updates are enabled (including major releases).
+ */
 
+/**
+ * Convert string boolean values to actual booleans.
+ *
+ * @param string $value   The value to convert.
+ * @param bool   $default Default value to use if $value is neither 'true' or 'false'.
+ * @return bool The conversion result.
+ */
 function mm_auto_update_make_bool( $value, $default = true ) {
 	if ( 'false' === $value ) {
 		$value = false;
@@ -16,6 +25,11 @@ function mm_auto_update_make_bool( $value, $default = true ) {
 	return $value;
 }
 
+/**
+ * Displays on/off radio buttons for each auto-update type.
+ *
+ * @param array $args
+ */
 function mm_auto_update_callback( $args ) {
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || AUTOMATIC_UPDATER_DISABLED === false ) {
 		$defaults = array(
@@ -25,16 +39,19 @@ function mm_auto_update_callback( $args ) {
 			'auto_update_theme'             => 'true',
 		);
 		$value    = get_option( $args['field'], $defaults[ $args['field'] ] );
-		echo __( 'On', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='true'" . checked( $value, 'true', false ) . ' />';
-		echo __( 'Off', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='false'" . checked( $value, 'false', false ) . ' />';
+		echo esc_html__( 'On', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='true'" . checked( $value, 'true', false ) . ' />';
+		echo esc_html__( 'Off', 'mojo-marketplace-wp-plugin' ) . " <input type='radio' name='" . esc_attr( $args['field'] ) . "' value='false'" . checked( $value, 'false', false ) . ' />';
 	}
 }
 
+/**
+ * Registers auto-update related settings for the Settings > General page.
+ */
 function mm_auto_update_register_settings() {
 	$section_name = 'mm_auto_update_settings_section';
 	$section_hook = 'general';
 
-	if ( 'bluehost' == mm_brand() ) {
+	if ( 'bluehost' === mm_brand() ) {
 		$brand = __( 'Bluehost', 'mojo-marketplace-wp-plugin' );
 	} else {
 		$brand = __( 'Host', 'mojo-marketplace-wp-plugin' );
@@ -42,7 +59,7 @@ function mm_auto_update_register_settings() {
 
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) ) {
 		$brand = get_option( 'mm_brand', 'MOJO' );
-		if ( 'BlueHost' == $brand ) {
+		if ( 'BlueHost' === $brand ) {
 			$brand = __( 'Bluehost', 'mojo-marketplace-wp-plugin' );
 		}
 		add_settings_section(
@@ -99,6 +116,15 @@ function mm_auto_update_register_settings() {
 }
 add_action( 'admin_init', 'mm_auto_update_register_settings' );
 
+/**
+ * Configures auto-update behaviors for a site.
+ *
+ * If defined, constants override any settings selected on the Settings > General page.
+ *
+ * @since 5.5.0 Translation auto-updates are no longer managed by the plugin. These should always auto-update, which is
+ *              Core's default behavior.
+ * @since 5.5.0 When plugin and theme auto-updates are set to "off", WordPress core will manage
+ */
 function mm_auto_update_configure() {
 	global $wp_version;
 
@@ -167,6 +193,7 @@ function mm_plugin_auto_update_setting_html( $html ) {
 	return str_replace(
 		'<span class="label">Auto-updates enabled</span>',
 		sprintf(
+			/* translators: %s Settings > General page URL. */
 			__( 'Auto-updates enabled on the <a href="%s">Settings > General page</a>.', 'mojo-marketplace-wp-plugin' ),
 			admin_url( 'options-general.php' )
 		),
@@ -192,6 +219,7 @@ function mm_theme_auto_update_setting_html( $html ) {
 	}
 
 	return sprintf(
+		/* translators: %s Settings > General page URL. */
 		__( 'Auto-updates enabled on the <a href="%s">Settings > General page</a>.', 'mojo-marketplace-wp-plugin' ),
 		admin_url( 'options-general.php' )
 	);
@@ -214,7 +242,9 @@ function mm_theme_auto_update_setting_template( $template ) {
 
 	$template_string = '<# } else if ( data.autoupdate.forced ) { #>
 					' . __( 'Auto-updates enabled' );
-	$replacement = '<# } else if ( data.autoupdate.forced ) { #>' . sprintf(
+	$replacement     = '<# } else if ( data.autoupdate.forced ) { #>';
+	$replacement    .= sprintf(
+		/* translators: %s Settings > General page URL. */
 		__( 'Auto-updates enabled on the <a href="%s">Settings > General page</a>.', 'mojo-marketplace-wp-plugin' ),
 		admin_url( 'options-general.php' )
 	);
