@@ -115,7 +115,7 @@ function mm_auto_update_configure() {
 	$settings = array(
 		'allow_major_auto_core_updates' => get_option( 'allow_major_auto_core_updates', true ),
 		'allow_minor_auto_core_updates' => get_option( 'allow_minor_auto_core_updates', true ),
-		'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
+//		'auto_update_plugin'            => get_option( 'auto_update_plugin', true ),
 		'auto_update_theme'             => get_option( 'auto_update_theme', true ),
 		'auto_update_translation'       => get_option( 'auto_update_translation', true ),
 	);
@@ -238,3 +238,27 @@ function mm_plugin_theme_installed( $wp_upgrader, $hook_extra ) {
 	}
 }
 add_action( 'upgrader_process_complete', 'mm_plugin_theme_installed', 10, 2 );
+
+/**
+ * Checks for manual changes by the user to the auto-update settings.
+ *
+ * If auto-updates for an individual plugin or theme are disabled, then the on/off
+ * setting can't always adjust accordingly.
+ *
+ * @param string $type The type of auto-update to check. Defaults to 'plugin'.
+ * @return bool If there are manual changes to auto-updates for the passed type.
+ *              Returns true if there are user changes, false if there are not.
+ */
+function mm_has_user_changes_auto_updates( $type = 'plugin' ) {
+	if ( 'theme' === $type ) {
+		$auto_updating_themes = sort( get_site_option( "auto_update_themes", array() ) );
+		$installed_themes = sort( array_keys( wp_get_themes() ) );
+
+		return $auto_updating_themes !== $installed_themes;
+	}
+
+	$installed_plugins = sort( array_keys( get_plugins() ) );
+	$auto_updating_plugins = sort( get_site_option( "auto_update_plugins", array() ) );
+
+	return $auto_updating_plugins !== $installed_plugins;
+}
