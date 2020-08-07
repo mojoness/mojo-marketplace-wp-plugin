@@ -2,7 +2,7 @@
 /**
  * Main plugin bootstrap process.
  *
- * @package Mojo Marketplace
+ * @package MojoMarketplace
  */
 
 use Endurance_WP_Plugin_Updater\Updater;
