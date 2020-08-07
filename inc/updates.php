@@ -3,6 +3,8 @@
  * Auto-update related functionality.
  *
  * By default, all auto-updates are enabled (including major releases).
+ *
+ * @package MojoMarketplace
  */
 
 /**
@@ -28,7 +30,7 @@ function mm_auto_update_make_bool( $value, $default = true ) {
 /**
  * Displays on/off radio buttons for each auto-update type.
  *
- * @param array $args
+ * @param array $args Settings field callback arguments.
  */
 function mm_auto_update_callback( $args ) {
 	if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || AUTOMATIC_UPDATER_DISABLED === false ) {
@@ -241,7 +243,7 @@ function mm_theme_auto_update_setting_template( $template ) {
 	}
 
 	$template_string = '<# } else if ( data.autoupdate.forced ) { #>
-					' . __( 'Auto-updates enabled' );
+					' . __( 'Auto-updates enabled', 'mojo-marketplace-wp-plugin' );
 	$replacement     = '<# } else if ( data.autoupdate.forced ) { #>';
 	$replacement    .= sprintf(
 		/* translators: %s Settings > General page URL. */
