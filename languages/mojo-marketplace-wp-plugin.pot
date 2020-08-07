@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MOJO Marketplace 1.5.4\n"
+"Project-Id-Version: MOJO Marketplace 1.5.6\n"
 "Report-Msgid-Bugs-To: https://github.com/mojoness/mojo-marketplace-wp-plugin/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,8 +60,8 @@ msgstr ""
 #: inc/coming-soon.php:130
 #: inc/menu.php:22
 #: inc/menu.php:26
-#: inc/updates.php:39
-#: inc/updates.php:47
+#: inc/updates.php:57
+#: inc/updates.php:65
 msgid "Bluehost"
 msgstr ""
 
@@ -401,7 +401,7 @@ msgid "PrestaShop"
 msgstr ""
 
 #: inc/themes-widget.php:44
-#: inc/updates.php:83
+#: inc/updates.php:101
 #: pages/header/marketplace-fallback.php:64
 #: pages/header/nav-sub.php:50
 #: pages/mojo-search.php:38
@@ -410,7 +410,7 @@ msgid "Themes"
 msgstr ""
 
 #: inc/themes-widget.php:45
-#: inc/updates.php:93
+#: inc/updates.php:111
 #: pages/header/marketplace-fallback.php:79
 #: pages/header/nav-sub.php:60
 #: pages/mojo-search.php:39
@@ -460,33 +460,40 @@ msgstr ""
 msgid "Affiliate ID"
 msgstr ""
 
-#: inc/updates.php:29
+#: inc/updates.php:44
 msgid "On"
 msgstr ""
 
-#: inc/updates.php:30
+#: inc/updates.php:45
 #: pages/mojo-performance.php:60
 msgid "Off"
 msgstr ""
 
-#: inc/updates.php:41
+#: inc/updates.php:59
 msgid "Host"
 msgstr ""
 
-#: inc/updates.php:51
+#: inc/updates.php:69
 msgid "Auto Update Manager"
 msgstr ""
 
-#: inc/updates.php:60
+#: inc/updates.php:78
 msgid "Core Major"
 msgstr ""
 
-#: inc/updates.php:72
+#: inc/updates.php:90
 msgid "Core Minor"
 msgstr ""
 
-#: inc/updates.php:103
-msgid "Translations"
+#. translators: %s Settings > General page URL.
+#: inc/updates.php:199
+#: inc/updates.php:225
+#: inc/updates.php:250
+msgid "Auto-updates enabled on the <a href=\"%s\">Settings > General page</a>."
+msgstr ""
+
+#: inc/updates.php:246
+msgid "Auto-updates enabled"
 msgstr ""
 
 #: pages/api-unavailable.php:8
@@ -499,24 +506,23 @@ msgstr ""
 
 #. translators: %s: Blog name
 #: pages/coming-soon/bluehost-india.php:8
-#: pages/coming-soon/bluehost.php:9
 #: pages/coming-soon/mojo.php:8
 msgid "%s &mdash; Coming Soon"
 msgstr ""
 
 #: pages/coming-soon/bluehost-india.php:122
-#: pages/coming-soon/bluehost.php:317
+#: pages/coming-soon/bluehost.php:359
 msgid "A New WordPress Site"
 msgstr ""
 
 #: pages/coming-soon/bluehost-india.php:123
-#: pages/coming-soon/bluehost.php:281
-#: pages/coming-soon/bluehost.php:318
+#: pages/coming-soon/bluehost.php:312
+#: pages/coming-soon/bluehost.php:360
 msgid "Coming Soon!"
 msgstr ""
 
 #: pages/coming-soon/bluehost-india.php:124
-#: pages/coming-soon/bluehost.php:319
+#: pages/coming-soon/bluehost.php:362
 #: pages/coming-soon/mojo.php:151
 msgid "Admin Login"
 msgstr ""
@@ -526,35 +532,48 @@ msgstr ""
 msgid "a %1$sbluehost india%2$s powered website"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:283
+#. translators: %s: Blog name
+#: pages/coming-soon/bluehost.php:9
+msgid "%s — Coming Soon"
+msgstr ""
+
+#: pages/coming-soon/bluehost.php:314
 msgid "Be the first to know when we launch, enter your email address and we will let you know when we go live and any future website updates we have."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:285
+#: pages/coming-soon/bluehost.php:317
 msgid "Thank you, please check your email to confirm your subscription."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:286
+#: pages/coming-soon/bluehost.php:319
 msgid "There was an error with your submission and you were not subscribed. Please try again with a different email address."
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:291
+#: pages/coming-soon/bluehost.php:325
 #: pages/mojo-home.php:300
 msgid "Email"
 msgstr ""
 
-#: pages/coming-soon/bluehost.php:292
+#: pages/coming-soon/bluehost.php:333
 msgid "Enter your email address"
 msgstr ""
 
 #. translators: %1$s is replaced with opening link tag taking you to bluehost.com/wordpress, %2$s is replaced with closing link tag
-#: pages/coming-soon/bluehost.php:330
+#: pages/coming-soon/bluehost.php:374
 msgid "A %1$sBluehost%2$s powered website."
 msgstr ""
 
 #. translators: %1$s is replaced with opening link tag taking you to login page, %2$s is replaced with opening link tag taking you to my.bluehost.com, %3$s is replaced with closing link tag
-#: pages/coming-soon/bluehost.php:336
+#: pages/coming-soon/bluehost.php:380
 msgid "Is this your website? Log in to %1$sWordPress%3$s or %2$sBluehost%3$s."
+msgstr ""
+
+#: pages/coming-soon/bluehost.php:421
+msgid "Your email address is already subscribed to this website. Stay tuned to your inbox for our updates or try a different email address."
+msgstr ""
+
+#: pages/coming-soon/bluehost.php:425
+msgid "There was an error with your submission and you were not subscribed. Please try again with a valid email address."
 msgstr ""
 
 #: pages/coming-soon/mojo.php:141
