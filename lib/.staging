@@ -23,7 +23,12 @@ function create {
 	wp option update staging_environment production  || error 'Unable to set environment.'
 	cd $STAGING_DIR || error 'Unable to move to staging directory.'
 	move_files $PRODUCTION_DIR $STAGING_DIR
-	wp core download --version=$WP_VER --force || error 'Unable to install WordPress in staging directory.'
+	if [ -L $PRODUCTION_DIR/index.php ]
+		then
+			echo 'path='$STAGING_DIR > /nfssys/etc/wp_symink_watch/$(whoami).notify
+		else
+			wp core download --version=$WP_VER --force || error 'Unable to install WordPress in staging directory.'
+	fi
 	wp core config --dbhost=$DB_HOST --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --dbprefix=staging_$DB_PREFIX --skip-themes --skip-plugins || error 'Unable to configure WordPress.'
 	sed -i -e "s/$DB_PREFIX/staging_$DB_PREFIX/g" $STAGING_DIR/.export-sql || error 'Unable to update prefix.'
 	wp db import $STAGING_DIR/.export-sql --skip-themes --skip-plugins || error 'Unable to import database.'
@@ -34,7 +39,6 @@ function create {
 	wp option update mm_coming_soon 'true' --path=$STAGING_DIR || error 'Unable to enable the coming soon page on staging.'
 	wp rewrite flush --path=$STAGING_DIR || error 'Unable to flush rewrite rules.'
 	rewrite_htaccess $STAGING_DIR
-	#fire email here from mojo cli to site admin
 	clear
 	echo \{\"status\" :\"success\",\"message\":\"Staging website created successfully.\",\"reload\":\"true\"\}
 }
@@ -42,7 +46,6 @@ function create {
 function clone {
 	cd $PRODUCTION_DIR || error 'Unable to move to production directory.'
 	STAGING_TABLES=$(wp db tables --all-tables-with-prefix --format=csv --path=$STAGING_DIR)
-	WP_VER=$(wp core version)
 	if [ "0" != "$USER_ID" ]
 		then
 		SESSIONS=$(wp user meta get $USER_ID session_tokens --format=json --path=$STAGING_DIR)
@@ -58,7 +61,13 @@ function clone {
 	fi
 	wp option update staging_environment staging || error 'Unable to set environment.'
 	move_files $PRODUCTION_DIR $STAGING_DIR
-	wp core download --version=$WP_VER --force || error 'Unable to install WordPress in staging directory.'
+	if [ -L $PRODUCTION_DIR/index.php ]
+		then
+			echo 'path='$STAGING_DIR > /nfssys/etc/wp_symink_watch/$(whoami).notify
+		else
+			WP_VER=$(wp core version)
+			wp core download --version=$WP_VER --force || error 'Unable to install WordPress in staging directory.'
+	fi
 	wp search-replace $PRODUCTION_URL $STAGING_URL --skip-themes --skip-plugins || error 'Unable to update URL on staging.'
 	wp option update staging_config "$CONFIG" --format=json --path=$STAGING_DIR || error 'Unable to import global config on staging.'
 	wp option update mm_coming_soon 'true' --path=$STAGING_DIR || error 'Unable to enable the coming soon page on staging.'
@@ -71,8 +80,13 @@ function clone {
 
 function deploy_files {
 	cd $STAGING_DIR || error 'Unable to move to staging directory.'
-	WP_VER=$(wp core version)
-	wp core download --version=$WP_VER --force --path=$PRODUCTION_DIR || error 'Unable to move WordPress files.'
+	if [ -L $PRODUCTION_DIR/index.php ]
+		then
+			echo 'path='$PRODUCTION_DIR > /nfssys/etc/wp_symink_watch/$(whoami).notify
+		else
+			WP_VER=$(wp core version)
+			wp core download --version=$WP_VER --force --path=$PRODUCTION_DIR || error 'Unable to move WordPress files.'
+	fi
 	move_files $STAGING_DIR $PRODUCTION_DIR
 	clear
 	echo \{\"status\" :\"success\",\"message\":\"Files deployed successfully.\"}
