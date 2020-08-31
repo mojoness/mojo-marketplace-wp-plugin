@@ -112,7 +112,7 @@ function mm_cl( $command, $args = null ) {
 	$script = MM_BASE_DIR . 'lib/.staging';
 
 	if ( 0755 != (int) substr( sprintf( '%o', fileperms( $script ) ), -4 ) ) {
-		if ( is_writable() ) {
+		if ( is_writable( $script ) ) {
 			chmod( $script, 0755 );
 		} else {
 			echo json_encode(
