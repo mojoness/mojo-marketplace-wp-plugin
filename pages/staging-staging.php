@@ -102,43 +102,6 @@ require_once MM_BASE_DIR . 'pages/header/header.php';
 				</div>
 			</div>
 
-			<?php
-			$revisions = mm_cl( 'revisions' );
-			$revisions = explode( ';', $revisions );
-			if ( is_array( $revisions ) ) {
-				?>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12">
-							<ol class="breadcrumb">
-								<li><?php esc_html_e( 'Restoration Options', 'mojo-marketplace-wp-plugin' ); ?></li>
-							</ol>
-						</div>
-					</div>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-xs-12 col-sm-8">
-							<p><?php esc_html_e( 'Save the current staging environment or restore a previously saved staging environment.', 'mojo-marketplace-wp-plugin' ); ?></p>
-						</div>
-						<div class="col-xs-12 col-sm-4 text-right">
-							<button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_save_state"><?php esc_html_e( 'Add Restoration Point', 'mojo-marketplace-wp-plugin' ); ?></button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 col-sm-12">
-							<table class="table">
-								<tr><th><?php esc_html_e( 'Message', 'mojo-marketplace-wp-plugin' ); ?></th><th><?php esc_html_e( 'Date', 'mojo-marketplace-wp-plugin' ); ?></th><th>&nbsp;</th></tr>
-								<tr id="staging-revisions-loader"><td colspan="3" class="text-center"><img src="<?php echo MM_ASSETS_URL . 'img/loader-balls.svg'; ?>"/></td></tr>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-				<?php
-			}
-			?>
 		</div>
 	</main>
 </div>

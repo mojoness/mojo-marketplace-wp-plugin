@@ -17,9 +17,6 @@ function mm_cl( $command, $args = null ) {
 		'deploy_db'       => 'staging',
 		'deploy_files_db' => 'staging',
 		'sso_production'  => 'staging',
-		'save_state'      => 'staging',
-		'restore_state'   => 'staging',
-		'revisions'       => 'staging',
 		'compat_check'    => false,
 	);
 
@@ -36,7 +33,7 @@ function mm_cl( $command, $args = null ) {
 		}
 	}
 
-	if ( 'compat_check' != $command && 'revisions' != $command ) {
+	if ( 'compat_check' != $command ) {
 		do_action( 'mm_staging_command', $command );
 	}
 
@@ -101,10 +98,31 @@ function mm_cl( $command, $args = null ) {
 		die;
 	}
 
+	$disabled_functions = explode( ',', ini_get( 'disable_functions' ) );
+	if ( is_array( $disabled_functions ) && in_array( 'exec', array_map( 'trim', $disabled_functions ) ) ) {
+		echo json_encode(
+			array(
+				'status'  => 'error',
+				'message' => 'Unable to execute script (disabled_function).',
+			)
+		);
+		die;
+	}
+
 	$script = MM_BASE_DIR . 'lib/.staging';
 
 	if ( 0755 != (int) substr( sprintf( '%o', fileperms( $script ) ), -4 ) ) {
-		chmod( $script, 0755 );
+		if ( is_writable( $script ) ) {
+			chmod( $script, 0755 );
+		} else {
+			echo json_encode(
+				array(
+					'status'  => 'error',
+					'message' => 'Unable to execute script (permission error).',
+				)
+			);
+			die;
+		}
 	}
 
 	putenv( 'PATH=' . getenv( 'PATH' ) . PATH_SEPARATOR . '/usr/local/bin' );
@@ -193,39 +211,6 @@ function mm_destroy() {
 	die;
 }
 add_action( 'wp_ajax_mm_destroy', 'mm_destroy' );
-
-function mm_save_state() {
-	mm_check_admin();
-	mm_check_env( 'staging' );
-	echo mm_cl( 'save_state' );
-	die;
-}
-add_action( 'wp_ajax_mm_save_state', 'mm_save_state' );
-
-function mm_restore_state() {
-	mm_check_admin();
-	mm_check_env( 'staging' );
-	echo mm_cl( 'restore_state', array( esc_attr( $_POST['param1'] ) ) );
-	die;
-}
-add_action( 'wp_ajax_mm_restore_state', 'mm_restore_state' );
-
-function mm_revisions() {
-	mm_check_admin();
-	mm_check_env( 'staging' );
-	$revisions = mm_cl( 'revisions' );
-	$revisions = explode( ';', $revisions );
-	$output    = '';
-	foreach ( $revisions as $revision ) {
-		$revision = explode( ',', $revision );
-		if ( array_search( '', $revision ) === false ) {
-			$output .= '<tr class="staging-revision"><td>' . $revision[2] . '</td><td>' . $revision[1] . '</td><td class="text-right"><button class="btn btn-primary btn-lg staging-action" data-staging-action="mm_restore_state" data-staging-param1="' . trim( $revision[0] ) . '">Restore</button></td></tr>';
-		}
-	}
-	echo $output;
-	die;
-}
-add_action( 'wp_ajax_mm_revisions', 'mm_revisions' );
 
 function mm_sso_production() {
 	mm_check_admin();
