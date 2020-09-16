@@ -24,7 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npx wpi18n addtextdomain && composer run i18n"
+      "pre-commit": "lint-staged && npx wpi18n addtextdomain && vendor/bin/composer run i18n"
     }
   },
   "lint-staged": {
