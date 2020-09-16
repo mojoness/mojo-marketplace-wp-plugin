@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MOJO Marketplace 1.5.6\n"
+"Project-Id-Version: MOJO Marketplace 1.5.7\n"
 "Report-Msgid-Bugs-To: https://github.com/mojoness/mojo-marketplace-wp-plugin/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1447,26 +1447,6 @@ msgstr ""
 
 #: pages/staging-staging.php:99
 msgid "Only upload changes you have made to the database on your staging server. For example, adding a new blog post to your website is a database change."
-msgstr ""
-
-#: pages/staging-staging.php:115
-msgid "Restoration Options"
-msgstr ""
-
-#: pages/staging-staging.php:123
-msgid "Save the current staging environment or restore a previously saved staging environment."
-msgstr ""
-
-#: pages/staging-staging.php:126
-msgid "Add Restoration Point"
-msgstr ""
-
-#: pages/staging-staging.php:132
-msgid "Message"
-msgstr ""
-
-#: pages/staging-staging.php:132
-msgid "Date"
 msgstr ""
 
 #. translators: %s:Theme marketplace URL
