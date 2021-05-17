@@ -21,6 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'MM_VERSION', '1.5.7' );
+define( 'MM_FILE', __FILE__ );
 define( 'MM_BASE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MM_BASE_URL', plugin_dir_url( __FILE__ ) );
 define( 'MM_ASSETS_URL', 'https://www.mojomarketplace.com/mojo-plugin-assets/' );
