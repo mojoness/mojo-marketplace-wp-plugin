@@ -22,8 +22,7 @@
       "type": "composer",
       "url": "https://bluehost.github.io/satis/",
       "only": [
-        "bluehost/*",
-        "mojoness/*"
+        "bluehost/*"
       ]
     }
   ],
