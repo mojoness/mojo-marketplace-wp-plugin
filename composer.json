@@ -1,5 +1,5 @@
 {
-  "name": "mojoness/mojo-marketplace-wp-plugin",
+  "name": "bluehost/mojo-marketplace-wp-plugin",
   "description": "WordPress plugin that has shortcodes, widgets and themes.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
@@ -14,8 +14,8 @@
     }
   ],
   "support": {
-    "source": "https://github.com/mojoness/mojo-marketplace-wp-plugin",
-    "issues": "https://github.com/mojoness/mojo-marketplace-wp-plugin/issues"
+    "source": "https://github.com/bluehost/mojo-marketplace-wp-plugin",
+    "issues": "https://github.com/bluehost/mojo-marketplace-wp-plugin/issues"
   },
   "repositories": [
     {
@@ -47,7 +47,7 @@
       "vendor/bin/phpcbf . --standard=Bluehost"
     ],
     "i18n": [
-      "vendor/bin/wp i18n make-pot . ./languages/mojo-marketplace-wp-plugin.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/mojoness/mojo-marketplace-wp-plugin/issues\",\"POT-Creation-Date\":null}'"
+      "vendor/bin/wp i18n make-pot . ./languages/mojo-marketplace-wp-plugin.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/bluehost/mojo-marketplace-wp-plugin/issues\",\"POT-Creation-Date\":null}'"
     ],
     "lint": [
       "vendor/bin/phpcs . --standard=Bluehost -s"
